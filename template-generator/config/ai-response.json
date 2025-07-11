@@ -1,326 +1,255 @@
 {
-    "details": {
-      "projectName": "ecotech-solutions-site",
-      "clientName": "Maria Rodriguez",
-      "businessName": "EcoTech Solutions",
-      "tagline": "Technology-Driven Sustainability for a Cleaner Future",
-      "description": "EcoTech Solutions is a Portland-based environmental technology consulting firm led by Maria Rodriguez. We specialize in helping corporations, government agencies, and eco-conscious businesses implement innovative sustainable solutions, reduce emissions, and lead the way in renewable energy transformation.",
-      "email": "maria@ecotechsolutions.com",
-      "phone": "503-555-0123",
-      "primaryColor": "#2e7d32",
-      "secondaryColor": "#0288d1"
+  "details": {
+    "projectName": "creative-design-studio",
+    "clientName": "Sarah Johnson",
+    "businessName": "Creative Design Studio",
+    "tagline": "Modern Branding for Small Businesses",
+    "description": "Creative Design Studio is a graphic design business based in Portland, OR. Founded by Sarah Johnson, it specializes in modern, minimal branding and logo design for small businesses and startups.",
+    "email": "sarah@creativedesignstudio.com",
+    "phone": "+1 (555) 123-4567",
+    "primaryColor": "#1e3a8a",
+    "secondaryColor": "#6b7280"
+  },
+  "templateType": "business",
+  "customization": {
+    "headerContent": {
+      "businessName": "Creative Design Studio",
+      "navItems": [
+        { "name": "Home", "href": "#home" },
+        { "name": "About", "href": "#about" },
+        { "name": "Services", "href": "#services" },
+        { "name": "Client Work", "href": "#projects" },
+        { "name": "Process", "href": "#process" },
+        { "name": "Contact", "href": "#contact" }
+      ]
     },
-    "templateType": "business",
-    "customization": {
-      "headerContent": {
-        "businessName": "EcoTech Solutions",
-        "navItems": [
-          { "label": "Home", "href": "/" },
-          { "label": "About", "href": "#about" },
-          { "label": "Services", "href": "#services" },
-          { "label": "Projects", "href": "#projects" },
-          { "label": "Testimonials", "href": "#testimonials" },
-          { "label": "Contact", "href": "#contact" }
-        ]
+    "heroContent": {
+      "headline": "Minimal Design, Maximum Impact",
+      "subheadline": "Logo and brand identity design for small businesses who want to look professional from day one.",
+      "ctaText": "Get a Free Quote",
+      "ctaLink": "#contact",
+      "secondaryCtaText": "View Services",
+      "secondaryCtaLink": "#services",
+      "image": {
+        "src": "https://example.com/hero-image.jpg",
+        "alt": "Abstract branding sketches on a desk",
+        "overlay": "gradient",
+        "overlayColor": "from-black/70 via-transparent to-primary/60",
+        "shadow": null,
+        "rounded": null,
+        "zoomOnHover": false,
+        "blurBackground": false,
+        "aspectRatio": "21/9",
+        "className": "h-[60vh] md:h-[70vh] w-full object-cover object-center"
+      }
+    },
+    "aboutContent": {
+      "title": "About Our Business",
+      "text": "Creative Design Studio helps small businesses build lasting first impressions through thoughtful branding.",
+      "image": {
+        "src": "https://images.unsplash.com/photo-1581090700227-1e8e48c380f7?auto=format&fit=crop&w=800&q=80",
+        "alt": "Designer sketching logo concepts",
+        "overlay": "gradient",
+        "overlayColor": "from-primary/60 to-secondary/40",
+        "shadow": "2xl",
+        "rounded": "full",
+        "zoomOnHover": true,
+        "blurBackground": false,
+        "aspectRatio": "1/1",
+        "className": "w-80 h-80 mx-auto object-cover object-center"
       },
-      "heroContent": {
-        "headline": "Empowering a Sustainable Tomorrow",
-        "subheadline": "Innovative environmental consulting to reduce your carbon footprint and implement smart, sustainable technology.",
-        "ctaText": "Discover Our Services",
-        "ctaLink": "#services",
-        "image": "https://example.com/images/hero-ecotech.jpg"
+      "highlights": [
+        { "icon": "Award", "title": "100+ Brands Built", "subtitle": "Across startups and local businesses" },
+        { "icon": "Smile", "title": "Client-Focused", "subtitle": "Collaborative and transparent" },
+        { "icon": "PenTool", "title": "Design-Driven", "subtitle": "Modern and minimal" },
+        { "icon": "Star", "title": "5-Star Rated", "subtitle": "Proven satisfaction" }
+      ],
+      "mission": {
+        "title": "Our Mission",
+        "text": "To help small businesses succeed through accessible, high-quality branding that reflects their values and speaks to their customers."
       },
-      "aboutContent": {
-        "heading": "About Us",
-        "subheading": "Who We Are and What We Stand For",
-        "personalInfo": [
-          { "icon": "User", "label": "Founder", "value": "Maria Rodriguez" },
-          { "icon": "MapPin", "label": "Location", "value": "Portland, OR" },
-          { "icon": "Mail", "label": "Email", "value": "maria@ecotechsolutions.com" }
-        ],
-        "whoIAm": {
-          "heading": "Who We Are",
-          "paragraphs": [
-            "Founded by environmental technology expert Maria Rodriguez, EcoTech Solutions is a mission-driven consulting firm that partners with organizations to build sustainable futures through technology and innovation.",
-            "Our team brings together deep knowledge of renewable energy, eco-efficiency, and green technology to develop solutions tailored to each client’s goals and industry."
-          ]
+      "companyInfo": [
+        { "icon": "Briefcase", "text": "Established in 2019, based in Portland, OR" },
+        { "icon": "PenTool", "text": "Specialized in logo and brand identity design" },
+        { "icon": "Globe", "text": "Serving clients nationwide" }
+      ],
+      "cta": {
+        "text": "Get Started",
+        "icon": "Briefcase",
+        "link": "#contact"
+      }
+    },
+    "servicesContent": {
+      "title": "Our Services",
+      "subtitle": "Design solutions tailored to small business growth.",
+      "services": [
+        {
+          "icon": "PenTool",
+          "title": "Logo Design",
+          "description": "Crafted, scalable logo designs built to grow with your business."
         },
-        "whatIDo": {
-          "heading": "What We Do",
-          "skills": [
-            {
-              "title": "Green Technology Integration",
-              "description": "We advise on and implement cutting-edge technologies that reduce energy use and environmental impact."
-            },
-            {
-              "title": "Sustainability Strategy",
-              "description": "From ESG frameworks to circular economy planning, we craft roadmaps that align with your mission and regulations."
-            },
-            {
-              "title": "Renewable Energy Planning",
-              "description": "We assess, model, and facilitate solar, wind, and hybrid energy solutions for commercial and public sector clients."
-            }
-          ]
+        {
+          "icon": "Layers",
+          "title": "Brand Identity",
+          "description": "Visual systems that include color palette, typography, and brand guidelines."
         },
-        "mission": {
-          "title": "Our Mission",
-          "text": "To accelerate the transition to a sustainable world by helping organizations adopt smart environmental technologies and reduce their ecological impact—one project at a time."
+        {
+          "icon": "Image",
+          "title": "Marketing Materials",
+          "description": "Designs for business cards, flyers, and social templates aligned with your brand."
         }
-      },
-      "skillsContent": {
-        "heading": "Our Expertise",
-        "subheading": "Environmental and Technical Know-How",
-        "skillCategories": [
-          {
-            "icon": "Zap",
-            "title": "Renewable Energy",
-            "skills": [
-              { "name": "Solar Integration", "level": 95 },
-              { "name": "Wind Feasibility", "level": 90 },
-              { "name": "Energy Storage Planning", "level": 88 }
-            ]
-          },
-          {
-            "icon": "Code",
-            "title": "Environmental Data & Tools",
-            "skills": [
-              { "name": "GHG Emissions Modeling", "level": 93 },
-              { "name": "IoT for Sustainability", "level": 87 },
-              { "name": "Life Cycle Assessment", "level": 90 }
-            ]
-          },
-          {
-            "icon": "ClipboardList",
-            "title": "Strategy & Compliance",
-            "skills": [
-              { "name": "ESG Reporting", "level": 92 },
-              { "name": "Sustainability Audits", "level": 89 },
-              { "name": "LEED & WELL Certification", "level": 85 }
-            ]
-          }
-        ],
-        "additionalSkills": [
-          "Zero Waste Program Design",
-          "Smart Building Optimization",
-          "Regulatory Compliance Analysis"
-        ]
-      },
-      "experienceContent": {
-        "heading": "Work Experience",
-        "subheading": "Professional History",
-        "workExperience": [
-          {
-            "id": 1,
-            "title": "Founder & Principal Consultant",
-            "company": "EcoTech Solutions",
-            "location": "Portland, OR",
-            "period": "2019–Present",
-            "description": "Leading sustainability technology consulting for clients in healthcare, education, and local government. Delivering tangible environmental improvements through strategic planning and renewable energy integration.",
-            "technologies": ["Solar PV", "Carbon Analysis Software", "IoT Sensors"],
-            "achievements": [
-              "Delivered carbon-neutral strategy for a 50,000 sq ft commercial facility",
-              "Integrated smart grid solutions into a public utility's green transition plan"
-            ]
-          },
-          {
-            "id": 2,
-            "title": "Sustainability Consultant",
-            "company": "EnviroSmart Inc.",
-            "location": "San Francisco, CA",
-            "period": "2015–2019",
-            "description": "Worked with Fortune 100 clients to implement enterprise-level sustainability strategies and climate impact assessments.",
-            "technologies": ["LEED v4 Tools", "Carbon Trust Standards"],
-            "achievements": [
-              "Secured LEED Gold status for multiple commercial developments",
-              "Published national benchmarking study on corporate energy efficiency"
-            ]
-          }
-        ],
-        "education": [
-          {
-            "id": 1,
-            "degree": "M.S. in Sustainable Engineering",
-            "school": "Stanford University",
-            "period": "2012–2014",
-            "description": "Focused on renewable energy systems and sustainable design practices.",
-            "achievements": [
-              "Graduated with Distinction",
-              "Capstone: Net-zero retrofit for commercial office park"
-            ]
-          },
-          {
-            "id": 2,
-            "degree": "B.S. in Environmental Studies",
-            "school": "University of Oregon",
-            "period": "2008–2012",
-            "description": "Emphasis on ecological science, environmental law, and green economics.",
-            "achievements": [
-              "Dean’s List, 4 consecutive years"
-            ]
-          }
-        ]
-      },
-      "projectsContent": {
-        "title": "Featured Projects",
-        "subtitle": "Innovative Solutions with Lasting Impact",
-        "filters": [
-          { "id": "all", "label": "All Projects" },
-          { "id": "energy", "label": "Renewable Energy" },
-          { "id": "consulting", "label": "Sustainability Consulting" }
-        ],
-        "caseStudies": [
-          {
-            "id": 1,
-            "title": "Portland Public Schools Solar Plan",
-            "category": "energy",
-            "image": "https://example.com/images/solar-school.jpg",
-            "description": "Developed a district-wide solar integration and battery storage plan projected to offset 70% of total energy usage across 15 campuses.",
-            "technologies": ["Solar PV", "Battery Storage", "Net Metering"],
-            "liveUrl": "#",
-            "codeUrl": null,
-            "fiverrUrl": null
-          },
-          {
-            "id": 2,
-            "title": "Corporate Carbon Neutrality Roadmap",
-            "category": "consulting",
-            "image": "https://example.com/images/roadmap.jpg",
-            "description": "Created a step-by-step carbon neutrality strategy for a national retail chain, including emissions audits and green supplier sourcing.",
-            "technologies": ["GHG Inventory", "Supply Chain Mapping"],
-            "liveUrl": "#",
-            "codeUrl": null,
-            "fiverrUrl": null
-          }
-        ],
-        "cta": {
-          "text": "View All Projects",
-          "icon": "Eye",
-          "link": "#contact"
+      ],
+      "cta": {
+        "text": "Get a Free Quote",
+        "link": "#contact"
+      }
+    },
+    "projectsContent": {
+      "title": "Recent Client Work",
+      "subtitle": "Explore our branding and identity projects.",
+      "filters": [
+        { "id": "all", "label": "All Work" },
+        { "id": "branding", "label": "Branding" },
+        { "id": "logo", "label": "Logo Design" },
+        { "id": "print", "label": "Print" }
+      ],
+      "caseStudies": [
+        {
+          "id": "1",
+          "title": "Bloom Boutique Logo",
+          "description": "Soft, elegant logo for a Portland-based florist that reflects modern femininity.",
+          "image": "https://images.unsplash.com/photo-1519222970733-f546218fa6d0?auto=format&fit=crop&w=800&q=80",
+          "category": "logo",
+          "results": "Improved brand recall and store foot traffic"
+        },
+        {
+          "id": "2",
+          "title": "CraftHaus Branding Kit",
+          "description": "Full brand system for a local woodcraft business, blending rustic and modern aesthetics.",
+          "image": "https://images.unsplash.com/photo-1587574293340-ea6a2c01f1c6?auto=format&fit=crop&w=800&q=80",
+          "category": "branding",
+          "results": "Unified presence across print and digital"
         }
-      },
-      "servicesContent": {
-        "title": "Our Services",
-        "subtitle": "Sustainable Solutions that Drive Change",
-        "services": [
-          {
-            "icon": "BarChart",
-            "title": "Carbon Audits",
-            "description": "Comprehensive GHG assessments to identify emissions sources and reduction opportunities."
-          },
-          {
-            "icon": "Sun",
-            "title": "Renewable Energy Integration",
-            "description": "Planning and feasibility analysis for solar, wind, and hybrid systems that fit your site and goals."
-          },
-          {
-            "icon": "Repeat",
-            "title": "Circular Economy Design",
-            "description": "Strategic frameworks to minimize waste and maximize material reuse across your operations."
-          }
-        ],
-        "cta": {
-          "text": "Get a Quote",
-          "link": "#contact"
+      ],
+      "cta": {
+        "text": "Start Your Project",
+        "icon": "Eye",
+        "link": "#contact"
+      }
+    },
+    "testimonialsContent": {
+      "title": "What Clients Say",
+      "subtitle": "Real feedback from real small business owners.",
+      "testimonials": [
+        {
+          "name": "Nina Feldman",
+          "role": "Owner",
+          "company": "Bloom Boutique",
+          "quote": "The branding Sarah created brought my shop to life. Clients mention the logo all the time!"
+        },
+        {
+          "name": "Ben Carter",
+          "role": "Founder",
+          "company": "CraftHaus",
+          "quote": "Sarah turned vague ideas into a beautiful brand that feels just right. Couldn’t recommend her more."
         }
-      },
-      "testimonialsContent": {
-        "title": "What Clients Say",
-        "subtitle": "Feedback from Our Partners",
-        "testimonials": [
-          {
-            "name": "Derek Lander",
-            "role": "Sustainability Director",
-            "company": "GreenBridge Development",
-            "quote": "Maria and the EcoTech team transformed how we view sustainability. Their solar integration strategy helped us save over $200K annually."
-          },
-          {
-            "name": "Maya Collins",
-            "role": "Energy Program Manager",
-            "company": "City of Gresham",
-            "quote": "EcoTech Solutions brought deep expertise and professionalism to our municipal clean energy plan. We hit our 2030 goals five years early!"
-          },
-          {
-            "name": "Ben O’Connell",
-            "role": "Chief Operating Officer",
-            "company": "Pacific BioGroup",
-            "quote": "Their ability to merge technical knowledge with business strategy made them a critical partner for our green transition."
-          }
-        ]
-      },
-      "processContent": {
-        "title": "Our Process",
-        "subtitle": "How We Partner With You",
-        "steps": [
-          {
-            "icon": "Search",
-            "title": "Assess & Analyze",
-            "description": "We conduct a detailed evaluation of your operations, energy use, and environmental footprint."
-          },
-          {
-            "icon": "Brain",
-            "title": "Design & Plan",
-            "description": "Our experts develop tailored sustainability plans grounded in technology, regulation, and science."
-          },
-          {
-            "icon": "CheckCircle",
-            "title": "Implement & Monitor",
-            "description": "We guide implementation and provide tools to monitor, measure, and optimize environmental performance."
-          }
-        ]
-      },
-      "footerContent": {
-        "copyright": "© 2025 EcoTech Solutions. All rights reserved.",
-        "links": [
-          { "label": "Privacy Policy", "href": "/privacy" },
-          { "label": "Terms of Service", "href": "/terms" }
-        ],
-        "social": [
-          {
-            "icon": "Linkedin",
-            "label": "LinkedIn",
-            "href": "https://linkedin.com/in/mariarodriguez"
-          },
-          {
-            "icon": "Globe",
-            "label": "EcoTech Blog",
-            "href": "https://ecotechsolutions.com/blog"
-          }
-        ]
-      },
-      "contactContent": {
-        "title": "Get In Touch",
-        "subtitle": "Start your sustainability journey today.",
-        "contactInfo": [
-          {
-            "icon": "Mail",
-            "label": "Email",
-            "value": "maria@ecotechsolutions.com",
-            "link": "mailto:maria@ecotechsolutions.com"
-          },
-          {
-            "icon": "Phone",
-            "label": "Phone",
-            "value": "503-555-0123",
-            "link": "tel:5035550123"
-          },
-          {
-            "icon": "MapPin",
-            "label": "Address",
-            "value": "Portland, OR"
-          }
-        ],
-        "socialLinks": [
-          {
-            "icon": "Linkedin",
-            "label": "LinkedIn",
-            "link": "https://linkedin.com/in/mariarodriguez"
-          }
-        ],
-        "map": {
-          "label": "Our Location",
-          "placeholder": "Map will appear here"
+      ]
+    },
+    "processContent": {
+      "title": "Our Process",
+      "subtitle": "Simple and collaborative from start to finish.",
+      "steps": [
+        {
+          "icon": "Search",
+          "title": "Discovery",
+          "description": "Understand your business, audience, and goals."
+        },
+        {
+          "icon": "Edit3",
+          "title": "Concepts",
+          "description": "Sketch and refine initial design directions."
+        },
+        {
+          "icon": "Layers",
+          "title": "Build the System",
+          "description": "Create the full visual identity and apply it across materials."
+        },
+        {
+          "icon": "Package",
+          "title": "Delivery",
+          "description": "Provide all files and brand documentation ready for launch."
         }
+      ]
+    },
+    "footerContent": {
+      "businessName": "Creative Design Studio",
+      "tagline": "Helping small businesses look big through clean, intentional design.",
+      "social": [
+        { "name": "LinkedIn", "url": "https://linkedin.com/in/sarahjohnson" },
+        { "name": "Dribbble", "url": "https://dribbble.com/sarahjohnson" }
+      ],
+      "quickLinks": [
+        { "name": "Home", "href": "#home" },
+        { "name": "About", "href": "#about" },
+        { "name": "Services", "href": "#services" },
+        { "name": "Client Work", "href": "#projects" },
+        { "name": "Process", "href": "#process" },
+        { "name": "Contact", "href": "#contact" },
+        { "name": "Privacy Policy", "href": "#" },
+        { "name": "Terms of Service", "href": "#" }
+      ],
+      "contact": [
+        "sarah@creativedesignstudio.com",
+        "+1 (555) 123-4567",
+        "Portland, OR",
+        "Mon–Fri: 9am–5pm"
+      ],
+      "copyright": "© 2024 Creative Design Studio"
+    },
+    "contactContent": {
+      "title": "Request a Free Quote",
+      "subtitle": "Let’s talk about how we can build your brand together.",
+      "infoTitle": "Let's Work Together",
+      "infoText": "Whether you're just starting or need a refresh, we’ll help your business look its best.",
+      "contactInfo": [
+        {
+          "icon": "Mail",
+          "title": "Email",
+          "value": "sarah@creativedesignstudio.com",
+          "link": "mailto:sarah@creativedesignstudio.com"
+        },
+        {
+          "icon": "Phone",
+          "title": "Phone",
+          "value": "+1 (555) 123-4567",
+          "link": "tel:+15551234567"
+        },
+        {
+          "icon": "MapPin",
+          "title": "Location",
+          "value": "Portland, OR",
+          "link": "https://goo.gl/maps/example"
+        },
+        {
+          "icon": "Clock",
+          "title": "Business Hours",
+          "value": "Mon–Fri: 9am–5pm",
+          "link": "#"
+        }
+      ],
+      "map": {
+        "label": "Our Location",
+        "placeholder": "[Google Map Placeholder]"
+      },
+      "form": {
+        "nameLabel": "Name",
+        "emailLabel": "Email",
+        "serviceLabel": "Service Needed",
+        "messageLabel": "Message",
+        "submitText": "Send Request",
+        "successTitle": "Request Sent!",
+        "successText": "Thanks for reaching out. We’ll respond shortly."
       }
     }
   }
-  
+}

@@ -43,7 +43,7 @@ function loadConfig(configPath) {
 function main() {
   const args = process.argv.slice(2);
   if (args.length < 2) {
-    console.error('Usage: node validate-config.js <config-file> <template-type: business|portfolio>');
+    console.error('Usage: node scripts/validate-config.js <config-file> <template-type: business|portfolio>');
     process.exit(1);
   }
   const [configFile, templateType] = args;

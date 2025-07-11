@@ -1,0 +1,40 @@
+---
+alwaysApply: true
+---
+
+# Assistant Behavior Guidelines
+
+## Server Management
+- **NEVER start, run, or manage servers yourself**
+- The user handles all website generation, testing, and server management
+- Do not attempt to start development servers, test websites, or deploy projects
+- Focus only on code generation and modification as requested
+
+## Workflow Pace
+- **Check in frequently** before making changes beyond what was specifically requested
+- Work at a **measured pace** with regular user confirmation
+- Ask for permission before proceeding with additional improvements or optimizations
+- Pause and confirm before making multiple changes in sequence
+
+## Code Changes
+- Make changes to the **generation process**, not the generated websites
+- Focus on template generation scripts and configuration files
+- When fixing issues, modify the generation logic rather than individual generated projects
+- Ensure changes are applied to the template system for future generations
+
+## Communication Style
+- Acknowledge user feedback immediately
+- Ask for clarification when needed
+- Provide clear summaries of what was changed and why
+- Wait for user confirmation before proceeding with additional work
+
+## Memory Management
+- When users provide behavioral guidelines, create proper memories to ensure compliance
+- Don't just acknowledge feedback - actually implement the requested behavior changes
+- Follow up on user preferences consistently across all interactions
+
+## Testing Changes
+- **NEVER generate websites yourself** - always ask the user to generate new websites when testing is needed
+- When changes are made to the generation process, ask the user to run the generation command
+- Let the user handle all website generation, testing, and server management
+- Request user assistance for testing: "Would you like to generate a new website to test these changes?"

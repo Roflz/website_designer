@@ -479,7 +479,9 @@ class TemplateGenerator {
     
     try {
       const templatePath = this.templates[templateType];
-      const projectPath = path.join(process.cwd(), details.projectName);
+      const workspacesDir = path.join(__dirname, '../workspaces');
+      await fs.ensureDir(workspacesDir);
+      const projectPath = path.join(workspacesDir, details.projectName);
       
       // Copy template
       await fs.copy(templatePath, projectPath);
@@ -735,6 +737,25 @@ export const footerContent = ${jsonToJsObject(configObj.footerContent, 0)};
       if (typeof aiImage === 'object' && aiImage !== null) return aiImage;
       return defaultImageObj;
     }
+    
+    // Fix project images to use external URLs instead of local files
+    function fixProjectImages(projectsContent) {
+      if (projectsContent && projectsContent.caseStudies) {
+        projectsContent.caseStudies.forEach(project => {
+          if (project.image && project.image.startsWith('images/')) {
+            // Replace local image paths with external URLs
+            if (project.image.includes('office')) {
+              project.image = 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80';
+            } else if (project.image.includes('solar')) {
+              project.image = 'https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=800&q=80';
+            } else {
+              project.image = 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80';
+            }
+          }
+        });
+      }
+      return projectsContent;
+    }
     // Define sensible placeholder image objects (update these as needed)
     // If the AI does not provide a hero image, default to no image (empty src)
     const defaultHeroImage = {
@@ -780,11 +801,20 @@ export const footerContent = ${jsonToJsObject(configObj.footerContent, 0)};
       if (!Array.isArray(arr)) return arr;
       return arr.map((item, idx) => {
         if (!item[keyName]) {
-          // Use label, href, or fallback to index
-          item[keyName] = item.label || item.href || item.value || idx;
+          // Use label, href, name, or fallback to index
+          item[keyName] = item.label || item.href || item.name || item.value || idx;
         }
         return item;
       });
+    }
+    
+    // --- PATCH: Ensure header navItems use 'label' property consistently ---
+    if (customization.headerContent && customization.headerContent.navItems) {
+      customization.headerContent.navItems = customization.headerContent.navItems.map(item => ({
+        ...item,
+        label: item.label || item.name || 'Navigation',
+        key: item.key || item.label || item.name || 'nav'
+      }));
     }
     if (customization.headerContent && customization.headerContent.navItems) {
       customization.headerContent.navItems = ensureUniqueKeys(customization.headerContent.navItems, 'key');
@@ -808,11 +838,24 @@ export const footerContent = ${jsonToJsObject(configObj.footerContent, 0)};
     // --- END PATCH ---
 
     // --- PATCH: Ensure all expected arrays are always present ---
-    // Footer arrays
+    // Footer arrays - ensure complete footerContent structure
     if (!customization.footerContent) customization.footerContent = {};
+    if (!customization.footerContent.businessName) customization.footerContent.businessName = details.businessName;
+    if (!customization.footerContent.tagline) customization.footerContent.tagline = details.tagline;
+    if (!customization.footerContent.copyright) customization.footerContent.copyright = `© ${new Date().getFullYear()} ${details.businessName}. All rights reserved.`;
     if (!customization.footerContent.links) customization.footerContent.links = [];
     if (!customization.footerContent.social) customization.footerContent.social = [];
-    if (!customization.footerContent.quickLinks) customization.footerContent.quickLinks = [];
+    if (!customization.footerContent.quickLinks) customization.footerContent.quickLinks = [
+      { name: "About", href: "#about" },
+      { name: "Services", href: "#services" },
+      { name: "Projects", href: "#projects" },
+      { name: "Contact", href: "#contact" }
+    ];
+    if (!customization.footerContent.contact) customization.footerContent.contact = [
+      details.email,
+      details.phone,
+      customization.location || "Portland, OR"
+    ];
     // Header arrays
     if (!customization.headerContent) customization.headerContent = {};
     if (!customization.headerContent.navItems) customization.headerContent.navItems = [];
@@ -833,12 +876,15 @@ export const footerContent = ${jsonToJsObject(configObj.footerContent, 0)};
     if (customization.processContent && !customization.processContent.steps) customization.processContent.steps = [];
     // --- END PATCH ---
 
+    // Fix project images
+    const fixedProjectsContent = fixProjectImages(customization.projectsContent);
+    
     const configObj = {
       headerContent: customization.headerContent,
       heroContent,
       aboutContent,
       servicesContent: customization.servicesContent,
-      projectsContent: customization.projectsContent,
+      projectsContent: fixedProjectsContent,
       processContent: customization.processContent,
       testimonialsContent: customization.testimonialsContent,
       contactContent,
@@ -1028,7 +1074,7 @@ ${servicesString}
   // Ensure DEFAULT_PALETTE is exported in lib/palettes.ts
   async setupThemeLib(projectPath) {
     const libPath = path.join(projectPath, 'lib');
-    const themeLibPath = path.join(__dirname, '../theme-lib/src');
+    const themeLibPath = path.join(__dirname, '../../theme-lib/src');
     await fs.ensureDir(libPath);
     await fs.copy(themeLibPath, libPath);
     // Patch palettes.ts if needed
@@ -1047,6 +1093,49 @@ ${servicesString}
       packageJson.dependencies['theme-lib'] = 'file:./lib';
     }
     await fs.writeJson(packagePath, packageJson, { spaces: 2 });
+    
+    // Fix the CSS import path in globals.css
+    const globalsCssPath = path.join(projectPath, 'app/globals.css');
+    if (await fs.pathExists(globalsCssPath)) {
+      let cssContent = await fs.readFile(globalsCssPath, 'utf8');
+      cssContent = cssContent.replace(
+        /@import 'theme-lib\/src\/theme\.css';/g,
+        "@import '../lib/theme.css';"
+      );
+      await fs.writeFile(globalsCssPath, cssContent, 'utf8');
+    }
+    
+    // Fix the import statements in layout.tsx and Header.tsx to use local lib
+    const layoutPath = path.join(projectPath, 'app/layout.tsx');
+    if (await fs.pathExists(layoutPath)) {
+      let layoutContent = await fs.readFile(layoutPath, 'utf8');
+      layoutContent = layoutContent.replace(
+        /from 'theme-lib'/g,
+        "from '../lib'"
+      );
+      await fs.writeFile(layoutPath, layoutContent, 'utf8');
+    }
+    
+    const headerPath = path.join(projectPath, 'components/Header.tsx');
+    if (await fs.pathExists(headerPath)) {
+      let headerContent = await fs.readFile(headerPath, 'utf8');
+      headerContent = headerContent.replace(
+        /from 'theme-lib'/g,
+        "from '../lib'"
+      );
+      await fs.writeFile(headerPath, headerContent, 'utf8');
+    }
+    
+    // Fix the Tailwind config content paths to point to local lib
+    const tailwindConfigPath = path.join(projectPath, 'tailwind.config.js');
+    if (await fs.pathExists(tailwindConfigPath)) {
+      let tailwindConfig = await fs.readFile(tailwindConfigPath, 'utf8');
+      tailwindConfig = tailwindConfig.replace(
+        /'\.\.\/theme-lib\/src\/\*\*\/\*\.\{js,ts,jsx,tsx\}'/g,
+        "'./lib/**/*.{js,ts,jsx,tsx}'"
+      );
+      await fs.writeFile(tailwindConfigPath, tailwindConfig, 'utf8');
+    }
   }
 
   async updateThemeColors(projectPath, details) {

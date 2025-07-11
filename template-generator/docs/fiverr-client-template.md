@@ -53,7 +53,7 @@ const clientInfo = {
 
 1. **Collect Information**: Use this template to gather client details from Fiverr messages
 2. **Format Data**: Convert the information into the JavaScript object format above
-3. **Run AI Generator**: Use the `ai-generate.js` script to create the website
+3. **Run AI Generator**: Use the `scripts/ai-generate.js` script to create the website
 4. **Review & Customize**: Check the generated site and make any final adjustments
 5. **Deliver**: Provide the client with the source code and live URL
 
@@ -73,10 +73,10 @@ The AI generator will automatically:
 
 ```bash
 # Run with example client info
-node ai-generate.js
+node scripts/ai-generate.js
 
 # Or use in your own script
-const { AIGenerator } = require('../scripts/ai-generate.js');
+const { AIGenerator } = require('./scripts/ai-generate.js');
 const aiGenerator = new AIGenerator();
 const projectName = await aiGenerator.generateFromClientInfo(clientInfo);
 ``` 
