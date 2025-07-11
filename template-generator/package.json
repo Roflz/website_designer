@@ -1,0 +1,28 @@
+{
+  "name": "template-generator",
+  "version": "1.0.0",
+  "description": "Automated template generator for Fiverr gigs",
+  "main": "index.js",
+  "scripts": {
+    "generate": "node generate.js",
+    "test": "node test-generate.js",
+    "ai": "node ai-generate.js",
+    "auto": "node auto-test-generator.js",
+    "ai-prompt": "node ai-content-generator.js prompt",
+    "generate-from-ai-response": "node ai-content-generator.js generate",
+    "prompt": "node ai-prompt-generator.js prompt",
+    "generate-from-ai": "node ai-prompt-generator.js generate",
+    "setup": "node setup.js",
+    "deploy": "node deploy.js"
+  },
+  "dependencies": {
+    "inquirer": "^8.2.4",
+    "chalk": "^4.1.2",
+    "fs-extra": "^10.1.0",
+    "handlebars": "^4.7.7",
+    "ora": "^5.4.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0"
+  }
+} 

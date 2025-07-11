@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* Import shared theme system */
+@import 'theme-lib/src/theme.css';
+
+/* Business landing page specific styles */
+@layer components {
+  .btn-primary {
+    @apply text-white font-medium py-3 px-6 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105;
+    background-image: linear-gradient(to right, var(--color-primary-from), var(--color-primary-to));
+  }
+  
+  .btn-secondary {
+    @apply bg-transparent border hover:text-white font-medium py-3 px-6 rounded-full transition-all duration-300 hover:scale-105;
+    border-color: rgba(var(--color-primary-from-rgb, 37, 99, 235), 0.3);
+    color: var(--color-primary-from);
+  }
+  
+  .card {
+    @apply rounded-xl shadow-xl p-6 transition-all duration-300 hover:scale-105 hover:shadow-2xl;
+    background-color: var(--color-bg-alt-from) !important;
+    border: 1px solid rgba(var(--color-primary-from-rgb, 37, 99, 235), 0.1) !important;
+    backdrop-filter: blur(10px);
+  }
+} 

@@ -1,0 +1,23 @@
+{
+  "name": "freelance-projects-workspace",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "business_landing_page",
+    "portfolio_website",
+    "template-generator",
+    "theme-lib"
+  ],
+  "scripts": {
+    "dev:business": "npm run dev --workspace=business_landing_page",
+    "dev:portfolio": "npm run dev --workspace=portfolio_website",
+    "build:business": "npm run build --workspace=business_landing_page",
+    "build:portfolio": "npm run build --workspace=portfolio_website",
+    "build:theme": "npm run build --workspace=theme-lib",
+    "build:all": "npm run build --workspaces",
+    "dev": "concurrently \"npm run dev:business\" \"npm run dev:portfolio\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+} 

@@ -1,0 +1,1086 @@
+const inquirer = require('inquirer');
+const fs = require('fs-extra');
+const path = require('path');
+const chalk = require('chalk');
+const ora = require('ora');
+const Handlebars = require('handlebars');
+
+// 1. Add a schema definition for business and portfolio config structures at the top of the file
+const businessConfigSchema = {
+  headerContent: {
+    businessName: 'string',
+    navItems: [{ label: 'string', href: 'string' }]
+  },
+  heroContent: {
+    headline: 'string',
+    subheadline: 'string',
+    ctaText: 'string',
+    ctaLink: 'string',
+    image: {
+      src: 'string',
+      alt: 'string',
+      overlay: 'string',
+      overlayColor: 'string',
+      shadow: 'string',
+      rounded: 'string',
+      zoomOnHover: 'boolean',
+      blurBackground: 'boolean',
+      aspectRatio: 'string',
+      className: 'string'
+    }
+  },
+  aboutContent: {
+    title: 'string',
+    text: 'string',
+    image: {
+      src: 'string',
+      alt: 'string',
+      overlay: 'string',
+      overlayColor: 'string',
+      shadow: 'string',
+      rounded: 'string',
+      zoomOnHover: 'boolean',
+      blurBackground: 'boolean',
+      aspectRatio: 'string',
+      className: 'string'
+    },
+    highlights: [{ icon: 'string', title: 'string', subtitle: 'string' }],
+    mission: { title: 'string', text: 'string' },
+    companyInfo: [{ icon: 'string', text: 'string' }],
+    cta: { text: 'string', icon: 'string', link: 'string' }
+  },
+  servicesContent: {
+    title: 'string',
+    subtitle: 'string',
+    services: [{ icon: 'string', title: 'string', description: 'string' }],
+    cta: { text: 'string', link: 'string' }
+  },
+  projectsContent: {
+    title: 'string',
+    subtitle: 'string',
+    filters: [{ id: 'string', label: 'string' }],
+    caseStudies: [{ id: 'number', title: 'string', category: 'string', image: 'string', description: 'string', technologies: ['string'], liveUrl: 'string', codeUrl: 'string', fiverrUrl: 'string' }],
+    cta: { text: 'string', icon: 'string', link: 'string' }
+  },
+  processContent: {
+    title: 'string',
+    subtitle: 'string',
+    steps: [{ icon: 'string', title: 'string', description: 'string' }]
+  },
+  testimonialsContent: {
+    title: 'string',
+    subtitle: 'string',
+    testimonials: [{ name: 'string', role: 'string', company: 'string', quote: 'string' }]
+  },
+  contactContent: {
+    title: 'string',
+    subtitle: 'string',
+    contactInfo: [{ icon: 'string', label: 'string', value: 'string' }],
+    socialLinks: [{ icon: 'string', label: 'string', href: 'string' }],
+    map: { label: 'string', placeholder: 'string' }
+  },
+  footerContent: {
+    copyright: 'string',
+    links: [{ label: 'string', href: 'string' }],
+    social: [{ icon: 'string', label: 'string', href: 'string' }]
+  }
+};
+
+const portfolioConfigSchema = {
+  headerContent: {
+    businessName: 'string',
+    navItems: [{ label: 'string', href: 'string' }]
+  },
+  heroContent: {
+    headline: 'string',
+    subheadline: 'string',
+    ctaText: 'string',
+    ctaLink: 'string',
+    image: {
+      src: 'string',
+      alt: 'string',
+      overlay: 'string',
+      overlayColor: 'string',
+      shadow: 'string',
+      rounded: 'string',
+      zoomOnHover: 'boolean',
+      blurBackground: 'boolean',
+      aspectRatio: 'string',
+      className: 'string'
+    }
+  },
+  aboutContent: {
+    title: 'string',
+    text: 'string',
+    image: {
+      src: 'string',
+      alt: 'string',
+      overlay: 'string',
+      overlayColor: 'string',
+      shadow: 'string',
+      rounded: 'string',
+      zoomOnHover: 'boolean',
+      blurBackground: 'boolean',
+      aspectRatio: 'string',
+      className: 'string'
+    },
+    highlights: [{ icon: 'string', title: 'string', subtitle: 'string' }],
+    mission: { title: 'string', text: 'string' },
+    companyInfo: [{ icon: 'string', text: 'string' }],
+    cta: { text: 'string', icon: 'string', link: 'string' }
+  },
+  skillsContent: {
+    heading: 'string',
+    subheading: 'string',
+    skillCategories: [{
+      name: 'string',
+      skills: [{ name: 'string', level: 'number' }]
+    }]
+  },
+  experienceContent: {
+    heading: 'string',
+    subheading: 'string',
+    workExperience: [{
+      id: 'number',
+      company: 'string',
+      position: 'string',
+      duration: 'string',
+      description: 'string'
+    }],
+    education: [{
+      id: 'number',
+      institution: 'string',
+      degree: 'string',
+      field: 'string',
+      duration: 'string'
+    }]
+  },
+  projectsContent: {
+    title: 'string',
+    subtitle: 'string',
+    filters: [{ id: 'string', label: 'string' }],
+    caseStudies: [{
+      id: 'number',
+      title: 'string',
+      category: 'string',
+      image: 'string',
+      description: 'string',
+      technologies: ['string'],
+      liveUrl: 'string',
+      codeUrl: 'string',
+      fiverrUrl: 'string'
+    }],
+    cta: { text: 'string', icon: 'string', link: 'string' }
+  },
+  contactContent: {
+    title: 'string',
+    subtitle: 'string',
+    contactInfo: [{ icon: 'string', label: 'string', value: 'string' }],
+    socialLinks: [{ icon: 'string', label: 'string', href: 'string' }],
+    map: { label: 'string', placeholder: 'string' }
+  },
+  footerContent: {
+    copyright: 'string',
+    links: [{ label: 'string', href: 'string' }],
+    social: [{ icon: 'string', label: 'string', href: 'string' }]
+  }
+};
+
+// 2. Add a validation function
+function validateConfig(config, schema, path = '') {
+  for (const key in schema) {
+    const expected = schema[key];
+    const actual = config[key];
+    const currentPath = path ? `${path}.${key}` : key;
+    if (Array.isArray(expected)) {
+      if (!Array.isArray(actual)) return `Expected array at ${currentPath}`;
+      if (expected.length > 0 && actual.length > 0) {
+        for (let i = 0; i < actual.length; i++) {
+          const err = validateConfig(actual[i], expected[0], `${currentPath}[${i}]`);
+          if (err) return err;
+        }
+      }
+    } else if (typeof expected === 'object') {
+      if (typeof actual !== 'object' || actual === null) return `Expected object at ${currentPath}`;
+      const err = validateConfig(actual, expected, currentPath);
+      if (err) return err;
+    } else {
+      if (typeof actual !== expected) return `Expected ${expected} at ${currentPath}`;
+    }
+  }
+  return null;
+}
+
+class TemplateGenerator {
+  constructor() {
+    this.templates = {
+      portfolio: '../portfolio_website',
+      business: '../business_landing_page'
+    };
+  }
+
+  async generateWebsite() {
+    console.log(chalk.blue.bold('🎨 Website Template Generator'));
+    console.log(chalk.gray('Create custom websites for your Fiverr clients\n'));
+
+    try {
+      // Get project details
+      const answers = await this.getProjectDetails();
+      
+      // Select template
+      const templateChoice = await this.selectTemplate();
+      
+      // Get additional customization details
+      const customization = await this.getCustomizationDetails(templateChoice);
+      
+      // Generate project
+      await this.createProject(answers, templateChoice, customization);
+      
+      console.log(chalk.green.bold('\n✅ Website generated successfully!'));
+      console.log(chalk.yellow(`📁 Project created in: ${answers.projectName}`));
+      console.log(chalk.cyan('🚀 Run "npm run dev" to start development'));
+      
+    } catch (error) {
+      console.error(chalk.red('❌ Error generating website:'), error);
+    }
+  }
+
+  async getProjectDetails() {
+    const questions = [
+      {
+        type: 'input',
+        name: 'projectName',
+        message: 'Project name (kebab-case):',
+        validate: (input) => {
+          if (!input.match(/^[a-z0-9-]+$/)) {
+            return 'Use only lowercase letters, numbers, and hyphens';
+          }
+          return true;
+        }
+      },
+      {
+        type: 'input',
+        name: 'clientName',
+        message: 'Client name:',
+        default: 'Your Client'
+      },
+      {
+        type: 'input',
+        name: 'businessName',
+        message: 'Business name:',
+        default: 'Your Business'
+      },
+      {
+        type: 'input',
+        name: 'tagline',
+        message: 'Main tagline:',
+        default: 'Professional solutions for your business'
+      },
+      {
+        type: 'input',
+        name: 'description',
+        message: 'Brief description:',
+        default: 'We help businesses grow with modern digital solutions'
+      },
+      {
+        type: 'input',
+        name: 'email',
+        message: 'Contact email:',
+        default: 'contact@yourbusiness.com'
+      },
+      {
+        type: 'input',
+        name: 'phone',
+        message: 'Phone number:',
+        default: '+1 (555) 123-4567'
+      },
+      {
+        type: 'list',
+        name: 'primaryColor',
+        message: 'Primary brand color:',
+        choices: [
+          { name: 'Blue', value: '#3B82F6' },
+          { name: 'Green', value: '#10B981' },
+          { name: 'Purple', value: '#8B5CF6' },
+          { name: 'Red', value: '#EF4444' },
+          { name: 'Orange', value: '#F97316' },
+          { name: 'Teal', value: '#14B8A6' }
+        ]
+      },
+      {
+        type: 'list',
+        name: 'secondaryColor',
+        message: 'Secondary brand color:',
+        choices: [
+          { name: 'Gray', value: '#6B7280' },
+          { name: 'Slate', value: '#64748B' },
+          { name: 'Zinc', value: '#71717A' },
+          { name: 'Neutral', value: '#737373' },
+          { name: 'Stone', value: '#78716C' }
+        ]
+      }
+    ];
+
+    return await inquirer.prompt(questions);
+  }
+
+  async selectTemplate() {
+    const { template } = await inquirer.prompt([
+      {
+        type: 'list',
+        name: 'template',
+        message: 'Select template type:',
+        choices: [
+          { name: '📊 Portfolio Website (Professional)', value: 'portfolio' },
+          { name: '🏢 Business Landing Page (Conversion-focused)', value: 'business' }
+        ]
+      }
+    ]);
+
+    return template;
+  }
+
+  async getCustomizationDetails(templateType) {
+    if (templateType === 'portfolio') {
+      return await this.getPortfolioCustomization();
+    } else {
+      return await this.getBusinessCustomization();
+    }
+  }
+
+  async getPortfolioCustomization() {
+    const questions = [
+      {
+        type: 'input',
+        name: 'jobTitle',
+        message: 'Job title/role:',
+        default: 'Software Developer'
+      },
+      {
+        type: 'input',
+        name: 'location',
+        message: 'Location:',
+        default: 'Denver, Colorado'
+      },
+      {
+        type: 'input',
+        name: 'yearsExperience',
+        message: 'Years of experience:',
+        default: '5+'
+      },
+      {
+        type: 'input',
+        name: 'githubUrl',
+        message: 'GitHub URL:',
+        default: 'https://github.com/yourusername'
+      },
+      {
+        type: 'input',
+        name: 'linkedinUrl',
+        message: 'LinkedIn URL:',
+        default: 'https://linkedin.com/in/yourusername'
+      },
+      {
+        type: 'input',
+        name: 'fiverrUrl',
+        message: 'Fiverr URL:',
+        default: 'https://fiverr.com/yourusername'
+      },
+      {
+        type: 'confirm',
+        name: 'includeSkills',
+        message: 'Include skills section?',
+        default: true
+      },
+      {
+        type: 'confirm',
+        name: 'includeExperience',
+        message: 'Include work experience section?',
+        default: true
+      },
+      {
+        type: 'confirm',
+        name: 'includeProjects',
+        message: 'Include projects section?',
+        default: true
+      },
+      {
+        type: 'confirm',
+        name: 'includeEducation',
+        message: 'Include education section?',
+        default: true
+      }
+    ];
+
+    return await inquirer.prompt(questions);
+  }
+
+  async getBusinessCustomization() {
+    const questions = [
+      {
+        type: 'list',
+        name: 'businessType',
+        message: 'Business type:',
+        choices: [
+          { name: 'Agency/Consulting', value: 'agency' },
+          { name: 'E-commerce/Retail', value: 'ecommerce' },
+          { name: 'SaaS/Software', value: 'saas' },
+          { name: 'Restaurant/Food', value: 'restaurant' },
+          { name: 'Healthcare/Medical', value: 'healthcare' },
+          { name: 'Real Estate', value: 'realestate' },
+          { name: 'Fitness/Wellness', value: 'fitness' },
+          { name: 'Education/Training', value: 'education' },
+          { name: 'Other', value: 'other' }
+        ]
+      },
+      {
+        type: 'input',
+        name: 'services',
+        message: 'Services (comma-separated):',
+        default: 'Web Design, Development, SEO'
+      },
+      {
+        type: 'input',
+        name: 'targetAudience',
+        message: 'Target audience:',
+        default: 'Small to medium businesses'
+      },
+      {
+        type: 'confirm',
+        name: 'includeTestimonials',
+        message: 'Include testimonials section?',
+        default: true
+      },
+      {
+        type: 'confirm',
+        name: 'includePricing',
+        message: 'Include pricing section?',
+        default: false
+      },
+      {
+        type: 'confirm',
+        name: 'includeTeam',
+        message: 'Include team section?',
+        default: false
+      },
+      {
+        type: 'confirm',
+        name: 'includeBlog',
+        message: 'Include blog section?',
+        default: false
+      }
+    ];
+
+    return await inquirer.prompt(questions);
+  }
+
+  async createProject(details, templateType, customization) {
+    const spinner = ora('Generating website...').start();
+    
+    try {
+      const templatePath = this.templates[templateType];
+      const projectPath = path.join(process.cwd(), details.projectName);
+      
+      // Copy template
+      await fs.copy(templatePath, projectPath);
+      
+      // Update package.json
+      await this.updatePackageJson(projectPath, details);
+      
+      // Update site configuration with full customization
+      await this.updateSiteConfig(projectPath, details, templateType, customization);
+      
+      // Update theme colors
+      await this.updateThemeColors(projectPath, details);
+      
+      // Copy theme-lib to local lib directory
+      await this.setupThemeLib(projectPath);
+      
+      // Install dependencies
+      spinner.text = 'Installing dependencies...';
+      await this.installDependencies(projectPath);
+      
+      spinner.succeed('Website generated successfully!');
+      
+    } catch (error) {
+      spinner.fail('Failed to generate website');
+      throw error;
+    }
+  }
+
+  async updatePackageJson(projectPath, details) {
+    const packagePath = path.join(projectPath, 'package.json');
+    const packageJson = await fs.readJson(packagePath);
+    
+    packageJson.name = details.projectName;
+    packageJson.description = `Custom website for ${details.businessName}`;
+    
+    await fs.writeJson(packagePath, packageJson, { spaces: 2 });
+  }
+
+  async updateSiteConfig(projectPath, details, templateType, customization) {
+    const configPath = path.join(projectPath, 'site.config.ts');
+    
+    // Check if we have comprehensive content from auto-generator
+    if (customization.heroContent) {
+      // Use comprehensive content generation
+      const configContent = this.generateCompleteSiteConfig(details, templateType, customization);
+      await fs.writeFile(configPath, configContent);
+    } else {
+      // Use basic customization (fallback)
+      let configContent = await fs.readFile(configPath, 'utf8');
+      
+      if (templateType === 'portfolio') {
+        configContent = await this.customizePortfolioConfig(configContent, details, customization);
+      } else {
+        configContent = await this.customizeBusinessConfig(configContent, details, customization);
+      }
+      
+      await fs.writeFile(configPath, configContent);
+    }
+  }
+
+  generateCompleteSiteConfig(details, templateType, customization) {
+    if (templateType === 'portfolio') {
+      return this.generatePortfolioConfig(details, customization);
+    } else {
+      return this.generateBusinessConfig(details, customization);
+    }
+  }
+
+  generatePortfolioConfig(details, customization) {
+    function jsonToJsObject(obj, indent = 0) {
+      const pad = '  '.repeat(indent);
+      if (Array.isArray(obj)) {
+        if (obj.length === 0) return '[]';
+        return '[\n' + obj.map(item => pad + '  ' + jsonToJsObject(item, indent + 1)).join(',\n') + '\n' + pad + ']';
+      } else if (typeof obj === 'object' && obj !== null) {
+        const entries = Object.entries(obj).map(([key, value]) => {
+          return `${pad}  ${key}: ${jsonToJsObject(value, indent + 1)}`;
+        });
+        return '{\n' + entries.join(',\n') + '\n' + pad + '}';
+      } else if (typeof obj === 'string') {
+        return '"' + obj.replace(/\\/g, '\\\\').replace(/"/g, '\\"') + '"';
+      } else {
+        return JSON.stringify(obj);
+      }
+    }
+
+    // Build the config object with all required/optional fields and correct structure
+    const configObj = {
+      headerContent: {
+        businessName: details.businessName,
+        navItems: [
+          { label: "Home", href: "/" },
+          { label: "About", href: "#about" },
+          { label: "Skills", href: "#skills" },
+          { label: "Projects", href: "#projects" },
+          { label: "Contact", href: "#contact" }
+        ]
+      },
+      heroContent: {
+        headline: customization.tagline || "Professional Portfolio",
+        subheadline: details.description || "Showcasing my work and skills.",
+        ctaText: "Contact Me",
+        ctaLink: "#contact",
+        image: {
+          src: "https://via.placeholder.com/1200x800",
+          alt: "Hero Image",
+          overlay: "rgba(0,0,0,0.5)",
+          overlayColor: "black",
+          shadow: "0 10px 30px rgba(0,0,0,0.1)",
+          rounded: "lg",
+          zoomOnHover: true,
+          blurBackground: false,
+          aspectRatio: "16/9",
+          className: "w-full h-full object-cover"
+        }
+      },
+      aboutContent: {
+        title: "About Me",
+        text: "I'm a passionate developer dedicated to creating beautiful and functional websites. With a strong foundation in modern web technologies, I strive to deliver exceptional user experiences.",
+        image: {
+          src: "https://via.placeholder.com/400x400",
+          alt: "Profile Image",
+          overlay: "rgba(0,0,0,0.5)",
+          overlayColor: "black",
+          shadow: "0 10px 30px rgba(0,0,0,0.1)",
+          rounded: "lg",
+          zoomOnHover: true,
+          blurBackground: false,
+          aspectRatio: "1/1",
+          className: "w-full h-full object-cover"
+        },
+        highlights: [
+          { icon: "Code", title: "Web Development", subtitle: "Building modern and responsive websites." },
+          { icon: "PenTool", title: "UI/UX Design", subtitle: "Creating intuitive and engaging user interfaces." },
+          { icon: "TrendingUp", title: "Digital Marketing", subtitle: "Helping businesses grow online." }
+        ],
+        mission: customization.aboutContent?.mission || { title: "My Mission", text: "To deliver high-quality digital solutions." },
+        companyInfo: [
+          { icon: "Mail", text: `Email: ${details.email}` },
+          { icon: "Phone", text: `Phone: ${details.phone}` },
+          { icon: "Globe", text: `Website: https://${details.projectName}.com` }
+        ],
+        cta: customization.aboutContent?.cta || { text: "Download CV", icon: "Download", link: "/cv.pdf" }
+      },
+      skillsContent: {
+        heading: "Skills",
+        subheading: "Technologies & Tools",
+        skillCategories: customization.skillsContent?.skillCategories || [
+          { name: "Frontend", skills: [{ name: "React", level: 5 }, { name: "Next.js", level: 4 }] },
+          { name: "Backend", skills: [{ name: "Node.js", level: 4 }, { name: "Express", level: 3 }] }
+        ],
+        additionalSkills: customization.skillsContent?.additionalSkills || ["Git", "Figma", "Jest"]
+      },
+      experienceContent: {
+        heading: "Experience",
+        subheading: "Work & Education",
+        workExperience: customization.experienceContent?.workExperience || [
+          { id: 1, company: "Company X", position: "Developer", duration: "2020-2022", description: "Worked on web apps." }
+        ],
+        education: customization.experienceContent?.education || [
+          { id: 1, institution: "University Y", degree: "BSc Computer Science", field: "Software Engineering", duration: "2016-2020" }
+        ]
+      },
+      projectsContent: {
+        title: "Projects",
+        subtitle: "Some of my work",
+        filters: [
+          { id: "all", label: "All" },
+          { id: "web", label: "Web" },
+          { id: "design", label: "Design" }
+        ],
+        caseStudies: customization.projectsContent?.caseStudies || [
+          { id: 1, title: "Portfolio Website", category: "Web", image: "https://via.placeholder.com/300x200", description: "A personal portfolio site.", technologies: ["React", "Next.js"], liveUrl: "https://portfolio.com", codeUrl: "https://github.com/yourusername/portfolio", fiverrUrl: "https://fiverr.com/yourusername" }
+        ],
+        cta: customization.projectsContent?.cta || { text: "View All Projects", icon: "Eye", link: "#projects" }
+      },
+      contactContent: {
+        title: "Contact",
+        subtitle: "Let's connect!",
+        contactInfo: [
+          { icon: "MapPin", label: "Location", value: customization.location },
+          { icon: "Mail", label: "Email", value: details.email },
+          { icon: "Phone", label: "Phone", value: details.phone }
+        ],
+        socialLinks: [
+          { icon: "Github", label: "GitHub", href: customization.githubUrl },
+          { icon: "Linkedin", label: "LinkedIn", href: customization.linkedinUrl },
+          { icon: "ExternalLink", label: "Fiverr", href: customization.fiverrUrl }
+        ],
+        map: customization.contactContent?.map || { label: "Location", placeholder: "Map will appear here" }
+      },
+      footerContent: customization.footerContent || {
+        copyright: `© ${new Date().getFullYear()} ${details.businessName || details.clientName}. All rights reserved.`,
+        links: [
+          { label: "Privacy Policy", href: "/privacy" },
+          { label: "Terms of Service", href: "/terms" }
+        ],
+        social: [
+          { icon: "Github", label: "GitHub", href: customization.githubUrl },
+          { icon: "Linkedin", label: "LinkedIn", href: customization.linkedinUrl }
+        ]
+      }
+    };
+    const schema = portfolioConfigSchema;
+    const validationError = validateConfig(configObj, schema);
+    if (validationError) {
+      console.error(chalk.red(`\nConfig validation failed: ${validationError}`));
+      throw new Error('Config validation failed. Please check your input or generator logic.');
+    }
+
+    return `// Centralized site content config for ${details.projectName}
+
+import { User, MapPin, Calendar, Mail, Phone, Globe, Code, Database, Smartphone, Cloud, Palette, Settings, Github, Linkedin, ExternalLink, ShieldCheck, Zap, Terminal } from 'lucide-react'
+
+export const headerContent = ${jsonToJsObject(configObj.headerContent, 0)};
+
+export const heroContent = ${jsonToJsObject(configObj.heroContent, 0)};
+
+export const aboutContent = ${jsonToJsObject(configObj.aboutContent, 0)};
+
+export const skillsContent = ${jsonToJsObject(configObj.skillsContent, 0)};
+
+export const experienceContent = ${jsonToJsObject(configObj.experienceContent, 0)};
+
+export const projectsContent = ${jsonToJsObject(configObj.projectsContent, 0)};
+
+export const contactContent = ${jsonToJsObject(configObj.contactContent, 0)};
+
+export const footerContent = ${jsonToJsObject(configObj.footerContent, 0)};
+`;
+  }
+
+  generateBusinessConfig(details, customization) {
+    function jsonToJsObject(obj, indent = 0) {
+      const pad = '  '.repeat(indent);
+      if (Array.isArray(obj)) {
+        if (obj.length === 0) return '[]';
+        return '[\n' + obj.map(item => pad + '  ' + jsonToJsObject(item, indent + 1)).join(',\n') + '\n' + pad + ']';
+      } else if (typeof obj === 'object' && obj !== null) {
+        const entries = Object.entries(obj).map(([key, value]) => {
+          return `${pad}  ${key}: ${jsonToJsObject(value, indent + 1)}`;
+        });
+        return '{\n' + entries.join(',\n') + '\n' + pad + '}';
+      } else if (typeof obj === 'string') {
+        return '"' + obj.replace(/\\/g, '\\\\').replace(/"/g, '\\"') + '"';
+      } else {
+        return JSON.stringify(obj);
+      }
+    }
+
+    // --- PATCH: Use default image object if AI provides a string or nothing ---
+    function getImageObject(aiImage, defaultImageObj) {
+      if (typeof aiImage === 'object' && aiImage !== null) return aiImage;
+      return defaultImageObj;
+    }
+    // Define sensible placeholder image objects (update these as needed)
+    // If the AI does not provide a hero image, default to no image (empty src)
+    const defaultHeroImage = {
+      src: '',
+      alt: '',
+      overlay: '',
+      overlayColor: '',
+      shadow: '',
+      rounded: '',
+      zoomOnHover: false,
+      blurBackground: false,
+      aspectRatio: '',
+      className: ''
+    };
+    const defaultAboutImage = {
+      src: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80',
+      alt: 'Default about image',
+      overlay: 'gradient',
+      overlayColor: 'from-primary/60 to-secondary/40',
+      shadow: '2xl',
+      rounded: 'full',
+      zoomOnHover: true,
+      blurBackground: false,
+      aspectRatio: '1/1',
+      className: 'w-80 h-80 mx-auto object-cover object-center'
+    };
+    // --- END PATCH ---
+
+    // --- MAIN LOGIC: Fill all fields from AI JSON (customization), only use defaults for images if missing ---
+    let heroContent = customization.heroContent || {};
+    heroContent.image = getImageObject(heroContent.image, defaultHeroImage);
+    let aboutContent = customization.aboutContent || {};
+    aboutContent.image = getImageObject(aboutContent.image, defaultAboutImage);
+
+    // --- PATCH: Ensure contactContent.form.submitText always exists ---
+    let contactContent = customization.contactContent || {};
+    if (!contactContent.form) contactContent.form = {};
+    if (!contactContent.form.submitText) contactContent.form.submitText = 'Send Message';
+    // --- END PATCH ---
+
+    // --- PATCH: Ensure unique keys in arrays ---
+    function ensureUniqueKeys(arr, keyName = 'id') {
+      if (!Array.isArray(arr)) return arr;
+      return arr.map((item, idx) => {
+        if (!item[keyName]) {
+          // Use label, href, or fallback to index
+          item[keyName] = item.label || item.href || item.value || idx;
+        }
+        return item;
+      });
+    }
+    if (customization.headerContent && customization.headerContent.navItems) {
+      customization.headerContent.navItems = ensureUniqueKeys(customization.headerContent.navItems, 'key');
+    }
+    if (aboutContent.highlights) aboutContent.highlights = ensureUniqueKeys(aboutContent.highlights, 'key');
+    if (aboutContent.companyInfo) aboutContent.companyInfo = ensureUniqueKeys(aboutContent.companyInfo, 'key');
+    if (customization.servicesContent && customization.servicesContent.services) {
+      customization.servicesContent.services = ensureUniqueKeys(customization.servicesContent.services, 'key');
+    }
+    if (customization.projectsContent && customization.projectsContent.filters) {
+      customization.projectsContent.filters = ensureUniqueKeys(customization.projectsContent.filters, 'key');
+    }
+    if (customization.projectsContent && customization.projectsContent.caseStudies) {
+      customization.projectsContent.caseStudies = ensureUniqueKeys(customization.projectsContent.caseStudies, 'id');
+    }
+    if (customization.testimonialsContent && customization.testimonialsContent.testimonials) {
+      customization.testimonialsContent.testimonials = ensureUniqueKeys(customization.testimonialsContent.testimonials, 'key');
+    }
+    if (contactContent.contactInfo) contactContent.contactInfo = ensureUniqueKeys(contactContent.contactInfo, 'key');
+    if (contactContent.socialLinks) contactContent.socialLinks = ensureUniqueKeys(contactContent.socialLinks, 'key');
+    // --- END PATCH ---
+
+    // --- PATCH: Ensure all expected arrays are always present ---
+    // Footer arrays
+    if (!customization.footerContent) customization.footerContent = {};
+    if (!customization.footerContent.links) customization.footerContent.links = [];
+    if (!customization.footerContent.social) customization.footerContent.social = [];
+    if (!customization.footerContent.quickLinks) customization.footerContent.quickLinks = [];
+    // Header arrays
+    if (!customization.headerContent) customization.headerContent = {};
+    if (!customization.headerContent.navItems) customization.headerContent.navItems = [];
+    // Contact arrays
+    if (!contactContent.contactInfo) contactContent.contactInfo = [];
+    if (!contactContent.socialLinks) contactContent.socialLinks = [];
+    // About arrays
+    if (!aboutContent.highlights) aboutContent.highlights = [];
+    if (!aboutContent.companyInfo) aboutContent.companyInfo = [];
+    // Services arrays
+    if (customization.servicesContent && !customization.servicesContent.services) customization.servicesContent.services = [];
+    // Projects arrays
+    if (customization.projectsContent && !customization.projectsContent.filters) customization.projectsContent.filters = [];
+    if (customization.projectsContent && !customization.projectsContent.caseStudies) customization.projectsContent.caseStudies = [];
+    // Testimonials arrays
+    if (customization.testimonialsContent && !customization.testimonialsContent.testimonials) customization.testimonialsContent.testimonials = [];
+    // Process arrays
+    if (customization.processContent && !customization.processContent.steps) customization.processContent.steps = [];
+    // --- END PATCH ---
+
+    const configObj = {
+      headerContent: customization.headerContent,
+      heroContent,
+      aboutContent,
+      servicesContent: customization.servicesContent,
+      projectsContent: customization.projectsContent,
+      processContent: customization.processContent,
+      testimonialsContent: customization.testimonialsContent,
+      contactContent,
+      footerContent: customization.footerContent
+    };
+    // --- END MAIN LOGIC ---
+
+    // --- BYPASS VALIDATOR AND REMOVE DEBUG LOG ---
+    // (No validation or flooding logs)
+    // --- END BYPASS ---
+
+    return `// site.config.ts
+// =============================
+// Edit the text, links, and images below to customize your site content!
+// =============================
+
+export const headerContent = ${jsonToJsObject(configObj.headerContent, 0)};
+
+export const heroContent = ${jsonToJsObject(configObj.heroContent, 0)};
+
+export const aboutContent = ${jsonToJsObject(configObj.aboutContent, 0)};
+
+export const servicesContent = ${jsonToJsObject(configObj.servicesContent, 0)};
+
+export const projectsContent = ${jsonToJsObject(configObj.projectsContent, 0)};
+
+export const processContent = ${jsonToJsObject(configObj.processContent, 0)};
+
+export const testimonialsContent = ${jsonToJsObject(configObj.testimonialsContent, 0)};
+
+export const contactContent = ${jsonToJsObject(configObj.contactContent, 0)};
+
+export const footerContent = ${jsonToJsObject(configObj.footerContent, 0)};
+`;
+  }
+
+  async customizePortfolioConfig(configContent, details, customization) {
+    // Replace basic placeholders with more specific patterns
+    const basicReplacements = {
+      'Riley Mahn': details.clientName,
+      'Generalist Software Developer with a Specialist\'s Mindset': customization.jobTitle,
+      'Denver, Colorado': customization.location,
+      'mahnriley@gmail.com': details.email,
+      'https://github.com/roflz': customization.githubUrl,
+      'https://www.linkedin.com/in/rileymahn/': customization.linkedinUrl,
+      'https://www.fiverr.com/yourfiverrusername': customization.fiverrUrl
+    };
+
+    Object.entries(basicReplacements).forEach(([placeholder, value]) => {
+      configContent = configContent.replace(new RegExp(placeholder, 'g'), value);
+    });
+
+    // Handle years of experience more carefully to avoid affecting skill levels
+    configContent = configContent.replace(
+      /value: '5\+'/g, 
+      `value: '${customization.yearsExperience}'`
+    );
+
+    // Customize sections based on user preferences
+    if (!customization.includeSkills) {
+      configContent = this.removeSection(configContent, 'skillsSection');
+    }
+    if (!customization.includeExperience) {
+      configContent = this.removeSection(configContent, 'experienceSection');
+    }
+    if (!customization.includeProjects) {
+      configContent = this.removeSection(configContent, 'projectsSection');
+    }
+    if (!customization.includeEducation) {
+      configContent = this.removeSection(configContent, 'education');
+    }
+
+    return configContent;
+  }
+
+  async customizeBusinessConfig(configContent, details, customization) {
+    // Replace basic placeholders
+    const basicReplacements = {
+      'Your Business': details.businessName,
+      'Professional solutions for your business': details.tagline,
+      'We help businesses grow with modern digital solutions': details.description,
+      'contact@yourbusiness.com': details.email,
+      '\\+1 \\(555\\) 123-4567': details.phone
+    };
+
+    Object.entries(basicReplacements).forEach(([placeholder, value]) => {
+      configContent = configContent.replace(new RegExp(placeholder, 'g'), value);
+    });
+
+    // Customize services based on business type
+    const services = customization.services.split(',').map(s => s.trim());
+    configContent = this.updateServices(configContent, services, customization.businessType);
+
+    // Customize sections based on user preferences
+    if (!customization.includeTestimonials) {
+      configContent = this.removeSection(configContent, 'testimonialsContent');
+    }
+    if (!customization.includePricing) {
+      configContent = this.removeSection(configContent, 'pricingContent');
+    }
+    if (!customization.includeTeam) {
+      configContent = this.removeSection(configContent, 'teamContent');
+    }
+    if (!customization.includeBlog) {
+      configContent = this.removeSection(configContent, 'blogContent');
+    }
+
+    return configContent;
+  }
+
+  removeSection(configContent, sectionName) {
+    // Find the start of the section
+    const sectionStart = configContent.indexOf(`export const ${sectionName} = {`);
+    if (sectionStart === -1) return configContent;
+
+    // Find the matching closing brace for the section
+    let braceCount = 0;
+    let sectionEnd = sectionStart;
+    let inString = false;
+    let escapeNext = false;
+    for (let i = sectionStart; i < configContent.length; i++) {
+      const char = configContent[i];
+      if (escapeNext) { escapeNext = false; continue; }
+      if (char === '\\') { escapeNext = true; continue; }
+      if (char === '"' || char === "'" || char === '`') { inString = !inString; continue; }
+      if (!inString) {
+        if (char === '{') braceCount++;
+        else if (char === '}') {
+          braceCount--;
+          if (braceCount === 0) { sectionEnd = i + 1; break; }
+        }
+      }
+    }
+    // Remove the section
+    let before = configContent.substring(0, sectionStart);
+    let after = configContent.substring(sectionEnd);
+    // Remove a trailing comma before or after the section
+    before = before.replace(/,?\s*$/, '');
+    after = after.replace(/^\s*,?/, '');
+    let result = before + after;
+    // Clean up double commas, trailing commas in arrays/objects
+    result = result.replace(/,\s*,/g, ',');
+    result = result.replace(/,\s*([}\]])/g, '$1');
+    result = result.replace(/([\[{])\s*,/g, '$1');
+    return result;
+  }
+
+  updateServices(configContent, services, businessType) {
+    // Create service objects based on business type
+    const serviceTemplates = {
+      agency: [
+        { icon: 'Code', title: 'Web Design & Development', description: 'Custom websites and web applications.' },
+        { icon: 'PenTool', title: 'Branding & Design', description: 'Professional branding and graphic design.' },
+        { icon: 'TrendingUp', title: 'Digital Marketing', description: 'SEO, PPC, and social media marketing.' }
+      ],
+      ecommerce: [
+        { icon: 'ShoppingCart', title: 'E-commerce Solutions', description: 'Online stores and payment processing.' },
+        { icon: 'Package', title: 'Inventory Management', description: 'Product catalog and order management.' },
+        { icon: 'Truck', title: 'Shipping & Logistics', description: 'Order fulfillment and delivery tracking.' }
+      ],
+      saas: [
+        { icon: 'Cloud', title: 'Software Development', description: 'Custom software and SaaS solutions.' },
+        { icon: 'Shield', title: 'Security & Compliance', description: 'Data protection and regulatory compliance.' },
+        { icon: 'Zap', title: 'API Integration', description: 'Third-party integrations and automation.' }
+      ]
+    };
+
+    const template = serviceTemplates[businessType] || serviceTemplates.agency;
+    
+    // Replace services in config
+    const servicesString = template.map(service => 
+      `    {
+      icon: "${service.icon}",
+      title: "${service.title}",
+      description: "${service.description}"
+    }`
+    ).join(',\n');
+
+    const servicesRegex = /services: \[[\s\S]*?\],/;
+    const replacement = `services: [
+${servicesString}
+  ],`;
+
+    return configContent.replace(servicesRegex, replacement);
+  }
+
+  // Ensure DEFAULT_PALETTE is exported in lib/palettes.ts
+  async setupThemeLib(projectPath) {
+    const libPath = path.join(projectPath, 'lib');
+    const themeLibPath = path.join(__dirname, '../theme-lib/src');
+    await fs.ensureDir(libPath);
+    await fs.copy(themeLibPath, libPath);
+    // Patch palettes.ts if needed
+    const palettesPath = path.join(libPath, 'palettes.ts');
+    if (await fs.pathExists(palettesPath)) {
+      let palettesContent = await fs.readFile(palettesPath, 'utf8');
+      if (!palettesContent.includes('export const DEFAULT_PALETTE')) {
+        palettesContent += '\n\nexport const DEFAULT_PALETTE = { primary: "#2563eb", secondary: "#64748b" };\n';
+        await fs.writeFile(palettesPath, palettesContent, 'utf8');
+      }
+    }
+    // Update package.json to use local lib
+    const packagePath = path.join(projectPath, 'package.json');
+    const packageJson = await fs.readJson(packagePath);
+    if (packageJson.dependencies['theme-lib']) {
+      packageJson.dependencies['theme-lib'] = 'file:./lib';
+    }
+    await fs.writeJson(packagePath, packageJson, { spaces: 2 });
+  }
+
+  async updateThemeColors(projectPath, details) {
+    const tailwindConfigPath = path.join(projectPath, 'tailwind.config.js');
+    let tailwindConfig = await fs.readFile(tailwindConfigPath, 'utf8');
+    
+    // Update primary and secondary colors
+    tailwindConfig = tailwindConfig.replace(
+      /primary: ['"][^'"]*['"]/,
+      `primary: '${details.primaryColor}'`
+    );
+    
+    tailwindConfig = tailwindConfig.replace(
+      /secondary: ['"][^'"]*['"]/,
+      `secondary: '${details.secondaryColor}'`
+    );
+    
+    await fs.writeFile(tailwindConfigPath, tailwindConfig);
+  }
+
+  async installDependencies(projectPath) {
+    const { exec } = require('child_process');
+    const util = require('util');
+    const execAsync = util.promisify(exec);
+    
+    await execAsync('npm install', { cwd: projectPath });
+  }
+}
+
+// Export for testing
+module.exports = { TemplateGenerator };
+
+// Run generator if this file is executed directly
+if (require.main === module) {
+  const generator = new TemplateGenerator();
+  generator.generateWebsite();
+} 

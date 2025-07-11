@@ -1,0 +1,28 @@
+```json
+{
+  "details": {
+    "projectName": "creative-design-studio-website",
+    "clientName": "Sarah Johnson",
+    "businessName": "Creative Design Studio",
+    "tagline": "Creative design solutions that make your brand stand out",
+    "description": "We create stunning visual experiences that connect with your audience and drive results. Specializing in branding and logo design for small businesses.",
+    "email": "sarah@creativedesignstudio.com",
+    "phone": "+1 (555) 123-4567",
+    "primaryColor": "Blue",
+    "secondaryColor": "Gray"
+  },
+  "templateType": "portfolio",
+  "customization": {
+    "jobTitle": "Graphic Designer",
+    "location": "Portland, OR",
+    "yearsExperience": "3+",
+    "githubUrl": "https://github.com/sarahjohnson",
+    "linkedinUrl": "https://linkedin.com/in/sarahjohnson",
+    "fiverrUrl": "https://fiverr.com/yourusername",
+    "includeSkills": true,
+    "includeExperience": true,
+    "includeProjects": true,
+    "includeEducation": true
+  }
+}
+``` 
