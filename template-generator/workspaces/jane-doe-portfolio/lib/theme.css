@@ -1,0 +1,261 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Theme System CSS Variables and Classes */
+
+:root {
+  --color-primary-from: #2563eb; /* blue */
+  --color-primary-to: #a21caf;   /* purple */
+  --color-primary-from-rgb: 37, 99, 235;
+  --color-primary-to-rgb: 162, 28, 175;
+  --color-bg-from: #f9fafb;      /* default light bg - soft neutral */
+  --color-bg-to: #f3f4f6;        /* default light bg gradient - soft neutral */
+  --color-bg-alt-from: #f3f4f6;  /* default alt bg - soft neutral */
+  --color-bg-alt-to: #e5e7eb;    /* default alt bg gradient - soft neutral */
+}
+
+/* ===== BACKGROUND THEMES ===== */
+
+/* Neutral Background Theme */
+.bg-theme-neutral {
+  --color-bg-from: #f9fafb;
+  --color-bg-to: #f3f4f6;
+  --color-bg-alt-from: #f3f4f6;
+  --color-bg-alt-to: #e5e7eb;
+}
+.dark.bg-theme-neutral {
+  --color-bg-from: #111827;
+  --color-bg-to: #1f2937;
+  --color-bg-alt-from: #1f2937;
+  --color-bg-alt-to: #374151;
+}
+
+/* Warm Background Theme */
+.bg-theme-warm {
+  --color-bg-from: #fefce8;
+  --color-bg-to: #fef3c7;
+  --color-bg-alt-from: #fef9c3;
+  --color-bg-alt-to: #fde68a;
+}
+.dark.bg-theme-warm {
+  --color-bg-from: #1a1813;
+  --color-bg-to: #232016;
+  --color-bg-alt-from: #232016;
+  --color-bg-alt-to: #2d271a;
+}
+
+/* Cool Background Theme */
+.bg-theme-cool {
+  --color-bg-from: #f0fdf4;
+  --color-bg-to: #dcfce7;
+  --color-bg-alt-from: #ecfdf5;
+  --color-bg-alt-to: #d1fae5;
+}
+.dark.bg-theme-cool {
+  --color-bg-from: #142019;
+  --color-bg-to: #1c2a22;
+  --color-bg-alt-from: #1c2a22;
+  --color-bg-alt-to: #23342a;
+}
+
+/* Soft Background Theme */
+.bg-theme-soft {
+  --color-bg-from: #fdf2f8;
+  --color-bg-to: #fce7f3;
+  --color-bg-alt-from: #fdf2f8;
+  --color-bg-alt-to: #fbcfe8;
+}
+.dark.bg-theme-soft {
+  --color-bg-from: #18181b;
+  --color-bg-to: #232326;
+  --color-bg-alt-from: #232326;
+  --color-bg-alt-to: #2d2d31;
+}
+
+.bg-theme-mybrand {
+    --color-bg-from: #f7fff7;
+    --color-bg-to: #e0fbfc;
+    --color-bg-alt-from: #e0fbfc;
+    --color-bg-alt-to: #b2f7ef;
+  }
+  .dark.bg-theme-mybrand {
+    --color-bg-from: #22223b;
+    --color-bg-to: #4a4e69;
+    --color-bg-alt-from: #4a4e69;
+    --color-bg-alt-to: #9a8c98;
+  }
+
+/* ===== FOREGROUND THEMES ===== */
+
+/* Blue Foreground Theme */
+.fg-theme-blue {
+  --color-primary-from: #2563eb;
+  --color-primary-to: #a21caf;
+  --color-primary-from-rgb: 37, 99, 235;
+  --color-primary-to-rgb: 162, 28, 175;
+}
+
+/* Green Foreground Theme */
+.fg-theme-green {
+  --color-primary-from: #22c55e;
+  --color-primary-to: #059669;
+  --color-primary-from-rgb: 34, 197, 94;
+  --color-primary-to-rgb: 5, 150, 105;
+}
+
+/* Orange Foreground Theme */
+.fg-theme-orange {
+  --color-primary-from: #f97316;
+  --color-primary-to: #ea580c;
+  --color-primary-from-rgb: 249, 115, 22;
+  --color-primary-to-rgb: 234, 88, 12;
+}
+
+/* Red Foreground Theme */
+.fg-theme-red {
+  --color-primary-from: #ef4444;
+  --color-primary-to: #dc2626;
+  --color-primary-from-rgb: 239, 68, 68;
+  --color-primary-to-rgb: 220, 38, 38;
+}
+
+/* Purple Foreground Theme */
+.fg-theme-purple {
+  --color-primary-from: #8b5cf6;
+  --color-primary-to: #7c3aed;
+  --color-primary-from-rgb: 139, 92, 246;
+  --color-primary-to-rgb: 124, 58, 237;
+}
+
+/* Teal Foreground Theme */
+.fg-theme-teal {
+  --color-primary-from: #14b8a6;
+  --color-primary-to: #0d9488;
+  --color-primary-from-rgb: 20, 184, 166;
+  --color-primary-to-rgb: 13, 148, 136;
+}
+
+/* Base Styles */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-bg-from);
+    color: #1e293b;
+  }
+  
+  .dark body {
+    background-color: var(--color-bg-from);
+    color: #f8fafc;
+  }
+}
+
+/* Theme gradient overlay from top */
+@layer components {
+  .bg-gradient-background {
+    position: relative;
+  }
+  
+  .bg-gradient-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    background: linear-gradient(
+      to bottom,
+      rgba(var(--color-primary-from-rgb), 0.25) 0%,
+      rgba(var(--color-primary-from-rgb), 0.02) 40%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  .dark .bg-gradient-background::before {
+    background: linear-gradient(
+      to bottom,
+      rgba(var(--color-primary-from-rgb), 0.15) 0%,
+      rgba(var(--color-primary-from-rgb), 0.06) 40%,
+      transparent 100%
+    );
+  }
+  
+  /* Ensure content appears above gradient */
+  .bg-gradient-background > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+/* Component Styles */
+@layer components {
+  .btn-primary {
+    @apply text-white font-medium py-3 px-6 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105;
+    background-image: linear-gradient(to right, var(--color-primary-from), var(--color-primary-to));
+  }
+  
+  .btn-secondary {
+    @apply bg-transparent border text-primary hover:text-white font-medium py-3 px-6 rounded-full transition-all duration-300 hover:scale-105;
+    border-color: rgba(var(--color-primary-from-rgb, 37, 99, 235), 0.3);
+    color: var(--color-primary-from);
+  }
+  
+  .card {
+    @apply rounded-xl shadow-xl p-6 transition-all duration-300 hover:scale-105 hover:shadow-2xl;
+    background-color: var(--color-bg-alt-from) !important;
+    border: 1px solid rgba(var(--color-primary-from-rgb, 37, 99, 235), 0.1) !important;
+    backdrop-filter: blur(10px);
+  }
+  
+  .gradient-text {
+    background-image: linear-gradient(to right, var(--color-primary-from), var(--color-primary-to));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+/* Utility Classes */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .text-primary {
+    color: var(--color-primary-from) !important;
+  }
+  
+  .bg-primary {
+    background-color: var(--color-primary-from) !important;
+  }
+  
+  .border-primary {
+    border-color: var(--color-primary-from) !important;
+  }
+  
+  .bg-gradient-primary {
+    background-image: linear-gradient(to right, var(--color-primary-from), var(--color-primary-to)) !important;
+  }
+  
+  .bg-background {
+    background-color: var(--color-bg-from) !important;
+  }
+  
+  .bg-background-alt {
+    background-color: var(--color-bg-alt-from) !important;
+  }
+  
+  .bg-gradient-background {
+    background-image: linear-gradient(to bottom, var(--color-bg-from), var(--color-bg-to)) !important;
+  }
+  
+  .bg-gradient-background-alt {
+    background-image: linear-gradient(to bottom, var(--color-bg-alt-from), var(--color-bg-alt-to)) !important;
+  }
+} 

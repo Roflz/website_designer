@@ -1,0 +1,360 @@
+# Website Generator AI Task
+
+You are an expert software engineer and product designer. Your task is to analyze the provided client information and generate a JSON configuration for an automated website generator. This configuration will be used to create a professional, production-ready business or portfolio website. The website must be clear, user-friendly, and visually appealing, following best practices for modern web design and user experience.
+
+Carefully review the client information and reason about what should be changed from the default template. Only change fields when you are confident there is a clear, strong reason to do so based on the client information. Otherwise, preserve the default values and structure. Follow all rules and schema descriptions provided below.
+
+## Client Information
+**Client Name**: Jane Doe
+**Email**: jane@janedesign.com
+**Location**: San Francisco, CA
+**Description**: I'm a freelance UI/UX designer specializing in web and mobile app design. I want a portfolio site to showcase my projects and skills.
+**Requirements**: Modern, creative design with project gallery, about section, skills, and contact form. Should highlight my design process and client testimonials.
+**Target Audience**: Tech startups, agencies, and product teams
+**Industry**: Design
+**Color Preferences**: Purple and teal, creative vibe
+**Style Preferences**: Bold, clean, and interactive
+
+
+### Website JSON Structure and Section Purposes
+- **headerContent**: Navigation bar and branding for the site. Contains business or personal name and navigation items.
+- **heroContent**: The main hero section at the top of the site. Contains a headline, subheadline, and two CTAs (primary and secondary) with their text and links. The purpose is to immediately communicate the main value proposition and provide clear actions for the user.
+- **aboutContent**: Section describing the business or individual, including highlights, mission, and company/personal info.
+- **servicesContent**: Lists the services offered (for business) or main skills (for portfolio), with a CTA to request a quote or contact.
+- **projectsContent**: Showcases projects or case studies. Includes filter buttons for project types, a grid/list of projects, and a CTA to start a project or contact.
+- **testimonialsContent**: Displays client or peer testimonials.
+- **processContent**: Outlines the workflow or process steps.
+- **skillsContent** (portfolio): Technical skills and proficiencies.
+- **experienceContent** (portfolio): Work and education history.
+- **contactContent**: Contact form and contact information.
+- **footerContent**: Footer with copyright, links, and social media.
+
+Each field in the JSON corresponds to a specific part of the website. Only update a field if you are confident it is necessary based on the client information.
+
+### Universal Content Rules
+- For all sections and fields: Do not change the value of any field from its default unless you are confident there is a clear, strong reason to do so based on the client information.
+- Do not make minor, stylistic, or unnecessary changes to text, labels, or titles. Only update fields when there is a clear, explicit reason from the client information.
+- Do not rename section titles or headings unless explicitly instructed by the client information.
+- Avoid redundant or nearly identical CTAs within the same section.
+- Always include filter buttons for project types in the projects section, even if there is only one type.
+
+
+### Portfolio Template Specific Requirements
+- **Header Navigation**: Use "name" field (not "label") for navigation items
+- **Personal Focus**: Emphasize individual skills, experience, and personal achievements
+- **Projects**: Showcase individual work with technologies used
+- **Skills**: Technical skills with proficiency levels
+- **Experience**: Work history and education
+- **Contact**: Personal contact information
+
+## Required Output Format
+Return ONLY a valid JSON object with this exact structure for portfolio template:
+
+
+```json
+{
+  "details": {
+    "projectName": "url-friendly-project-name",
+    "clientName": "Your Name",
+    "tagline": "A short description or tagline for your portfolio.",
+    "description": "Write a short summary about yourself, your skills, and what you offer.",
+    "email": "your@email.com",
+    "phone": "123-456-7890",
+    "primaryColor": "#6D28D9",
+    "secondaryColor": "#14B8A6"
+  },
+  "templateType": "portfolio",
+  "customization": {
+    "headerSection": {
+      "logo": "Your Logo",
+      "navItems": [
+        { "name": "Home", "href": "#home" },
+        { "name": "About", "href": "#about" },
+        { "name": "Skills", "href": "#skills" },
+        { "name": "Projects", "href": "#projects" },
+        { "name": "Experience", "href": "#experience" },
+        { "name": "Contact", "href": "#contact" }
+      ]
+    },
+    "footerSection": {
+      "brand": {
+        "name": "Your Name",
+        "description": "A short description or tagline for your portfolio.",
+        "socialLinks": [
+          { "name": "GitHub", "url": "https://github.com/yourusername" },
+          { "name": "LinkedIn", "url": "https://www.linkedin.com/in/yourusername/" },
+          { "name": "Website", "url": "https://yourwebsite.com" }
+        ]
+      },
+      "quickLinks": [
+        { "name": "Home", "href": "#home" },
+        { "name": "About", "href": "#about" },
+        { "name": "Skills", "href": "#skills" },
+        { "name": "Projects", "href": "#projects" },
+        { "name": "Experience", "href": "#experience" },
+        { "name": "Contact", "href": "#contact" }
+      ],
+      "contactInfo": ["your@email.com", "Your Location"],
+      "copyright": {
+        "year": 2024,
+        "name": "Your Name",
+        "madeWith": "Made with",
+        "love": "and lots of coffee."
+      },
+      "backToTop": "Back to top"
+    },
+    "heroSection": {
+      "greeting": "Hello, I'm",
+      "name": "Your Name",
+      "title": "Your Professional Title or Tagline",
+      "description": "Write a short summary about yourself, your skills, and what you offer. This is your chance to make a great first impression!",
+      "ctas": [
+        { "label": "View My Work", "action": "scroll", "target": "projects", "icon": null, "style": "primary" },
+        { "label": "Get In Touch", "action": "scroll", "target": "contact", "icon": "Mail", "style": "secondary" },
+        { "label": "Download CV", "action": "download", "target": "/cv.pdf", "icon": null, "style": "secondary" }
+      ],
+      "stats": [
+        { "value": "X+", "label": "Years Experience" },
+        { "value": "X", "label": "Projects Completed" },
+        { "value": "X", "label": "Happy Clients" },
+        { "value": "100%", "label": "Commitment to Quality" }
+      ],
+      "scrollIndicator": { "target": "about" }
+    },
+    "aboutSection": {
+      "heading": "About Me",
+      "subheading": "A short introduction about yourself and your journey",
+      "personalInfo": [
+        { "icon": "User", "label": "Name", "value": "Your Name" },
+        { "icon": "MapPin", "label": "Location", "value": "Your Location" },
+        { "icon": "Calendar", "label": "Born", "value": "YYYY" },
+        { "icon": "Mail", "label": "Email", "value": "your@email.com", "link": "mailto:your@email.com" },
+        { "icon": "Github", "label": "GitHub", "link": "https://github.com/yourusername" },
+        { "icon": "Linkedin", "label": "LinkedIn", "link": "https://www.linkedin.com/in/yourusername/" },
+        { "icon": "Globe", "label": "Website", "link": "https://yourwebsite.com" }
+      ],
+      "profileImage": { "src": "", "alt": "Profile Image" },
+      "profileBadge": "X+",
+      "whoIAm": {
+        "heading": "Who I Am",
+        "paragraphs": [
+          "Write a few sentences about your background, what got you into your field, and what motivates you.",
+          "Share your approach, your values, or what makes you unique as a professional.",
+          "Let visitors know what you can help them with and why they should work with you."
+        ]
+      },
+      "whatIDo": {
+        "heading": "What I Do",
+        "skills": [
+          { "title": "Frontend Development", "description": "React, TypeScript, Next.js, Tailwind CSS, HTML/CSS" },
+          { "title": "Backend Development", "description": "Node.js, Python, Databases, API Design" },
+          { "title": "DevOps & Cloud", "description": "Docker, AWS, CI/CD, Linux" },
+          { "title": "Other Skills", "description": "List any other relevant skills here" }
+        ]
+      },
+      "downloadCV": { "label": "Download CV", "icon": "User", "href": "/cv.pdf" }
+    },
+    "skillsSection": {
+      "heading": "My Skills",
+      "subheading": "A summary of your technical skills and expertise",
+      "skillCategories": [
+        {
+          "icon": "Code",
+          "title": "Frontend Development",
+          "skills": [
+            { "name": "React", "level": 90 },
+            { "name": "TypeScript", "level": 85 },
+            { "name": "Next.js", "level": 80 },
+            { "name": "Tailwind CSS", "level": 85 },
+            { "name": "HTML/CSS", "level": 95 },
+            { "name": "JavaScript", "level": 90 }
+          ]
+        },
+        {
+          "icon": "Database",
+          "title": "Backend Development",
+          "skills": [
+            { "name": "Node.js", "level": 80 },
+            { "name": "Python", "level": 80 },
+            { "name": "PostgreSQL", "level": 75 },
+            { "name": "MongoDB", "level": 70 },
+            { "name": "Express.js", "level": 75 },
+            { "name": "REST APIs", "level": 85 }
+          ]
+        },
+        {
+          "icon": "Cloud",
+          "title": "DevOps & Cloud",
+          "skills": [
+            { "name": "Docker", "level": 80 },
+            { "name": "AWS", "level": 75 },
+            { "name": "Git", "level": 95 },
+            { "name": "CI/CD", "level": 90 },
+            { "name": "Linux", "level": 80 },
+            { "name": "Nginx", "level": 70 }
+          ]
+        },
+        {
+          "icon": "Zap",
+          "title": "Automation & ML",
+          "skills": [
+            { "name": "Workflow Automation", "level": 80 },
+            { "name": "Machine Learning", "level": 75 },
+            { "name": "OpenCV", "level": 70 },
+            { "name": "scikit-learn", "level": 70 },
+            { "name": "Pandas", "level": 80 },
+            { "name": "NumPy", "level": 80 }
+          ]
+        },
+        {
+          "icon": "ShieldCheck",
+          "title": "Software Testing",
+          "skills": [
+            { "name": "Test Automation", "level": 85 },
+            { "name": "Unit Testing", "level": 80 },
+            { "name": "Integration Testing", "level": 80 },
+            { "name": "Manual QA", "level": 70 },
+            { "name": "Requirements-Based Verification", "level": 75 }
+          ]
+        },
+        {
+          "icon": "Terminal",
+          "title": "Languages",
+          "skills": [
+            { "name": "Python", "level": 90 },
+            { "name": "C#", "level": 80 },
+            { "name": "JavaScript", "level": 85 },
+            { "name": "TypeScript", "level": 80 },
+            { "name": "HTML/CSS", "level": 85 },
+            { "name": "Bash", "level": 70 }
+          ]
+        }
+      ],
+      "additionalSkills": [
+        "GitHub Actions", "Jenkins", "Terraform", "Jupyter", "Matplotlib", "Flask", "Selenium", "VS Code", "Postman", "JSON/YAML", "Regular Expressions"
+      ]
+    },
+    "experienceSection": {
+      "heading": "Work Experience",
+      "subheading": "Your professional journey and educational background",
+      "workExperience": [
+        {
+          "id": 1,
+          "title": "Job Title",
+          "company": "Company Name",
+          "location": "Location",
+          "period": "Start – End",
+          "description": "Describe your responsibilities, achievements, and technologies used in this role.",
+          "technologies": ["Tech1", "Tech2", "Tech3"],
+          "achievements": [
+            "Achievement or responsibility #1",
+            "Achievement or responsibility #2",
+            "Achievement or responsibility #3"
+          ]
+        },
+        {
+          "id": 2,
+          "title": "Job Title",
+          "company": "Company Name",
+          "location": "Location",
+          "period": "Start – End",
+          "description": "Describe your responsibilities, achievements, and technologies used in this role.",
+          "technologies": ["Tech1", "Tech2", "Tech3"],
+          "achievements": [
+            "Achievement or responsibility #1",
+            "Achievement or responsibility #2",
+            "Achievement or responsibility #3"
+          ]
+        }
+      ],
+      "education": [
+        {
+          "id": 1,
+          "degree": "Degree",
+          "school": "School Name",
+          "location": "Location",
+          "period": "Start – End",
+          "description": "Describe your studies, focus areas, and any honors or awards."
+        }
+      ]
+    },
+    "projectsSection": {
+      "heading": "Featured Projects",
+      "subheading": "Showcase your best work and what you can do",
+      "filters": [
+        { "id": "all", "label": "All" },
+        { "id": "web", "label": "Web Apps" },
+        { "id": "mobile", "label": "Mobile Apps" },
+        { "id": "automation", "label": "Automation" },
+        { "id": "ml", "label": "Machine Learning" }
+      ],
+      "projects": [
+        {
+          "id": 1,
+          "title": "E-Commerce Platform",
+          "description": "Full-stack e-commerce platform with user authentication, shopping cart, and payment integration.",
+          "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=500&h=300&fit=crop",
+          "liveUrl": "https://example-ecommerce.com",
+          "githubUrl": "https://github.com/yourusername/ecommerce-platform",
+          "fiverrUrl": "https://www.fiverr.com/yourusername/ecommerce-development",
+          "technologies": ["React", "Node.js", "MongoDB", "Stripe", "AWS"],
+          "category": "web",
+          "featured": true
+        }
+      ]
+    },
+    "contactSection": {
+      "heading": "Get in Touch",
+      "subheading": "Ready to work together or have questions? Reach out!",
+      "connectHeading": "Let's Connect",
+      "connectText": "I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology.",
+      "sendMessageHeading": "Send a Message",
+      "info": [
+        { "icon": "Mail", "title": "Email", "value": "your@email.com", "link": "mailto:your@email.com" },
+        { "icon": "Phone", "title": "Phone", "value": "123-456-7890", "link": "tel:1234567890" },
+        { "icon": "Globe", "title": "Website", "value": "yourwebsite.com", "link": "https://yourwebsite.com" }
+      ],
+      "socialLinks": [
+        { "name": "GitHub", "url": "https://github.com/yourusername", "color": "hover:bg-gray-800" },
+        { "name": "LinkedIn", "url": "https://www.linkedin.com/in/yourusername/", "color": "hover:bg-blue-600" },
+        { "name": "Website", "url": "https://yourwebsite.com", "color": "hover:bg-green-600" }
+      ],
+      "formFields": [
+        { "label": "Your Name", "name": "name", "type": "text" },
+        { "label": "Your Email", "name": "email", "type": "email" },
+        { "label": "Subject", "name": "subject", "type": "text" },
+        { "label": "Your Message", "name": "message", "type": "textarea" }
+      ],
+      "form": {
+        "nameLabel": "Your Name",
+        "emailLabel": "Your Email",
+        "messageLabel": "Your Message",
+        "submitText": "Send Message",
+        "successTitle": "Message Sent!",
+        "successText": "Thank you for reaching out. I will get back to you soon."
+      },
+      "sentMessage": {
+        "heading": "Message Sent Successfully!",
+        "text": "Thank you for reaching out. I will get back to you as soon as possible."
+      }
+    },
+    "socialLinks": [
+      { "icon": "Github", "label": "GitHub", "link": "https://github.com/yourusername" },
+      { "icon": "Linkedin", "label": "LinkedIn", "link": "https://www.linkedin.com/in/yourusername/" },
+      { "icon": "ExternalLink", "label": "Website", "link": "https://yourwebsite.com" }
+    ]
+  }
+}
+```
+
+
+## Analysis Guidelines
+- Be professional and appropriate for the client's industry
+- Consider their target audience and business goals
+- Make reasonable assumptions when information is missing
+- Ensure all URLs are placeholder format (not real links)
+- Choose colors that match their industry and preferences
+- Include sections that would be relevant for their type of work
+- Follow the exact JSON structure provided for the portfolio template
+
+Please analyze the client information and provide the JSON configuration.

@@ -11,22 +11,25 @@
   "scripts": {
     "dev:business": "npm run dev --workspace=business_landing_page",
     "dev:portfolio": "npm run dev --workspace=portfolio_website",
+    "dev": "concurrently \"npm run dev:business\" \"npm run dev:portfolio\"",
+
     "build:business": "npm run build --workspace=business_landing_page",
     "build:portfolio": "npm run build --workspace=portfolio_website",
     "build:theme": "npm run build --workspace=theme-lib",
     "build:all": "npm run build --workspaces",
-    "dev": "concurrently \"npm run dev:business\" \"npm run dev:portfolio\"",
+
     "generate:prompt": "npm run ai-prompt --workspace=template-generator",
     "generate:website": "npm run generate-from-ai-response --workspace=template-generator",
-    "generate:auto": "npm run auto --workspace=template-generator",
     "generate:interactive": "npm run generate --workspace=template-generator",
-    "deploy:website": "npm run deploy --workspace=template-generator",
-    "dev:workspace": "node scripts/dev-workspace.js",
-    "prompt": "npm run prompt --workspace=template-generator",
+    "generate:auto": "npm run auto --workspace=template-generator",
+
     "prompt:business": "npm run prompt:business --workspace=template-generator",
     "prompt:portfolio": "npm run prompt:portfolio --workspace=template-generator",
-    "generate:from-ai": "npm run generate-from-ai --workspace=template-generator",
-    "test:template-specific": "npm run test:template-specific --workspace=template-generator"
+
+    "deploy:website": "npm run deploy --workspace=template-generator",
+    "test:template-specific": "npm run test:template-specific --workspace=template-generator",
+
+    "dev:workspace": "node scripts/dev-workspace.js"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"

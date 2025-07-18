@@ -14,6 +14,17 @@ const Projects = () => {
     ? caseStudies
     : caseStudies.filter(study => study.category === activeFilter)
 
+  const columns = 3;
+  const total = filteredStudies.length;
+  const useDynamicCols = total < columns;
+  const fullRows = Math.floor(total / columns);
+  const lastRowCount = total % columns || columns;
+  const emptyBefore = Math.floor((columns - lastRowCount) / 2);
+  const emptyAfter = columns - lastRowCount - emptyBefore;
+
+  const fullRowsCards = filteredStudies.slice(0, fullRows * columns);
+  const lastRowCards = filteredStudies.slice(fullRows * columns);
+
   return (
     <section id="projects" className="py-20 bg-background-alt">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -61,13 +72,17 @@ const Projects = () => {
         </motion.div>
 
         {/* Case Studies Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredStudies.map((study, index) => (
+        <div
+          className={`grid gap-8 justify-items-center mx-auto ${!useDynamicCols ? 'md:grid-cols-2 lg:grid-cols-3' : ''}`}
+          style={useDynamicCols ? { gridTemplateColumns: `repeat(${total}, minmax(0, 1fr))` } : {}}
+        >
+          {/* Render all full rows */}
+          {fullRowsCards.map((study, idx) => (
             <motion.div
               key={study.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.1 }}
+              transition={{ duration: 0.8, delay: idx * 0.1 }}
               viewport={{ once: true }}
               className="card group hover:shadow-xl transition-all duration-300"
             >
@@ -103,6 +118,55 @@ const Projects = () => {
                 </p>
               </div>
             </motion.div>
+          ))}
+          {/* Center the last row */}
+          {!useDynamicCols && total >= columns && Array.from({ length: emptyBefore }).map((_, i) => (
+            <div key={`empty-before-${i}`} />
+          ))}
+          {lastRowCards.map((study, idx) => (
+            <motion.div
+              key={study.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: (fullRows * columns + idx) * 0.1 }}
+              viewport={{ once: true }}
+              className="card group hover:shadow-xl transition-all duration-300"
+            >
+              {/* Case Study Image */}
+              <div className="relative overflow-hidden rounded-lg mb-6">
+                <img
+                  src={study.image}
+                  alt={study.title}
+                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+                  <a
+                    href="#contact"
+                    className="p-3 bg-white rounded-full hover:bg-primary-50 transition-colors duration-200"
+                  >
+                    <ExternalLink size={20} className="text-dark-900" />
+                  </a>
+                </div>
+                {study.results && (
+                  <div className="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">
+                    {study.results}
+                  </div>
+                )}
+              </div>
+
+              {/* Case Study Content */}
+              <div className="space-y-4">
+                <h3 className="text-xl font-semibold text-dark-900 dark:text-white group-hover:text-primary transition-colors duration-200">
+                  {study.title}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                  {study.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+          {!useDynamicCols && total >= columns && Array.from({ length: emptyAfter }).map((_, i) => (
+            <div key={`empty-after-${i}`} />
           ))}
         </div>
 

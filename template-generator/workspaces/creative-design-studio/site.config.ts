@@ -25,10 +25,10 @@ export const headerContent = {
       key: "Services"
     },
     {
-      name: "Client Work",
+      name: "Portfolio",
       href: "#projects",
-      label: "Client Work",
-      key: "Client Work"
+      label: "Portfolio",
+      key: "Portfolio"
     },
     {
       name: "Process",
@@ -46,15 +46,15 @@ export const headerContent = {
 };
 
 export const heroContent = {
-  headline: "Minimal Design, Maximum Impact",
-  subheadline: "Logo and brand identity design for small businesses who want to look professional from day one.",
+  headline: "Modern Branding & Logo Design",
+  subheadline: "Clean, minimal visual identities that help small businesses stand out.",
   ctaText: "Get a Free Quote",
   ctaLink: "#contact",
   image: {
     src: "https://example.com/hero-image.jpg",
-    alt: "Abstract branding sketches on a desk",
+    alt: "Graphic design showcase",
     overlay: "gradient",
-    overlayColor: "from-black/70 via-transparent to-primary/60",
+    overlayColor: "from-primary/70 to-secondary/50",
     shadow: null,
     rounded: null,
     zoomOnHover: false,
@@ -66,52 +66,52 @@ export const heroContent = {
 
 export const aboutContent = {
   heading: "About Our Business",
-  subheading: "Creative Design Studio helps small businesses build lasting first impressions through thoughtful branding.",
+  subheading: "Creative Design Studio is a Portland‑based graphic design firm specializing in branding and logo design for small businesses. We combine modern aesthetics with strategic thinking to deliver standout visual identities.",
   personalInfo: [],
   mission: {
     title: "Our Mission",
-    text: "To help small businesses succeed through accessible, high-quality branding that reflects their values and speaks to their customers."
+    text: "Our mission is to deliver modern, minimal graphic designs that empower small businesses to make a memorable impression."
   },
   highlights: [
     {
-      icon: "Award",
-      title: "100+ Brands Built",
-      subtitle: "Across startups and local businesses",
+      icon: "PenTool",
+      title: "Branding Experts",
+      subtitle: "Specialized",
       key: 0
     },
     {
-      icon: "Smile",
-      title: "Client-Focused",
-      subtitle: "Collaborative and transparent",
+      icon: "Layout",
+      title: "Logo Design",
+      subtitle: "Unique Identities",
       key: 1
     },
     {
-      icon: "PenTool",
-      title: "Design-Driven",
-      subtitle: "Modern and minimal",
+      icon: "DeviceMobile",
+      title: "Mobile‑Friendly",
+      subtitle: "Responsive",
       key: 2
     },
     {
-      icon: "Star",
-      title: "5-Star Rated",
-      subtitle: "Proven satisfaction",
+      icon: "Palette",
+      title: "Modern Aesthetic",
+      subtitle: "Minimal Style",
       key: 3
     }
   ],
   companyInfo: [
     {
-      icon: "Briefcase",
-      text: "Established in 2019, based in Portland, OR",
+      icon: "PenTool",
+      text: "Branding & Logo Design Specialists",
       key: 0
     },
     {
-      icon: "PenTool",
-      text: "Specialized in logo and brand identity design",
+      icon: "MapPin",
+      text: "Based in Portland, OR",
       key: 1
     },
     {
-      icon: "Globe",
-      text: "Serving clients nationwide",
+      icon: "DeviceMobile",
+      text: "Mobile‑First Approach",
       key: 2
     }
   ],
@@ -131,25 +131,43 @@ export const aboutContent = {
 
 export const servicesContent = {
   title: "Our Services",
-  subtitle: "Design solutions tailored to small business growth.",
+  subtitle: "Helping your brand stand out with clean, professional design.",
   services: [
     {
       icon: "PenTool",
-      title: "Logo Design",
-      description: "Crafted, scalable logo designs built to grow with your business.",
+      title: "Brand Identity",
+      description: "Comprehensive branding strategies and visual guidelines.",
       key: 0
     },
     {
-      icon: "Layers",
-      title: "Brand Identity",
-      description: "Visual systems that include color palette, typography, and brand guidelines.",
+      icon: "Layout",
+      title: "Logo Design",
+      description: "Custom logo creation that captures your brand’s essence.",
       key: 1
     },
     {
-      icon: "Image",
-      title: "Marketing Materials",
-      description: "Designs for business cards, flyers, and social templates aligned with your brand.",
+      icon: "DeviceMobile",
+      title: "Digital Assets",
+      description: "Social media graphics, website icons, and digital collateral.",
       key: 2
+    },
+    {
+      icon: "Printer",
+      title: "Print Design",
+      description: "Business cards, brochures, packaging, and other print materials.",
+      key: 3
+    },
+    {
+      icon: "Palette",
+      title: "Color & Typography",
+      description: "Curated palettes and typography for cohesive brand visuals.",
+      key: 4
+    },
+    {
+      icon: "Headset",
+      title: "Consultation",
+      description: "Expert advice to refine your brand strategy and visuals.",
+      key: 5
     }
   ],
   cta: {
@@ -159,8 +177,8 @@ export const servicesContent = {
 };
 
 export const projectsContent = {
-  title: "Recent Client Work",
-  subtitle: "Explore our branding and identity projects.",
+  title: "Portfolio",
+  subtitle: "Selected works showcasing our branding and logo design projects.",
   filters: [
     {
       id: "all",
@@ -174,31 +192,28 @@ export const projectsContent = {
     },
     {
       id: "logo",
-      label: "Logo Design",
-      key: "Logo Design"
+      label: "Logos",
+      key: "Logos"
     },
     {
       id: "print",
       label: "Print",
       key: "Print"
+    },
+    {
+      id: "digital",
+      label: "Digital",
+      key: "Digital"
     }
   ],
   caseStudies: [
     {
       id: "1",
-      title: "Bloom Boutique Logo",
-      description: "Soft, elegant logo for a Portland-based florist that reflects modern femininity.",
-      image: "https://images.unsplash.com/photo-1519222970733-f546218fa6d0?auto=format&fit=crop&w=800&q=80",
+      title: "Logo & Identity for Local Café",
+      description: "Created a warm, inviting logo and brand palette that boosted customer recognition.",
+      image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80",
       category: "logo",
-      results: "Improved brand recall and store foot traffic"
-    },
-    {
-      id: "2",
-      title: "CraftHaus Branding Kit",
-      description: "Full brand system for a local woodcraft business, blending rustic and modern aesthetics.",
-      image: "https://images.unsplash.com/photo-1587574293340-ea6a2c01f1c6?auto=format&fit=crop&w=800&q=80",
-      category: "branding",
-      results: "Unified presence across print and digital"
+      results: "Brand recall up 30%"
     }
   ],
   cta: {
@@ -210,57 +225,47 @@ export const projectsContent = {
 
 export const processContent = {
   title: "Our Process",
-  subtitle: "Simple and collaborative from start to finish.",
+  subtitle: "A clear, step‑by‑step workflow for every project.",
   steps: [
     {
       icon: "Search",
       title: "Discovery",
-      description: "Understand your business, audience, and goals."
+      description: "We learn about your brand and goals."
     },
     {
-      icon: "Edit3",
-      title: "Concepts",
-      description: "Sketch and refine initial design directions."
+      icon: "ClipboardList",
+      title: "Concept",
+      description: "We develop initial sketches and mood boards."
     },
     {
-      icon: "Layers",
-      title: "Build the System",
-      description: "Create the full visual identity and apply it across materials."
+      icon: "Layout",
+      title: "Design",
+      description: "We create polished visuals and prototypes."
     },
     {
-      icon: "Package",
+      icon: "MessageCircle",
+      title: "Review",
+      description: "You provide feedback and we refine the design."
+    },
+    {
+      icon: "Rocket",
       title: "Delivery",
-      description: "Provide all files and brand documentation ready for launch."
+      description: "We hand off final assets and guidelines."
     }
   ]
 };
 
 export const testimonialsContent = {
   title: "What Clients Say",
-  subtitle: "Real feedback from real small business owners.",
-  testimonials: [
-    {
-      name: "Nina Feldman",
-      role: "Owner",
-      company: "Bloom Boutique",
-      quote: "The branding Sarah created brought my shop to life. Clients mention the logo all the time!",
-      key: "Nina Feldman"
-    },
-    {
-      name: "Ben Carter",
-      role: "Founder",
-      company: "CraftHaus",
-      quote: "Sarah turned vague ideas into a beautiful brand that feels just right. Couldn’t recommend her more.",
-      key: "Ben Carter"
-    }
-  ]
+  subtitle: "Real feedback on our collaborative design process.",
+  testimonials: []
 };
 
 export const contactContent = {
   title: "Request a Free Quote",
-  subtitle: "Let’s talk about how we can build your brand together.",
-  infoTitle: "Let's Work Together",
-  infoText: "Whether you're just starting or need a refresh, we’ll help your business look its best.",
+  subtitle: "Ready to elevate your brand? Send us a message and we'll respond promptly.",
+  infoTitle: "Let's Talk",
+  infoText: "Reach out for a no‑obligation consultation on your design needs.",
   contactInfo: [
     {
       icon: "Mail",
@@ -286,13 +291,13 @@ export const contactContent = {
     {
       icon: "Clock",
       title: "Business Hours",
-      value: "Mon–Fri: 9am–5pm",
+      value: "Mon‑Fri: 9am – 5pm",
       link: "#",
-      key: "Mon–Fri: 9am–5pm"
+      key: "Mon‑Fri: 9am – 5pm"
     }
   ],
   map: {
-    label: "Our Location",
+    label: "Our Studio",
     placeholder: "[Google Map Placeholder]"
   },
   form: {
@@ -302,22 +307,26 @@ export const contactContent = {
     messageLabel: "Message",
     submitText: "Send Request",
     successTitle: "Request Sent!",
-    successText: "Thanks for reaching out. We’ll respond shortly."
+    successText: "Thank you! We'll be in touch soon."
   },
   socialLinks: []
 };
 
 export const footerContent = {
   businessName: "Creative Design Studio",
-  tagline: "Helping small businesses look big through clean, intentional design.",
+  tagline: "Modern & Minimal Graphic Design Solutions",
   social: [
     {
       name: "LinkedIn",
-      url: "https://linkedin.com/in/sarahjohnson"
+      url: "https://linkedin.com/in/yourprofile"
     },
     {
       name: "Dribbble",
-      url: "https://dribbble.com/sarahjohnson"
+      url: "https://dribbble.com/yourprofile"
+    },
+    {
+      name: "Behance",
+      url: "https://behance.net/yourprofile"
     }
   ],
   quickLinks: [
@@ -334,7 +343,7 @@ export const footerContent = {
       href: "#services"
     },
     {
-      name: "Client Work",
+      name: "Portfolio",
       href: "#projects"
     },
     {
@@ -358,8 +367,8 @@ export const footerContent = {
     "sarah@creativedesignstudio.com",
     "+1 (555) 123-4567",
     "Portland, OR",
-    "Mon–Fri: 9am–5pm"
+    "Mon‑Fri: 9am – 5pm"
   ],
-  copyright: "© 2024 Creative Design Studio",
+  copyright: "Creative Design Studio. Made with passion.",
   links: []
 };

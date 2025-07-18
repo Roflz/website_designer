@@ -3,6 +3,9 @@ const fs = require('fs-extra');
 const path = require('path');
 const readline = require('readline');
 
+// At the top, import the unified prompt generator
+const { generatePrompt } = require('./ai-prompt-generator.js');
+
 class AIContentGenerator extends AutoTestGenerator {
   constructor() {
     super();
@@ -45,22 +48,178 @@ class AIContentGenerator extends AutoTestGenerator {
   }
 
   generateAIPrompt(clientInfo) {
-    const sections = this.getRequiredSections();
-    
-    return `You are a professional website content generator. Based on the client information below, generate unique, contextual content for each section of their website.
+    // Portfolio-specific required sections and fields
+    const portfolioSections = {
+      headerSection: {
+        description: "Header section with logo and navItems (name, href).",
+        example: {
+          logo: "Your Logo",
+          navItems: [
+            { name: "Home", href: "#home" },
+            { name: "About", href: "#about" },
+            { name: "Skills", href: "#skills" },
+            { name: "Projects", href: "#projects" },
+            { name: "Experience", href: "#experience" },
+            { name: "Contact", href: "#contact" }
+          ]
+        }
+      },
+      footerSection: {
+        description: "Footer with brand, quickLinks, contactInfo, copyright, backToTop.",
+        example: {
+          brand: {
+            name: "Your Name",
+            description: "A short description or tagline for your portfolio.",
+            socialLinks: [
+              { name: "GitHub", url: "https://github.com/yourusername" },
+              { name: "LinkedIn", url: "https://linkedin.com/in/yourusername" },
+              { name: "Website", url: "https://yourwebsite.com" }
+            ]
+          },
+          quickLinks: [
+            { name: "Home", href: "#home" },
+            { name: "About", href: "#about" },
+            { name: "Skills", href: "#skills" },
+            { name: "Projects", href: "#projects" },
+            { name: "Experience", href: "#experience" },
+            { name: "Contact", href: "#contact" }
+          ],
+          contactInfo: ["your@email.com", "Your Location"],
+          copyright: {
+            year: 2024,
+            name: "Your Name",
+            madeWith: "Made with",
+            love: "and lots of coffee."
+          },
+          backToTop: "Back to top"
+        }
+      },
+      heroSection: {
+        description: "Hero section with greeting, name, title, description, ctas, stats, scrollIndicator.",
+        example: {
+          greeting: "Hello, I'm",
+          name: "Your Name",
+          title: "Your Professional Title or Tagline",
+          description: "Short summary about yourself, your skills, and what you offer.",
+          ctas: [
+            { label: "View My Work", action: "scroll", target: "projects", icon: null, style: "primary" },
+            { label: "Get In Touch", action: "scroll", target: "contact", icon: null, style: "secondary" },
+            { label: "Download CV", action: "download", target: "/cv.pdf", icon: null, style: "secondary" }
+          ],
+          stats: [
+            { value: "5+", label: "Years Experience" },
+            { value: "20", label: "Projects Completed" }
+          ],
+          scrollIndicator: { target: "about" }
+        }
+      },
+      aboutSection: {
+        description: "About section with heading, subheading, personalInfo, profileImage, profileBadge, whoIAm, whatIDo, downloadCV.",
+        example: {
+          heading: "About Me",
+          subheading: "A short introduction about yourself and your journey",
+          personalInfo: [
+            { icon: "User", label: "Name", value: "Your Name" },
+            { icon: "MapPin", label: "Location", value: "Your Location" }
+          ],
+          profileImage: { src: "", alt: "Profile Image" },
+          profileBadge: "5+",
+          whoIAm: { heading: "Who I Am", paragraphs: ["Paragraph 1", "Paragraph 2"] },
+          whatIDo: { heading: "What I Do", skills: [{ title: "Frontend Development", description: "React, TypeScript, Next.js" }] },
+          downloadCV: { label: "Download CV", icon: "User", href: "/cv.pdf" }
+        }
+      },
+      skillsSection: {
+        description: "Skills section with heading, subheading, skillCategories (icon, title, skills), additionalSkills.",
+        example: {
+          heading: "My Skills",
+          subheading: "A summary of your technical skills and expertise",
+          skillCategories: [
+            { icon: "Code", title: "Frontend Development", skills: [{ name: "React", level: 90 }] }
+          ],
+          additionalSkills: ["Git", "Figma"]
+        }
+      },
+      experienceSection: {
+        description: "Experience section with heading, subheading, workExperience, education.",
+        example: {
+          heading: "Work Experience",
+          subheading: "Your professional journey and educational background",
+          workExperience: [
+            { id: 1, title: "Job Title", company: "Company Name", location: "Location", period: "Start – End", description: "Role description.", technologies: ["React"], achievements: ["Achievement 1"] }
+          ],
+          education: [
+            { id: 1, degree: "Degree", school: "School Name", location: "Location", period: "Start – End", description: "Studies description." }
+          ]
+        }
+      },
+      projectsSection: {
+        description: "Projects section with heading, subheading, filters, projects.",
+        example: {
+          heading: "Featured Projects",
+          subheading: "Showcase your best work and what you can do",
+          filters: [
+            { id: "all", label: "All" },
+            { id: "web", label: "Web Apps" }
+          ],
+          projects: [
+            { id: 1, title: "E-Commerce Platform", description: "Full-stack e-commerce platform.", image: "https://...", liveUrl: "https://...", githubUrl: "https://...", fiverrUrl: "https://...", technologies: ["React"], category: "web", featured: true }
+          ]
+        }
+      },
+      contactSection: {
+        description: "Contact section with heading, subheading, connectHeading, connectText, sendMessageHeading, info, socialLinks, formFields, form, sentMessage.",
+        example: {
+          heading: "Get in Touch",
+          subheading: "Ready to work together or have questions? Reach out!",
+          connectHeading: "Let's Connect",
+          connectText: "I'm always open to discussing new opportunities.",
+          sendMessageHeading: "Send a Message",
+          info: [
+            { icon: "Mail", title: "Email", value: "your@email.com", link: "mailto:your@email.com" }
+          ],
+          socialLinks: [
+            { name: "GitHub", url: "https://github.com/yourusername", color: "hover:bg-gray-800" }
+          ],
+          formFields: [
+            { label: "Your Name", name: "name", type: "text" }
+          ],
+          form: {
+            nameLabel: "Your Name",
+            emailLabel: "Your Email",
+            messageLabel: "Your Message",
+            submitText: "Send Message",
+            successTitle: "Message Sent!",
+            successText: "Thank you for reaching out."
+          },
+          sentMessage: {
+            heading: "Message Sent Successfully!",
+            text: "Thank you for reaching out."
+          }
+        }
+      },
+      socialLinks: {
+        description: "Array of social links (icon, label, link).",
+        example: [
+          { icon: "Github", label: "GitHub", link: "https://github.com/yourusername" }
+        ]
+      }
+    };
+
+    return `You are a professional website content generator. Based on the client information below, generate unique, contextual content for each section of their portfolio website.
 
 CLIENT INFORMATION:
 ${JSON.stringify(clientInfo, null, 2)}
 
 REQUIRED SECTIONS AND FIELDS:
-${JSON.stringify(sections, null, 2)}
+${JSON.stringify(portfolioSections, null, 2)}
 
 INSTRUCTIONS:
-1. Analyze the client's business type, industry, and requirements
+1. Analyze the client's background, skills, and requirements
 2. Generate unique, professional content for each section
-3. Make content specific to their business and target audience
-4. Use their actual name, business name, and contact info
-5. Create realistic testimonials, projects, and experience
+3. Make content specific to their personal brand and target audience
+4. Use their actual name and contact info
+5. Create realistic projects, experience, and skills
 6. Match their color preferences and style requirements
 7. Ensure all content is cohesive and professional
 
@@ -70,25 +229,32 @@ Return a JSON object with this exact structure:
   "details": {
     "projectName": "generated-project-name",
     "clientName": "client's actual name",
-    "businessName": "business name",
-    "tagline": "unique tagline based on their business",
-    "description": "unique business description",
+    "tagline": "unique tagline based on their skills",
+    "description": "unique personal description",
     "email": "their email",
     "phone": "their phone",
     "primaryColor": "color based on their preferences",
     "secondaryColor": "complementary color"
   },
-  "templateType": "portfolio" or "business",
+  "templateType": "portfolio",
   "customization": {
-    // All the section content as specified in sections above
+    "headerSection": { ... },
+    "footerSection": { ... },
+    "heroSection": { ... },
+    "aboutSection": { ... },
+    "skillsSection": { ... },
+    "experienceSection": { ... },
+    "projectsSection": { ... },
+    "contactSection": { ... },
+    "socialLinks": [ ... ]
   }
 }
 
-IMPORTANT: 
+IMPORTANT:
 - Make content unique and specific to this client
 - Don't use generic templates
-- Base everything on their actual business and requirements
-- Create realistic, professional content that matches their industry
+- Base everything on their actual background and requirements
+- Create realistic, professional content that matches their field
 - Use their actual contact information and preferences
 
 Generate the JSON response now:`;
@@ -362,67 +528,19 @@ Generate the JSON response now:`;
 
   mapPortfolioContent(aiResponse) {
     const customization = aiResponse.customization;
-    
     return {
       details: aiResponse.details,
       templateType: aiResponse.templateType,
       customization: {
-        // Map header content - ensure navItems use "name" field
-        headerContent: {
-          businessName: customization.headerContent?.businessName || aiResponse.details.clientName,
-          navItems: (customization.headerContent?.navItems || []).map(item => ({
-            name: item.name || item.label || item.key,
-            href: item.href
-          }))
-        },
-        // Map hero content for portfolio
-        heroContent: {
-          greeting: customization.heroContent?.greeting || "Hello, I'm",
-          name: customization.heroContent?.name || aiResponse.details.clientName,
-          title: customization.heroContent?.title || "Professional",
-          description: customization.heroContent?.description || aiResponse.details.description,
-          ctas: customization.heroContent?.ctas || [
-            { label: "View My Work", action: "scroll", target: "projects", icon: null, style: "primary" }
-          ],
-          stats: customization.heroContent?.stats || [
-            { value: "3+", label: "Years Experience" }
-          ]
-        },
-        // Map other portfolio-specific content
-        aboutContent: customization.aboutContent || {
-          heading: "About Me",
-          subheading: "Get to know me better",
-          personalInfo: [],
-          whoIAm: { heading: "Who I Am", paragraphs: [aiResponse.details.description] },
-          whatIDo: { heading: "What I Do", skills: [] },
-          mission: { title: "My Mission", text: "To deliver exceptional results for my clients." }
-        },
-        skillsContent: customization.skillsContent || {
-          heading: "My Skills",
-          subheading: "Technical expertise",
-          skillCategories: [],
-          additionalSkills: []
-        },
-        experienceContent: customization.experienceContent || {
-          heading: "Work Experience",
-          subheading: "Professional journey",
-          workExperience: [],
-          education: []
-        },
-        projectsContent: customization.projectsContent || {
-          title: "My Projects",
-          subtitle: "Showcase of work",
-          filters: [{ id: "all", label: "All Projects" }],
-          caseStudies: [],
-          cta: { text: "View All Projects", icon: "Eye", link: "#contact" }
-        },
-        contactContent: customization.contactContent || {
-          title: "Get In Touch",
-          subtitle: "Contact me",
-          contactInfo: [],
-          socialLinks: [],
-          map: { label: "My Location", placeholder: "Map will appear here" }
-        }
+        headerSection: customization.headerSection || {},
+        footerSection: customization.footerSection || {},
+        heroSection: customization.heroSection || {},
+        aboutSection: customization.aboutSection || {},
+        skillsSection: customization.skillsSection || {},
+        experienceSection: customization.experienceSection || {},
+        projectsSection: customization.projectsSection || {},
+        contactSection: customization.contactSection || {},
+        socialLinks: customization.socialLinks || []
       }
     };
   }
@@ -432,11 +550,6 @@ Generate the JSON response now:`;
 module.exports = { AIContentGenerator };
 
 // Example usage functions
-async function generatePrompt(clientInfo) {
-  const aiGenerator = new AIContentGenerator();
-  return await aiGenerator.generateFromClientInfo(clientInfo);
-}
-
 async function generateFromResponse(responsePath) {
   const aiGenerator = new AIContentGenerator();
   return await aiGenerator.generateFromAIResponse(responsePath);
@@ -447,37 +560,10 @@ if (require.main === module) {
   const args = process.argv.slice(2);
   
   if (args[0] === 'prompt') {
-    // Example client info for testing
-    const exampleClientInfo = {
-      clientName: "Maria Rodriguez",
-      businessName: "EcoTech Solutions",
-      email: "maria@ecotechsolutions.com",
-      location: "Portland, OR",
-      description: "I need a business website for my environmental technology consulting firm. We help companies implement sustainable technology solutions and reduce their carbon footprint.",
-      requirements: "Modern, eco-friendly design with green theme. Include services, testimonials, case studies, and contact form. Highlight our expertise in renewable energy and sustainability.",
-      targetAudience: "Corporations, government agencies, eco-conscious businesses",
-      industry: "Environmental Technology Consulting",
-      colorPreferences: "Green, blue, and white - eco-friendly palette",
-      stylePreferences: "Clean, modern, professional, environmentally conscious"
-    };
-
-    generatePrompt(exampleClientInfo)
-      .then(async prompt => {
-        // Save prompt to file in the prompts directory inside template-generator
-        const path = require('path');
-        const fs = require('fs-extra');
-        const promptPath = path.resolve(__dirname, '../prompts/ai-prompt.txt');
-        await fs.ensureDir(path.dirname(promptPath));
-        await fs.writeFile(promptPath, prompt, 'utf8');
-        console.log(`\n💾 Prompt saved to ${promptPath}`);
-        console.log('\n🎉 AI prompt generated successfully!');
-        console.log('📝 Copy the prompt above or from template-generator/prompts/ai-prompt.txt and send it to ChatGPT/Claude');
-        console.log('💾 Save the AI response as "ai-response.json"');
-        console.log('🚀 Then run: npm run generate-from-ai-response');
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
+    // Delegate to the unified prompt generator
+    require('./ai-prompt-generator.js');
+    // Exit after delegation
+    process.exit(0);
   } else if (args[0] === 'generate') {
     generateFromResponse()
       .then(projectName => {

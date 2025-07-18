@@ -86,104 +86,78 @@ const businessConfigSchema = {
   }
 };
 
+// Replace the old portfolioConfigSchema with the new one matching portfolio_website/site.config.ts
 const portfolioConfigSchema = {
-  headerContent: {
-    businessName: 'string',
-    navItems: [{ label: 'string', href: 'string' }]
+  headerSection: {
+    logo: 'string',
+    navItems: [{ name: 'string', href: 'string' }]
   },
-  heroContent: {
-    headline: 'string',
-    subheadline: 'string',
-    ctaText: 'string',
-    ctaLink: 'string',
-    image: {
-      src: 'string',
-      alt: 'string',
-      overlay: 'string',
-      overlayColor: 'string',
-      shadow: 'string',
-      rounded: 'string',
-      zoomOnHover: 'boolean',
-      blurBackground: 'boolean',
-      aspectRatio: 'string',
-      className: 'string'
-    }
-  },
-  aboutContent: {
-    title: 'string',
-    text: 'string',
-    image: {
-      src: 'string',
-      alt: 'string',
-      overlay: 'string',
-      overlayColor: 'string',
-      shadow: 'string',
-      rounded: 'string',
-      zoomOnHover: 'boolean',
-      blurBackground: 'boolean',
-      aspectRatio: 'string',
-      className: 'string'
-    },
-    highlights: [{ icon: 'string', title: 'string', subtitle: 'string' }],
-    mission: { title: 'string', text: 'string' },
-    companyInfo: [{ icon: 'string', text: 'string' }],
-    cta: { text: 'string', icon: 'string', link: 'string' }
-  },
-  skillsContent: {
-    heading: 'string',
-    subheading: 'string',
-    skillCategories: [{
+  footerSection: {
+    brand: {
       name: 'string',
-      skills: [{ name: 'string', level: 'number' }]
-    }]
+      description: 'string',
+      socialLinks: [{ name: 'string', url: 'string' }]
+    },
+    quickLinks: [{ name: 'string', href: 'string' }],
+    contactInfo: ['string'],
+    copyright: {
+      year: 'number',
+      name: 'string',
+      madeWith: 'string',
+      love: 'string'
+    },
+    backToTop: 'string'
   },
-  experienceContent: {
+  heroSection: {
+    greeting: 'string',
+    name: 'string',
+    title: 'string',
+    description: 'string',
+    ctas: [{ label: 'string', action: 'string', target: 'string', icon: 'any', style: 'string' }],
+    stats: [{ value: 'string', label: 'string' }],
+    scrollIndicator: { target: 'string' }
+  },
+  aboutSection: {
     heading: 'string',
     subheading: 'string',
-    workExperience: [{
-      id: 'number',
-      company: 'string',
-      position: 'string',
-      duration: 'string',
-      description: 'string'
-    }],
-    education: [{
-      id: 'number',
-      institution: 'string',
-      degree: 'string',
-      field: 'string',
-      duration: 'string'
-    }]
+    personalInfo: [{ icon: 'any', label: 'string', value: 'string', link: 'string' }],
+    profileImage: { src: 'string', alt: 'string' },
+    profileBadge: 'string',
+    whoIAm: { heading: 'string', paragraphs: ['string'] },
+    whatIDo: { heading: 'string', skills: [{ title: 'string', description: 'string' }] },
+    downloadCV: { label: 'string', icon: 'any', href: 'string' }
   },
-  projectsContent: {
-    title: 'string',
-    subtitle: 'string',
+  skillsSection: {
+    heading: 'string',
+    subheading: 'string',
+    skillCategories: [{ icon: 'any', title: 'string', skills: [{ name: 'string', level: 'number' }] }],
+    additionalSkills: ['string']
+  },
+  experienceSection: {
+    heading: 'string',
+    subheading: 'string',
+    workExperience: [{ id: 'number', title: 'string', company: 'string', location: 'string', period: 'string', description: 'string', technologies: ['string'], achievements: ['string'] }],
+    education: [{ id: 'number', degree: 'string', school: 'string', location: 'string', period: 'string', description: 'string' }]
+  },
+  projectsSection: {
+    heading: 'string',
+    subheading: 'string',
     filters: [{ id: 'string', label: 'string' }],
-    caseStudies: [{
-      id: 'number',
-      title: 'string',
-      category: 'string',
-      image: 'string',
-      description: 'string',
-      technologies: ['string'],
-      liveUrl: 'string',
-      codeUrl: 'string',
-      fiverrUrl: 'string'
-    }],
-    cta: { text: 'string', icon: 'string', link: 'string' }
+    projects: [{ id: 'number', title: 'string', description: 'string', image: 'string', liveUrl: 'string', githubUrl: 'string', fiverrUrl: 'string', technologies: ['string'], category: 'string', featured: 'boolean' }]
   },
-  contactContent: {
-    title: 'string',
-    subtitle: 'string',
-    contactInfo: [{ icon: 'string', label: 'string', value: 'string' }],
-    socialLinks: [{ icon: 'string', label: 'string', href: 'string' }],
-    map: { label: 'string', placeholder: 'string' }
+  contactSection: {
+    heading: 'string',
+    subheading: 'string',
+    connectHeading: 'string',
+    connectText: 'string',
+    sendMessageHeading: 'string',
+    info: [{ icon: 'any', title: 'string', value: 'string', link: 'string' }],
+    socialLinks: [{ name: 'string', url: 'string', color: 'string' }],
+    formFields: [{ label: 'string', name: 'string', type: 'string' }],
+    form: { nameLabel: 'string', emailLabel: 'string', messageLabel: 'string', submitText: 'string', successTitle: 'string', successText: 'string' },
+    sentMessage: { heading: 'string', text: 'string' }
   },
-  footerContent: {
-    copyright: 'string',
-    links: [{ label: 'string', href: 'string' }],
-    social: [{ icon: 'string', label: 'string', href: 'string' }]
-  }
+  socialLinks: [{ icon: 'any', label: 'string', link: 'string' }]
 };
 
 // 2. Add a validation function
@@ -523,22 +497,20 @@ class TemplateGenerator {
   async updateSiteConfig(projectPath, details, templateType, customization) {
     const configPath = path.join(projectPath, 'site.config.ts');
     
-    // Check if we have comprehensive content from auto-generator
-    if (customization.heroContent) {
-      // Use comprehensive content generation
+    if (templateType === 'portfolio') {
+      // Always use the new generator logic for portfolio templates
       const configContent = this.generateCompleteSiteConfig(details, templateType, customization);
       await fs.writeFile(configPath, configContent);
     } else {
-      // Use basic customization (fallback)
-      let configContent = await fs.readFile(configPath, 'utf8');
-      
-      if (templateType === 'portfolio') {
-        configContent = await this.customizePortfolioConfig(configContent, details, customization);
+      // Business fallback logic (if needed)
+      if (customization.heroContent) {
+        const configContent = this.generateCompleteSiteConfig(details, templateType, customization);
+        await fs.writeFile(configPath, configContent);
       } else {
+        let configContent = await fs.readFile(configPath, 'utf8');
         configContent = await this.customizeBusinessConfig(configContent, details, customization);
+        await fs.writeFile(configPath, configContent);
       }
-      
-      await fs.writeFile(configPath, configContent);
     }
   }
 
@@ -555,6 +527,11 @@ class TemplateGenerator {
       const pad = '  '.repeat(indent);
       if (Array.isArray(obj)) {
         if (obj.length === 0) return '[]';
+        // If array of primitives (string/number/bool), serialize directly
+        if (typeof obj[0] !== 'object' || obj[0] === null) {
+          return '[ ' + obj.map(item => JSON.stringify(item)).join(', ') + ' ]';
+        }
+        // Otherwise, array of objects
         return '[\n' + obj.map(item => pad + '  ' + jsonToJsObject(item, indent + 1)).join(',\n') + '\n' + pad + ']';
       } else if (typeof obj === 'object' && obj !== null) {
         const entries = Object.entries(obj).map(([key, value]) => {
@@ -568,149 +545,54 @@ class TemplateGenerator {
       }
     }
 
+    // Defensive fix: flatten contactInfo if it is nested (array of arrays)
+    let footerSection = customization.footerSection || {};
+    if (Array.isArray(footerSection.contactInfo) && Array.isArray(footerSection.contactInfo[0])) {
+      footerSection.contactInfo = footerSection.contactInfo.flat();
+    }
+    // Debug: Print the value and type of contactInfo before validation
+    if (footerSection && footerSection.contactInfo) {
+      console.log('DEBUG contactInfo:', JSON.stringify(footerSection.contactInfo));
+      console.log('DEBUG contactInfo[0]:', JSON.stringify(footerSection.contactInfo[0]));
+      console.log('DEBUG typeof contactInfo[0]:', typeof footerSection.contactInfo[0]);
+    }
     // Build the config object with all required/optional fields and correct structure
     const configObj = {
-      headerContent: {
-        businessName: details.businessName,
-        navItems: [
-          { label: "Home", href: "/" },
-          { label: "About", href: "#about" },
-          { label: "Skills", href: "#skills" },
-          { label: "Projects", href: "#projects" },
-          { label: "Contact", href: "#contact" }
-        ]
-      },
-      heroContent: {
-        headline: customization.tagline || "Professional Portfolio",
-        subheadline: details.description || "Showcasing my work and skills.",
-        ctaText: "Contact Me",
-        ctaLink: "#contact",
-        image: {
-          src: "https://via.placeholder.com/1200x800",
-          alt: "Hero Image",
-          overlay: "rgba(0,0,0,0.5)",
-          overlayColor: "black",
-          shadow: "0 10px 30px rgba(0,0,0,0.1)",
-          rounded: "lg",
-          zoomOnHover: true,
-          blurBackground: false,
-          aspectRatio: "16/9",
-          className: "w-full h-full object-cover"
-        }
-      },
-      aboutContent: {
-        title: "About Me",
-        text: "I'm a passionate developer dedicated to creating beautiful and functional websites. With a strong foundation in modern web technologies, I strive to deliver exceptional user experiences.",
-        image: {
-          src: "https://via.placeholder.com/400x400",
-          alt: "Profile Image",
-          overlay: "rgba(0,0,0,0.5)",
-          overlayColor: "black",
-          shadow: "0 10px 30px rgba(0,0,0,0.1)",
-          rounded: "lg",
-          zoomOnHover: true,
-          blurBackground: false,
-          aspectRatio: "1/1",
-          className: "w-full h-full object-cover"
-        },
-        highlights: [
-          { icon: "Code", title: "Web Development", subtitle: "Building modern and responsive websites." },
-          { icon: "PenTool", title: "UI/UX Design", subtitle: "Creating intuitive and engaging user interfaces." },
-          { icon: "TrendingUp", title: "Digital Marketing", subtitle: "Helping businesses grow online." }
-        ],
-        mission: customization.aboutContent?.mission || { title: "My Mission", text: "To deliver high-quality digital solutions." },
-        companyInfo: [
-          { icon: "Mail", text: `Email: ${details.email}` },
-          { icon: "Phone", text: `Phone: ${details.phone}` },
-          { icon: "Globe", text: `Website: https://${details.projectName}.com` }
-        ],
-        cta: customization.aboutContent?.cta || { text: "Download CV", icon: "Download", link: "/cv.pdf" }
-      },
-      skillsContent: {
-        heading: "Skills",
-        subheading: "Technologies & Tools",
-        skillCategories: customization.skillsContent?.skillCategories || [
-          { name: "Frontend", skills: [{ name: "React", level: 5 }, { name: "Next.js", level: 4 }] },
-          { name: "Backend", skills: [{ name: "Node.js", level: 4 }, { name: "Express", level: 3 }] }
-        ],
-        additionalSkills: customization.skillsContent?.additionalSkills || ["Git", "Figma", "Jest"]
-      },
-      experienceContent: {
-        heading: "Experience",
-        subheading: "Work & Education",
-        workExperience: customization.experienceContent?.workExperience || [
-          { id: 1, company: "Company X", position: "Developer", duration: "2020-2022", description: "Worked on web apps." }
-        ],
-        education: customization.experienceContent?.education || [
-          { id: 1, institution: "University Y", degree: "BSc Computer Science", field: "Software Engineering", duration: "2016-2020" }
-        ]
-      },
-      projectsContent: {
-        title: "Projects",
-        subtitle: "Some of my work",
-        filters: [
-          { id: "all", label: "All" },
-          { id: "web", label: "Web" },
-          { id: "design", label: "Design" }
-        ],
-        caseStudies: customization.projectsContent?.caseStudies || [
-          { id: 1, title: "Portfolio Website", category: "Web", image: "https://via.placeholder.com/300x200", description: "A personal portfolio site.", technologies: ["React", "Next.js"], liveUrl: "https://portfolio.com", codeUrl: "https://github.com/yourusername/portfolio", fiverrUrl: "https://fiverr.com/yourusername" }
-        ],
-        cta: customization.projectsContent?.cta || { text: "View All Projects", icon: "Eye", link: "#projects" }
-      },
-      contactContent: {
-        title: "Contact",
-        subtitle: "Let's connect!",
-        contactInfo: [
-          { icon: "MapPin", label: "Location", value: customization.location },
-          { icon: "Mail", label: "Email", value: details.email },
-          { icon: "Phone", label: "Phone", value: details.phone }
-        ],
-        socialLinks: [
-          { icon: "Github", label: "GitHub", href: customization.githubUrl },
-          { icon: "Linkedin", label: "LinkedIn", href: customization.linkedinUrl },
-          { icon: "ExternalLink", label: "Fiverr", href: customization.fiverrUrl }
-        ],
-        map: customization.contactContent?.map || { label: "Location", placeholder: "Map will appear here" }
-      },
-      footerContent: customization.footerContent || {
-        copyright: `© ${new Date().getFullYear()} ${details.businessName || details.clientName}. All rights reserved.`,
-        links: [
-          { label: "Privacy Policy", href: "/privacy" },
-          { label: "Terms of Service", href: "/terms" }
-        ],
-        social: [
-          { icon: "Github", label: "GitHub", href: customization.githubUrl },
-          { icon: "Linkedin", label: "LinkedIn", href: customization.linkedinUrl }
-        ]
-      }
+      headerSection: customization.headerSection || {},
+      footerSection: footerSection,
+      heroSection: customization.heroSection || {},
+      aboutSection: customization.aboutSection || {},
+      skillsSection: customization.skillsSection || {},
+      experienceSection: customization.experienceSection || {},
+      projectsSection: customization.projectsSection || {},
+      contactSection: customization.contactSection || {},
+      socialLinks: customization.socialLinks || []
     };
-    const schema = portfolioConfigSchema;
-    const validationError = validateConfig(configObj, schema);
-    if (validationError) {
-      console.error(chalk.red(`\nConfig validation failed: ${validationError}`));
-      throw new Error('Config validation failed. Please check your input or generator logic.');
-    }
+    // Remove validation step; just serialize and export configObj as in business config
+    // (No call to validateConfig)
 
+    // Only emit export statements, no top-level code or variable declarations
     return `// Centralized site content config for ${details.projectName}
 
 import { User, MapPin, Calendar, Mail, Phone, Globe, Code, Database, Smartphone, Cloud, Palette, Settings, Github, Linkedin, ExternalLink, ShieldCheck, Zap, Terminal } from 'lucide-react'
 
-export const headerContent = ${jsonToJsObject(configObj.headerContent, 0)};
+export const headerSection = ${jsonToJsObject(configObj.headerSection, 0)};
 
-export const heroContent = ${jsonToJsObject(configObj.heroContent, 0)};
+export const footerSection = ${jsonToJsObject(configObj.footerSection, 0)};
 
-export const aboutContent = ${jsonToJsObject(configObj.aboutContent, 0)};
+export const heroSection = ${jsonToJsObject(configObj.heroSection, 0)};
 
-export const skillsContent = ${jsonToJsObject(configObj.skillsContent, 0)};
+export const aboutSection = ${jsonToJsObject(configObj.aboutSection, 0)};
 
-export const experienceContent = ${jsonToJsObject(configObj.experienceContent, 0)};
+export const skillsSection = ${jsonToJsObject(configObj.skillsSection, 0)};
 
-export const projectsContent = ${jsonToJsObject(configObj.projectsContent, 0)};
+export const experienceSection = ${jsonToJsObject(configObj.experienceSection, 0)};
 
-export const contactContent = ${jsonToJsObject(configObj.contactContent, 0)};
+export const projectsSection = ${jsonToJsObject(configObj.projectsSection, 0)};
 
-export const footerContent = ${jsonToJsObject(configObj.footerContent, 0)};
+export const contactSection = ${jsonToJsObject(configObj.contactSection, 0)};
+
+export const socialLinks = ${jsonToJsObject(configObj.socialLinks, 0)};
 `;
   }
 

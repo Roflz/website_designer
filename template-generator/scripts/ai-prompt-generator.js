@@ -25,18 +25,8 @@ class AIPromptGenerator extends TemplateGenerator {
       // Save prompt to file
       const promptPath = await this.savePromptToFile(aiPrompt, templateType);
       
-      console.log('📝 Generated AI Prompt:');
-      console.log('='.repeat(50));
-      console.log(aiPrompt);
-      console.log('='.repeat(50));
-      console.log('\n📋 Instructions:');
-      console.log('1. Copy the prompt above or from the saved file');
-      console.log('2. Send it to an AI assistant (like ChatGPT, Claude, etc.)');
-      console.log('3. Ask the AI to analyze the client information and provide a JSON configuration');
-      console.log('4. The AI should return a JSON object with the template-specific structure');
-      console.log('5. Copy the AI response and save it to a file');
-      console.log('6. Run: npm run generate-from-ai <filename>');
-      console.log(`\n💾 Prompt saved to: ${promptPath}`);
+      console.log('\n🎉 AI Prompt generated successfully!');
+      console.log(`📝 Prompt saved to: ${promptPath}`);
       
       return aiPrompt;
       
@@ -496,80 +486,303 @@ Please analyze the client information and provide the JSON configuration.`;
 }
 \`\`\``;
     } else {
-      return `\`\`\`json
+      return `
+\`\`\`json
 {
   "details": {
     "projectName": "url-friendly-project-name",
-    "clientName": "Client Name",
-    "businessName": "Business Name",
-    "tagline": "Professional tagline here",
-    "description": "Business description here",
-    "email": "contact@example.com",
-    "phone": "+1 (555) 123-4567",
-    "primaryColor": "#2e7d32",
-    "secondaryColor": "#0277bd"
+    "clientName": "Your Name",
+    "tagline": "A short description or tagline for your portfolio.",
+    "description": "Write a short summary about yourself, your skills, and what you offer.",
+    "email": "your@email.com",
+    "phone": "123-456-7890",
+    "primaryColor": "#6D28D9",
+    "secondaryColor": "#14B8A6"
   },
   "templateType": "portfolio",
   "customization": {
-    "headerContent": {
-      "businessName": "Client Name",
+    "headerSection": {
+      "logo": "Your Logo",
       "navItems": [
         { "name": "Home", "href": "#home" },
         { "name": "About", "href": "#about" },
         { "name": "Skills", "href": "#skills" },
-        { "name": "Experience", "href": "#experience" },
         { "name": "Projects", "href": "#projects" },
+        { "name": "Experience", "href": "#experience" },
         { "name": "Contact", "href": "#contact" }
       ]
     },
-    "heroContent": {
-      "greeting": "Hello, I'm",
-      "name": "Client Name",
-      "title": "Professional Title",
-      "description": "Personal description",
-      "ctas": [
-        { "text": "View My Work", "link": "#projects", "style": "primary" },
-        { "text": "Contact Me", "link": "#contact", "style": "secondary" }
+    "footerSection": {
+      "brand": {
+        "name": "Your Name",
+        "description": "A short description or tagline for your portfolio.",
+        "socialLinks": [
+          { "name": "GitHub", "url": "https://github.com/yourusername" },
+          { "name": "LinkedIn", "url": "https://www.linkedin.com/in/yourusername/" },
+          { "name": "Website", "url": "https://yourwebsite.com" }
+        ]
+      },
+      "quickLinks": [
+        { "name": "Home", "href": "#home" },
+        { "name": "About", "href": "#about" },
+        { "name": "Skills", "href": "#skills" },
+        { "name": "Projects", "href": "#projects" },
+        { "name": "Experience", "href": "#experience" },
+        { "name": "Contact", "href": "#contact" }
       ],
-      "stats": [{ "value": "5+", "label": "Years Experience" }]
+      "contactInfo": ["your@email.com", "Your Location"],
+      "copyright": {
+        "year": 2024,
+        "name": "Your Name",
+        "madeWith": "Made with",
+        "love": "and lots of coffee."
+      },
+      "backToTop": "Back to top"
     },
-    "aboutContent": {
+    "heroSection": {
+      "greeting": "Hello, I'm",
+      "name": "Your Name",
+      "title": "Your Professional Title or Tagline",
+      "description": "Write a short summary about yourself, your skills, and what you offer. This is your chance to make a great first impression!",
+      "ctas": [
+        { "label": "View My Work", "action": "scroll", "target": "projects", "icon": null, "style": "primary" },
+        { "label": "Get In Touch", "action": "scroll", "target": "contact", "icon": "Mail", "style": "secondary" },
+        { "label": "Download CV", "action": "download", "target": "/cv.pdf", "icon": null, "style": "secondary" }
+      ],
+      "stats": [
+        { "value": "X+", "label": "Years Experience" },
+        { "value": "X", "label": "Projects Completed" },
+        { "value": "X", "label": "Happy Clients" },
+        { "value": "100%", "label": "Commitment to Quality" }
+      ],
+      "scrollIndicator": { "target": "about" }
+    },
+    "aboutSection": {
       "heading": "About Me",
-      "subheading": "Get to know me better",
-      "personalInfo": [{"icon": "User", "label": "Name", "value": "Client Name"}],
-      "whoIAm": {"heading": "Who I Am", "paragraphs": ["Paragraph 1", "Paragraph 2"]},
-      "whatIDo": {"heading": "What I Do", "skills": [{"title": "Skill Category", "description": "Skills description"}]},
-      "mission": {"title": "My Mission", "text": "Personal mission statement"}
+      "subheading": "A short introduction about yourself and your journey",
+      "personalInfo": [
+        { "icon": "User", "label": "Name", "value": "Your Name" },
+        { "icon": "MapPin", "label": "Location", "value": "Your Location" },
+        { "icon": "Calendar", "label": "Born", "value": "YYYY" },
+        { "icon": "Mail", "label": "Email", "value": "your@email.com", "link": "mailto:your@email.com" },
+        { "icon": "Github", "label": "GitHub", "link": "https://github.com/yourusername" },
+        { "icon": "Linkedin", "label": "LinkedIn", "link": "https://www.linkedin.com/in/yourusername/" },
+        { "icon": "Globe", "label": "Website", "link": "https://yourwebsite.com" }
+      ],
+      "profileImage": { "src": "", "alt": "Profile Image" },
+      "profileBadge": "X+",
+      "whoIAm": {
+        "heading": "Who I Am",
+        "paragraphs": [
+          "Write a few sentences about your background, what got you into your field, and what motivates you.",
+          "Share your approach, your values, or what makes you unique as a professional.",
+          "Let visitors know what you can help them with and why they should work with you."
+        ]
+      },
+      "whatIDo": {
+        "heading": "What I Do",
+        "skills": [
+          { "title": "Frontend Development", "description": "React, TypeScript, Next.js, Tailwind CSS, HTML/CSS" },
+          { "title": "Backend Development", "description": "Node.js, Python, Databases, API Design" },
+          { "title": "DevOps & Cloud", "description": "Docker, AWS, CI/CD, Linux" },
+          { "title": "Other Skills", "description": "List any other relevant skills here" }
+        ]
+      },
+      "downloadCV": { "label": "Download CV", "icon": "User", "href": "/cv.pdf" }
     },
-    "skillsContent": {
+    "skillsSection": {
       "heading": "My Skills",
-      "subheading": "Technical expertise overview",
-      "skillCategories": [{"icon": "Code", "title": "Category", "skills": [{"name": "Skill", "level": 90}]}],
-      "additionalSkills": ["Skill 1", "Skill 2"]
+      "subheading": "A summary of your technical skills and expertise",
+      "skillCategories": [
+        {
+          "icon": "Code",
+          "title": "Frontend Development",
+          "skills": [
+            { "name": "React", "level": 90 },
+            { "name": "TypeScript", "level": 85 },
+            { "name": "Next.js", "level": 80 },
+            { "name": "Tailwind CSS", "level": 85 },
+            { "name": "HTML/CSS", "level": 95 },
+            { "name": "JavaScript", "level": 90 }
+          ]
+        },
+        {
+          "icon": "Database",
+          "title": "Backend Development",
+          "skills": [
+            { "name": "Node.js", "level": 80 },
+            { "name": "Python", "level": 80 },
+            { "name": "PostgreSQL", "level": 75 },
+            { "name": "MongoDB", "level": 70 },
+            { "name": "Express.js", "level": 75 },
+            { "name": "REST APIs", "level": 85 }
+          ]
+        },
+        {
+          "icon": "Cloud",
+          "title": "DevOps & Cloud",
+          "skills": [
+            { "name": "Docker", "level": 80 },
+            { "name": "AWS", "level": 75 },
+            { "name": "Git", "level": 95 },
+            { "name": "CI/CD", "level": 90 },
+            { "name": "Linux", "level": 80 },
+            { "name": "Nginx", "level": 70 }
+          ]
+        },
+        {
+          "icon": "Zap",
+          "title": "Automation & ML",
+          "skills": [
+            { "name": "Workflow Automation", "level": 80 },
+            { "name": "Machine Learning", "level": 75 },
+            { "name": "OpenCV", "level": 70 },
+            { "name": "scikit-learn", "level": 70 },
+            { "name": "Pandas", "level": 80 },
+            { "name": "NumPy", "level": 80 }
+          ]
+        },
+        {
+          "icon": "ShieldCheck",
+          "title": "Software Testing",
+          "skills": [
+            { "name": "Test Automation", "level": 85 },
+            { "name": "Unit Testing", "level": 80 },
+            { "name": "Integration Testing", "level": 80 },
+            { "name": "Manual QA", "level": 70 },
+            { "name": "Requirements-Based Verification", "level": 75 }
+          ]
+        },
+        {
+          "icon": "Terminal",
+          "title": "Languages",
+          "skills": [
+            { "name": "Python", "level": 90 },
+            { "name": "C#", "level": 80 },
+            { "name": "JavaScript", "level": 85 },
+            { "name": "TypeScript", "level": 80 },
+            { "name": "HTML/CSS", "level": 85 },
+            { "name": "Bash", "level": 70 }
+          ]
+        }
+      ],
+      "additionalSkills": [
+        "GitHub Actions", "Jenkins", "Terraform", "Jupyter", "Matplotlib", "Flask", "Selenium", "VS Code", "Postman", "JSON/YAML", "Regular Expressions"
+      ]
     },
-    "experienceContent": {
+    "experienceSection": {
       "heading": "Work Experience",
-      "subheading": "Professional journey",
-      "workExperience": [{"id": 1, "title": "Job Title", "company": "Company", "location": "Location", "period": "2020-2023", "description": "Job description", "technologies": ["Tech1", "Tech2"], "achievements": ["Achievement 1", "Achievement 2"]}],
-      "education": [{"id": 1, "degree": "Degree", "school": "School", "period": "2016-2020", "description": "Education description", "achievements": ["Achievement 1"]}]
+      "subheading": "Your professional journey and educational background",
+      "workExperience": [
+        {
+          "id": 1,
+          "title": "Job Title",
+          "company": "Company Name",
+          "location": "Location",
+          "period": "Start – End",
+          "description": "Describe your responsibilities, achievements, and technologies used in this role.",
+          "technologies": ["Tech1", "Tech2", "Tech3"],
+          "achievements": [
+            "Achievement or responsibility #1",
+            "Achievement or responsibility #2",
+            "Achievement or responsibility #3"
+          ]
+        },
+        {
+          "id": 2,
+          "title": "Job Title",
+          "company": "Company Name",
+          "location": "Location",
+          "period": "Start – End",
+          "description": "Describe your responsibilities, achievements, and technologies used in this role.",
+          "technologies": ["Tech1", "Tech2", "Tech3"],
+          "achievements": [
+            "Achievement or responsibility #1",
+            "Achievement or responsibility #2",
+            "Achievement or responsibility #3"
+          ]
+        }
+      ],
+      "education": [
+        {
+          "id": 1,
+          "degree": "Degree",
+          "school": "School Name",
+          "location": "Location",
+          "period": "Start – End",
+          "description": "Describe your studies, focus areas, and any honors or awards."
+        }
+      ]
     },
-    "projectsContent": {
-      "title": "My Projects",
-      "subtitle": "Showcase of work",
-      "filters": [{"id": "all", "label": "All Projects"}],
-      "caseStudies": [{"id": 1, "title": "Project Name", "category": "web", "image": "image-url", "description": "Project description", "technologies": ["Tech1", "Tech2"], "liveUrl": "live-url", "codeUrl": "code-url", "fiverrUrl": "fiverr-url"}],
-      "cta": {"text": "View All Projects", "icon": "Eye", "link": "#contact"}
+    "projectsSection": {
+      "heading": "Featured Projects",
+      "subheading": "Showcase your best work and what you can do",
+      "filters": [
+        { "id": "all", "label": "All" },
+        { "id": "web", "label": "Web Apps" },
+        { "id": "mobile", "label": "Mobile Apps" },
+        { "id": "automation", "label": "Automation" },
+        { "id": "ml", "label": "Machine Learning" }
+      ],
+      "projects": [
+        {
+          "id": 1,
+          "title": "E-Commerce Platform",
+          "description": "Full-stack e-commerce platform with user authentication, shopping cart, and payment integration.",
+          "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=500&h=300&fit=crop",
+          "liveUrl": "https://example-ecommerce.com",
+          "githubUrl": "https://github.com/yourusername/ecommerce-platform",
+          "fiverrUrl": "https://www.fiverr.com/yourusername/ecommerce-development",
+          "technologies": ["React", "Node.js", "MongoDB", "Stripe", "AWS"],
+          "category": "web",
+          "featured": true
+        }
+      ]
     },
-    "contactContent": {
-      "title": "Get In Touch",
-      "subtitle": "Contact me",
-      "contactInfo": [{ "icon": "Mail", "label": "Email", "value": "email@example.com", "link": "mailto:email@example.com" }],
-      "socialLinks": [{ "icon": "Github", "label": "GitHub", "link": "https://github.com/username" }],
-      "map": { "label": "My Location", "placeholder": "Map will appear here" }
-    }
+    "contactSection": {
+      "heading": "Get in Touch",
+      "subheading": "Ready to work together or have questions? Reach out!",
+      "connectHeading": "Let's Connect",
+      "connectText": "I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology.",
+      "sendMessageHeading": "Send a Message",
+      "info": [
+        { "icon": "Mail", "title": "Email", "value": "your@email.com", "link": "mailto:your@email.com" },
+        { "icon": "Phone", "title": "Phone", "value": "123-456-7890", "link": "tel:1234567890" },
+        { "icon": "Globe", "title": "Website", "value": "yourwebsite.com", "link": "https://yourwebsite.com" }
+      ],
+      "socialLinks": [
+        { "name": "GitHub", "url": "https://github.com/yourusername", "color": "hover:bg-gray-800" },
+        { "name": "LinkedIn", "url": "https://www.linkedin.com/in/yourusername/", "color": "hover:bg-blue-600" },
+        { "name": "Website", "url": "https://yourwebsite.com", "color": "hover:bg-green-600" }
+      ],
+      "formFields": [
+        { "label": "Your Name", "name": "name", "type": "text" },
+        { "label": "Your Email", "name": "email", "type": "email" },
+        { "label": "Subject", "name": "subject", "type": "text" },
+        { "label": "Your Message", "name": "message", "type": "textarea" }
+      ],
+      "form": {
+        "nameLabel": "Your Name",
+        "emailLabel": "Your Email",
+        "messageLabel": "Your Message",
+        "submitText": "Send Message",
+        "successTitle": "Message Sent!",
+        "successText": "Thank you for reaching out. I will get back to you soon."
+      },
+      "sentMessage": {
+        "heading": "Message Sent Successfully!",
+        "text": "Thank you for reaching out. I will get back to you as soon as possible."
+      }
+    },
+    "socialLinks": [
+      { "icon": "Github", "label": "GitHub", "link": "https://github.com/yourusername" },
+      { "icon": "Linkedin", "label": "LinkedIn", "link": "https://www.linkedin.com/in/yourusername/" },
+      { "icon": "ExternalLink", "label": "Website", "link": "https://yourwebsite.com" }
+    ]
   }
 }
-\`\`\``;
+\`\`\`
+`;
     }
   }
 
@@ -644,6 +857,72 @@ Please analyze the client information and provide the JSON configuration.`;
 // Export for use
 module.exports = { AIPromptGenerator };
 
+// Example client info for a business site
+const exampleBusinessClientInfo = {
+  clientName: "Sarah Johnson",
+  businessName: "Creative Design Studio",
+  email: "sarah@creativedesignstudio.com",
+  location: "Portland, OR",
+  description: "I need a portfolio website for my graphic design business. I specialize in branding and logo design for small businesses.",
+  requirements: "Modern, clean design with portfolio gallery, about section, and contact form. Should showcase my work and be mobile-friendly.",
+  targetAudience: "Small business owners and startups",
+  industry: "Graphic Design",
+  colorPreferences: "Blue and gray, professional look",
+  stylePreferences: "Modern and minimal"
+};
+
+// Example client info for a portfolio site
+const examplePortfolioClientInfo = {
+  clientName: "Jane Doe",
+  profession: "UI/UX Designer",
+  email: "jane@janedesign.com",
+  location: "San Francisco, CA",
+  description: "I'm a freelance UI/UX designer specializing in web and mobile app design. I want a portfolio site to showcase my projects and skills.",
+  requirements: "Modern, creative design with project gallery, about section, skills, and contact form. Should highlight my design process and client testimonials.",
+  targetAudience: "Tech startups, agencies, and product teams",
+  industry: "Design",
+  colorPreferences: "Purple and teal, creative vibe",
+  stylePreferences: "Bold, clean, and interactive",
+  skills: ["Figma", "Sketch", "Adobe XD", "Webflow"],
+  projects: [
+    {
+      title: "E-commerce Redesign",
+      description: "Revamped the UI for a major online retailer.",
+      image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+    }
+  ],
+  testimonials: [
+    {
+      name: "Client Name",
+      quote: "Jane was amazing to work with!"
+    }
+  ],
+  contact: {
+    email: "jane@janedesign.com",
+    linkedin: "https://linkedin.com/in/janedoe"
+  }
+};
+
+// CLI prompt to select which example to use
+const readline = require('readline');
+
+function selectExampleClientInfo() {
+  return new Promise((resolve) => {
+    const rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout
+    });
+    rl.question('Which example client info do you want to use? (business/portfolio): ', (answer) => {
+      rl.close();
+      if (answer.trim().toLowerCase().startsWith('p')) {
+        resolve(examplePortfolioClientInfo);
+      } else {
+        resolve(exampleBusinessClientInfo);
+      }
+    });
+  });
+}
+
 // Example usage functions
 async function generatePrompt(clientInfo, templateType = null) {
   const aiGenerator = new AIPromptGenerator();
@@ -657,56 +936,41 @@ async function generateFromAIResponse(aiResponseFile) {
 
 // Run if called directly
 if (require.main === module) {
-  const command = process.argv[2];
-  
-  if (command === 'prompt') {
-    // Get template type from command line arguments
-    const templateType = process.argv[3]; // e.g., "business" or "portfolio"
-    
-    // Generate prompt from client info
-    const exampleClientInfo = {
-      clientName: "Sarah Johnson",
-      businessName: "Creative Design Studio",
-      email: "sarah@creativedesignstudio.com",
-      location: "Portland, OR",
-      description: "I need a portfolio website for my graphic design business. I specialize in branding and logo design for small businesses.",
-      requirements: "Modern, clean design with portfolio gallery, about section, and contact form. Should showcase my work and be mobile-friendly.",
-      targetAudience: "Small business owners and startups",
-      industry: "Graphic Design",
-      colorPreferences: "Blue and gray, professional look",
-      stylePreferences: "Modern and minimal"
-    };
-    
-    generatePrompt(exampleClientInfo, templateType)
-      .then(prompt => {
-        console.log('\n🎉 AI Prompt generated successfully!');
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
-  } else if (command === 'generate') {
-    // Generate website from AI response file
-    const aiResponseFile = process.argv[3];
-    if (!aiResponseFile) {
-      console.error('Please provide the AI response file path');
-      process.exit(1);
+  (async () => {
+    const command = process.argv[2];
+    if (command === 'prompt') {
+      const clientInfo = await selectExampleClientInfo();
+      const templateType = process.argv[3]; // e.g., "business" or "portfolio"
+      // Generate prompt from client info
+      await generatePrompt(clientInfo, templateType)
+        .then(() => {
+          console.log('\n🎉 AI Prompt generated successfully!');
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    } else if (command === 'generate') {
+      const aiResponseFile = process.argv[3];
+      if (!aiResponseFile) {
+        console.error('Please provide the AI response file path');
+        process.exit(1);
+      }
+      await generateFromAIResponse(aiResponseFile)
+        .then(projectName => {
+          console.log(`\n🎉 Website generated: ${projectName}`);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    } else {
+      console.log('Usage:');
+      console.log('  node scripts/ai-prompt-generator.js prompt [template]     # Generate AI prompt (template: business/portfolio)');
+      console.log('  node scripts/ai-prompt-generator.js generate <response-file>  # Generate website from AI response');
+      console.log('');
+      console.log('Examples:');
+      console.log('  node scripts/ai-prompt-generator.js prompt business       # Generate business template prompt');
+      console.log('  node scripts/ai-prompt-generator.js prompt portfolio      # Generate portfolio template prompt');
+      console.log('  node scripts/ai-prompt-generator.js prompt                # Auto-detect template type');
     }
-    
-    generateFromAIResponse(aiResponseFile)
-      .then(projectName => {
-        console.log(`\n🎉 Website generated: ${projectName}`);
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
-  } else {
-    console.log('Usage:');
-    console.log('  node scripts/ai-prompt-generator.js prompt [template]     # Generate AI prompt (template: business/portfolio)');
-    console.log('  node scripts/ai-prompt-generator.js generate <response-file>  # Generate website from AI response');
-    console.log('');
-    console.log('Examples:');
-    console.log('  node scripts/ai-prompt-generator.js prompt business       # Generate business template prompt');
-    console.log('  node scripts/ai-prompt-generator.js prompt portfolio      # Generate portfolio template prompt');
-    console.log('  node scripts/ai-prompt-generator.js prompt                # Auto-detect template type');
-  }
+  })();
 } 
