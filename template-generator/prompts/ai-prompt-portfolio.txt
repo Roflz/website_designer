@@ -13,7 +13,7 @@ Carefully review the client information and reason about what should be changed 
 **Target Audience**: Tech startups, agencies, and product teams
 **Industry**: Design
 **Color Preferences**: Purple and teal, creative vibe
-**Style Preferences**: Bold, clean, and interactive
+**Visual Style Preferences**: Bold, clean, and interactive (this refers ONLY to visual aesthetics like color scheme, typography, spacing, and imagery. Do NOT interpret as a request to remove or reduce textual content or sections.)
 
 
 ### Website JSON Structure and Section Purposes

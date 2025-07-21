@@ -15,6 +15,17 @@ const Projects = () => {
     ? projects 
     : projects.filter(project => project.category === activeFilter)
 
+  const columns = 3;
+  const total = filteredProjects.length;
+  const useDynamicCols = total < columns;
+  const fullRows = Math.floor(total / columns);
+  const lastRowCount = total % columns || columns;
+  const emptyBefore = Math.floor((columns - lastRowCount) / 2);
+  const emptyAfter = columns - lastRowCount - emptyBefore;
+
+  const fullRowsCards = filteredProjects.slice(0, fullRows * columns);
+  const lastRowCards = filteredProjects.slice(fullRows * columns);
+
   return (
     <section id="projects" className="py-20 bg-background-alt">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -60,8 +71,12 @@ const Projects = () => {
         </motion.div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
-          {filteredProjects.map((project, index) => (
+        <div
+          className={`grid gap-8 justify-items-center mx-auto ${!useDynamicCols ? 'md:grid-cols-2 lg:grid-cols-3' : ''}`}
+          style={useDynamicCols ? { gridTemplateColumns: `repeat(${total}, minmax(0, 1fr))` } : {}}
+        >
+          {/* Render all full rows */}
+          {fullRowsCards.map((project, index) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, y: 20 }}
@@ -110,7 +125,6 @@ const Projects = () => {
                 <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
                   {project.description}
                 </p>
-                
                 {/* Technologies */}
                 <div className="flex flex-wrap gap-2">
                   {project.technologies.map((tech) => (
@@ -122,7 +136,6 @@ const Projects = () => {
                     </span>
                   ))}
                 </div>
-
                 {/* Action Buttons */}
                 <div className="flex gap-3 pt-4">
                   <a
@@ -146,6 +159,97 @@ const Projects = () => {
                 </div>
               </div>
             </motion.div>
+          ))}
+          {/* Center the last row */}
+          {!useDynamicCols && total >= columns && Array.from({ length: emptyBefore }).map((_, i) => (
+            <div key={`empty-before-${i}`} />
+          ))}
+          {lastRowCards.map((project, index) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: (fullRows * columns + index) * 0.1 }}
+              viewport={{ once: true }}
+              className="card w-[360px] px-6 group hover:shadow-xl transition-all duration-300"
+            >
+              {/* Project Image */}
+              <div className="relative overflow-hidden rounded-lg mb-6">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 bg-white rounded-full hover:bg-primary-50 transition-colors duration-200"
+                  >
+                    <ExternalLink size={20} className="text-dark-900" />
+                  </a>
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 bg-white rounded-full hover:bg-primary-50 transition-colors duration-200"
+                  >
+                    <Github size={20} className="text-dark-900" />
+                  </a>
+                </div>
+                {project.featured && (
+                  <div className="absolute top-4 left-4 bg-primary-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                    Featured
+                  </div>
+                )}
+              </div>
+
+              {/* Project Content */}
+              <div className="space-y-4">
+                <h3 className="text-xl font-semibold text-dark-900 dark:text-white group-hover:text-primary transition-colors duration-200">
+                  {project.title}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                  {project.description}
+                </p>
+                {/* Technologies */}
+                <div className="flex flex-wrap gap-2">
+                  {project.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-3 py-1 bg-gray-100 dark:bg-dark-700 text-gray-700 dark:text-gray-300 rounded-full text-xs font-medium"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                {/* Action Buttons */}
+                <div className="flex gap-3 pt-4">
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-primary flex items-center gap-2 text-sm whitespace-nowrap"
+                  >
+                    <Eye size={16} />
+                    Live Demo
+                  </a>
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-secondary flex items-center gap-2 text-sm whitespace-nowrap"
+                  >
+                    <Github size={16} />
+                    Code
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+          {!useDynamicCols && total >= columns && Array.from({ length: emptyAfter }).map((_, i) => (
+            <div key={`empty-after-${i}`} />
           ))}
         </div>
 

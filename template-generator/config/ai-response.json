@@ -1,255 +1,241 @@
 {
   "details": {
-    "projectName": "creative-design-studio",
-    "clientName": "Sarah Johnson",
-    "businessName": "Creative Design Studio",
-    "tagline": "Modern & Minimal Graphic Design Solutions",
-    "description": "Creative Design Studio specializes in branding and logo design for small businesses, offering clean, mobile-friendly visual identities.",
-    "email": "sarah@creativedesignstudio.com",
-    "phone": "+1 (555) 123-4567",
-    "primaryColor": "#0277bd",
-    "secondaryColor": "#6b7280"
+    "projectName": "jane-doe-portfolio",
+    "clientName": "Jane Doe",
+    "tagline": "Freelance UI/UX Designer for Web & Mobile Apps",
+    "description": "I'm a freelance UI/UX designer specializing in web and mobile app design, creating intuitive and engaging experiences for tech startups and agencies.",
+    "email": "jane@janedesign.com",
+    "phone": "123-456-7890",
+    "primaryColor": "#6D28D9",
+    "secondaryColor": "#14B8A6"
   },
-  "templateType": "business",
+  "templateType": "portfolio",
   "customization": {
-    "headerContent": {
-      "businessName": "Creative Design Studio",
+    "headerSection": {
+      "logo": "Jane Doe",
       "navItems": [
         { "name": "Home", "href": "#home" },
         { "name": "About", "href": "#about" },
-        { "name": "Services", "href": "#services" },
-        { "name": "Portfolio", "href": "#projects" },
-        { "name": "Process", "href": "#process" },
+        { "name": "Skills", "href": "#skills" },
+        { "name": "Projects", "href": "#projects" },
+        { "name": "Experience", "href": "#experience" },
         { "name": "Contact", "href": "#contact" }
       ]
     },
-    "heroContent": {
-      "headline": "Modern Branding & Logo Design",
-      "subheadline": "Clean, minimal visual identities that help small businesses stand out.",
-      "ctaText": "Get a Free Quote",
-      "ctaLink": "#contact",
-      "secondaryCtaText": "View Portfolio",
-      "secondaryCtaLink": "#projects",
-      "image": {
-        "src": "https://example.com/hero-image.jpg",
-        "alt": "Graphic design showcase",
-        "overlay": "gradient",
-        "overlayColor": "from-primary/70 to-secondary/50",
-        "shadow": null,
-        "rounded": null,
-        "zoomOnHover": false,
-        "blurBackground": false,
-        "aspectRatio": "21/9",
-        "className": "h-[60vh] md:h-[70vh] w-full object-cover object-center"
-      }
-    },
-    "aboutContent": {
-      "title": "About Our Business",
-      "text": "Creative Design Studio is a Portland‑based graphic design firm specializing in branding and logo design for small businesses. We combine modern aesthetics with strategic thinking to deliver standout visual identities.",
-      "image": {
-        "src": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80",
-        "alt": "Designer at work",
-        "overlay": "gradient",
-        "overlayColor": "from-primary/60 to-secondary/40",
-        "shadow": "2xl",
-        "rounded": "full",
-        "zoomOnHover": true,
-        "blurBackground": false,
-        "aspectRatio": "1/1",
-        "className": "w-80 h-80 mx-auto object-cover object-center"
+    "footerSection": {
+      "brand": {
+        "name": "Jane Doe",
+        "description": "Freelance UI/UX Designer for Web & Mobile Apps",
+        "socialLinks": [
+          { "name": "GitHub", "url": "https://github.com/janedoe" },
+          { "name": "LinkedIn", "url": "https://www.linkedin.com/in/janedoe/" },
+          { "name": "Website", "url": "https://janedesign.com" }
+        ]
       },
-      "highlights": [
-        { "icon": "PenTool", "title": "Branding Experts", "subtitle": "Specialized" },
-        { "icon": "Layout", "title": "Logo Design", "subtitle": "Unique Identities" },
-        { "icon": "DeviceMobile", "title": "Mobile‑Friendly", "subtitle": "Responsive" },
-        { "icon": "Palette", "title": "Modern Aesthetic", "subtitle": "Minimal Style" }
-      ],
-      "mission": {
-        "title": "Our Mission",
-        "text": "Our mission is to deliver modern, minimal graphic designs that empower small businesses to make a memorable impression."
-      },
-      "companyInfo": [
-        { "icon": "PenTool", "text": "Branding & Logo Design Specialists" },
-        { "icon": "MapPin", "text": "Based in Portland, OR" },
-        { "icon": "DeviceMobile", "text": "Mobile‑First Approach" }
-      ],
-      "cta": {
-        "text": "Get Started",
-        "icon": "Briefcase",
-        "link": "#contact"
-      }
-    },
-    "servicesContent": {
-      "title": "Our Services",
-      "subtitle": "Helping your brand stand out with clean, professional design.",
-      "services": [
-        {
-          "icon": "PenTool",
-          "title": "Brand Identity",
-          "description": "Comprehensive branding strategies and visual guidelines."
-        },
-        {
-          "icon": "Layout",
-          "title": "Logo Design",
-          "description": "Custom logo creation that captures your brand’s essence."
-        },
-        {
-          "icon": "DeviceMobile",
-          "title": "Digital Assets",
-          "description": "Social media graphics, website icons, and digital collateral."
-        },
-        {
-          "icon": "Printer",
-          "title": "Print Design",
-          "description": "Business cards, brochures, packaging, and other print materials."
-        },
-        {
-          "icon": "Palette",
-          "title": "Color & Typography",
-          "description": "Curated palettes and typography for cohesive brand visuals."
-        },
-        {
-          "icon": "Headset",
-          "title": "Consultation",
-          "description": "Expert advice to refine your brand strategy and visuals."
-        }
-      ],
-      "cta": {
-        "text": "Get a Free Quote",
-        "link": "#contact"
-      }
-    },
-    "projectsContent": {
-      "title": "Portfolio",
-      "subtitle": "Selected works showcasing our branding and logo design projects.",
-      "filters": [
-        { "id": "all", "label": "All Work" },
-        { "id": "branding", "label": "Branding" },
-        { "id": "logo", "label": "Logos" },
-        { "id": "print", "label": "Print" },
-        { "id": "digital", "label": "Digital" }
-      ],
-      "caseStudies": [
-        {
-          "id": "1",
-          "title": "Logo & Identity for Local Café",
-          "description": "Created a warm, inviting logo and brand palette that boosted customer recognition.",
-          "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80",
-          "category": "logo",
-          "results": "Brand recall up 30%"
-        }
-      ],
-      "cta": {
-        "text": "Start Your Project",
-        "icon": "Eye",
-        "link": "#contact"
-      }
-    },
-    "testimonialsContent": {
-      "title": "What Clients Say",
-      "subtitle": "Real feedback on our collaborative design process.",
-      "testimonials": []
-    },
-    "processContent": {
-      "title": "Our Process",
-      "subtitle": "A clear, step‑by‑step workflow for every project.",
-      "steps": [
-        {
-          "icon": "Search",
-          "title": "Discovery",
-          "description": "We learn about your brand and goals."
-        },
-        {
-          "icon": "ClipboardList",
-          "title": "Concept",
-          "description": "We develop initial sketches and mood boards."
-        },
-        {
-          "icon": "Layout",
-          "title": "Design",
-          "description": "We create polished visuals and prototypes."
-        },
-        {
-          "icon": "MessageCircle",
-          "title": "Review",
-          "description": "You provide feedback and we refine the design."
-        },
-        {
-          "icon": "Rocket",
-          "title": "Delivery",
-          "description": "We hand off final assets and guidelines."
-        }
-      ]
-    },
-    "footerContent": {
-      "businessName": "Creative Design Studio",
-      "tagline": "Modern & Minimal Graphic Design Solutions",
-      "social": [
-        { "name": "LinkedIn", "url": "https://linkedin.com/in/yourprofile" },
-        { "name": "Dribbble", "url": "https://dribbble.com/yourprofile" },
-        { "name": "Behance", "url": "https://behance.net/yourprofile" }
-      ],
       "quickLinks": [
         { "name": "Home", "href": "#home" },
         { "name": "About", "href": "#about" },
-        { "name": "Services", "href": "#services" },
-        { "name": "Portfolio", "href": "#projects" },
-        { "name": "Process", "href": "#process" },
-        { "name": "Contact", "href": "#contact" },
-        { "name": "Privacy Policy", "href": "#" },
-        { "name": "Terms of Service", "href": "#" }
+        { "name": "Skills", "href": "#skills" },
+        { "name": "Projects", "href": "#projects" },
+        { "name": "Experience", "href": "#experience" },
+        { "name": "Contact", "href": "#contact" }
       ],
-      "contact": [
-        "sarah@creativedesignstudio.com",
-        "+1 (555) 123-4567",
-        "Portland, OR",
-        "Mon‑Fri: 9am – 5pm"
-      ],
-      "copyright": "Creative Design Studio. Made with passion."
-    },
-    "contactContent": {
-      "title": "Request a Free Quote",
-      "subtitle": "Ready to elevate your brand? Send us a message and we'll respond promptly.",
-      "infoTitle": "Let's Talk",
-      "infoText": "Reach out for a no‑obligation consultation on your design needs.",
       "contactInfo": [
+        "jane@janedesign.com",
+        "San Francisco, CA"
+      ],
+      "copyright": {
+        "year": 2025,
+        "name": "Jane Doe",
+        "madeWith": "Made with",
+        "love": "and lots of coffee."
+      },
+      "backToTop": "Back to top"
+    },
+    "heroSection": {
+      "greeting": "Hello, I'm",
+      "name": "Jane Doe",
+      "title": "Freelance UI/UX Designer",
+      "description": "I design intuitive web and mobile experiences that delight users and drive business results.",
+      "ctas": [
+        { "label": "View My Work", "action": "scroll", "target": "projects", "icon": null, "style": "primary" },
+        { "label": "Get In Touch", "action": "scroll", "target": "contact", "icon": "Mail", "style": "secondary" }
+      ],
+      "stats": [
+        { "value": "5+", "label": "Years Experience" },
+        { "value": "20+", "label": "Projects Completed" },
+        { "value": "10+", "label": "Happy Clients" },
+        { "value": "100%", "label": "Commitment to Quality" }
+      ],
+      "scrollIndicator": { "target": "about" }
+    },
+    "aboutSection": {
+      "heading": "About Me",
+      "subheading": "A short introduction about yourself and your journey",
+      "personalInfo": [
+        { "icon": "User", "label": "Name", "value": "Jane Doe" },
+        { "icon": "MapPin", "label": "Location", "value": "San Francisco, CA" },
+        { "icon": "Calendar", "label": "Born", "value": "YYYY" },
+        { "icon": "Mail", "label": "Email", "value": "jane@janedesign.com", "link": "mailto:jane@janedesign.com" },
+        { "icon": "Linkedin", "label": "LinkedIn", "link": "https://www.linkedin.com/in/janedoe/" },
+        { "icon": "Globe", "label": "Website", "link": "https://janedesign.com" }
+      ],
+      "profileImage": { "src": "", "alt": "Profile Image" },
+      "profileBadge": "5+",
+      "whoIAm": {
+        "heading": "Who I Am",
+        "paragraphs": [
+          "I’m a passionate UI/UX designer with a background in visual design and user research.",
+          "I love solving complex problems by crafting clean, interactive interfaces.",
+          "My goal is to help tech startups and agencies deliver delightful user experiences."
+        ]
+      },
+      "whatIDo": {
+        "heading": "What I Do",
+        "skills": [
+          { "title": "UI/UX Design", "description": "Wireframing, prototyping, user research" },
+          { "title": "Interaction Design", "description": "User flows, usability testing" },
+          { "title": "Visual Design", "description": "Creative layouts, brand consistency" },
+          { "title": "Tools & Frameworks", "description": "Figma, Sketch, Adobe XD, InVision" }
+        ]
+      },
+      "downloadCV": { "label": "Download CV", "icon": "User", "href": "/cv.pdf" }
+    },
+    "skillsSection": {
+      "heading": "My Skills",
+      "subheading": "A summary of my expertise and tools",
+      "skillCategories": [
         {
-          "icon": "Mail",
-          "title": "Email",
-          "value": "sarah@creativedesignstudio.com",
-          "link": "mailto:sarah@creativedesignstudio.com"
+          "icon": "PenTool",
+          "title": "Design Tools",
+          "skills": [
+            { "name": "Figma", "level": 95 },
+            { "name": "Sketch", "level": 90 },
+            { "name": "Adobe XD", "level": 85 },
+            { "name": "Illustrator", "level": 80 },
+            { "name": "Photoshop", "level": 80 }
+          ]
         },
         {
-          "icon": "Phone",
-          "title": "Phone",
-          "value": "+1 (555) 123-4567",
-          "link": "tel:+15551234567"
+          "icon": "Search",
+          "title": "UX Research",
+          "skills": [
+            { "name": "User Interviews", "level": 90 },
+            { "name": "Wireframing", "level": 95 },
+            { "name": "Prototyping", "level": 90 },
+            { "name": "Usability Testing", "level": 85 }
+          ]
         },
         {
-          "icon": "MapPin",
-          "title": "Location",
-          "value": "Portland, OR",
-          "link": "https://goo.gl/maps/example"
+          "icon": "Layout",
+          "title": "Interaction Design",
+          "skills": [
+            { "name": "User Flows", "level": 90 },
+            { "name": "Information Architecture", "level": 85 },
+            { "name": "Responsive Design", "level": 90 }
+          ]
         },
         {
-          "icon": "Clock",
-          "title": "Business Hours",
-          "value": "Mon‑Fri: 9am – 5pm",
-          "link": "#"
+          "icon": "ShieldCheck",
+          "title": "Accessibility",
+          "skills": [
+            { "name": "WCAG Guidelines", "level": 80 },
+            { "name": "Contrast & Typography", "level": 85 }
+          ]
         }
       ],
-      "map": {
-        "label": "Our Studio",
-        "placeholder": "[Google Map Placeholder]"
-      },
+      "additionalSkills": [
+        "Design Systems",
+        "Agile & Scrum",
+        "Brand Strategy",
+        "Accessibility Best Practices"
+      ]
+    },
+    "experienceSection": {
+      "heading": "Work Experience",
+      "subheading": "My professional journey",
+      "workExperience": [
+        {
+          "id": 1,
+          "title": "Freelance UI/UX Designer",
+          "company": "Self-Employed",
+          "location": "San Francisco, CA",
+          "period": "2018 – Present",
+          "description": "Designing web and mobile app interfaces, conducting user research, and delivering prototypes to startups and agencies.",
+          "technologies": ["Figma", "Sketch", "Adobe XD", "InVision"],
+          "achievements": [
+            "Delivered 20+ projects for tech startups",
+            "Improved user satisfaction scores by up to 30%",
+            "Established accessible design standards for multiple clients"
+          ]
+        }
+      ],
+      "education": [
+        {
+          "id": 1,
+          "degree": "B.A. Graphic Design",
+          "school": "State University",
+          "location": "City, State",
+          "period": "2014 – 2018",
+          "description": "Focused on visual communication, typography, and digital media design."
+        }
+      ]
+    },
+    "projectsSection": {
+      "heading": "Featured Projects",
+      "subheading": "Showcase of my best work",
+      "filters": [
+        { "id": "all", "label": "All" },
+        { "id": "web", "label": "Web Apps" },
+        { "id": "mobile", "label": "Mobile Apps" },
+        { "id": "ux", "label": "UI/UX" }
+      ],
+      "projects": [
+        {
+          "id": 1,
+          "title": "Fitness App Redesign",
+          "description": "Redesigned the UI of a fitness tracking app to improve navigation and engagement.",
+          "image": "https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=800&q=80",
+          "liveUrl": "https://example-fitnessapp.com",
+          "githubUrl": "",
+          "fiverrUrl": "",
+          "technologies": ["Figma", "User Testing"],
+          "category": "mobile",
+          "featured": true
+        }
+      ]
+    },
+    "contactSection": {
+      "heading": "Get in Touch",
+      "subheading": "Ready to discuss a project or just want to say hello?",
+      "connectHeading": "Let's Connect",
+      "connectText": "I'm open to new opportunities and collaborations.",
+      "sendMessageHeading": "Send a Message",
+      "info": [
+        { "icon": "Mail", "title": "Email", "value": "jane@janedesign.com", "link": "mailto:jane@janedesign.com" },
+        { "icon": "Globe", "title": "Website", "value": "janedesign.com", "link": "https://janedesign.com" }
+      ],
+      "socialLinks": [
+        { "name": "GitHub", "url": "https://github.com/janedoe", "color": "hover:bg-gray-800" },
+        { "name": "LinkedIn", "url": "https://www.linkedin.com/in/janedoe/", "color": "hover:bg-blue-600" }
+      ],
+      "formFields": [
+        { "label": "Your Name", "name": "name", "type": "text" },
+        { "label": "Your Email", "name": "email", "type": "email" },
+        { "label": "Subject", "name": "subject", "type": "text" },
+        { "label": "Your Message", "name": "message", "type": "textarea" }
+      ],
       "form": {
-        "nameLabel": "Name",
-        "emailLabel": "Email",
-        "serviceLabel": "Service Needed",
-        "messageLabel": "Message",
-        "submitText": "Send Request",
-        "successTitle": "Request Sent!",
-        "successText": "Thank you! We'll be in touch soon."
+        "nameLabel": "Your Name",
+        "emailLabel": "Your Email",
+        "messageLabel": "Your Message",
+        "submitText": "Send Message",
+        "successTitle": "Message Sent!",
+        "successText": "Thank you for reaching out. I will get back to you soon."
+      },
+      "sentMessage": {
+        "heading": "Message Sent Successfully!",
+        "text": "Thank you for reaching out. I will get back to you as soon as possible."
       }
     }
   }

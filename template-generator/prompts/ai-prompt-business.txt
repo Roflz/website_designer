@@ -14,7 +14,7 @@ Carefully review the client information and reason about what should be changed 
 **Target Audience**: Small business owners and startups
 **Industry**: Graphic Design
 **Color Preferences**: Blue and gray, professional look
-**Style Preferences**: Modern and minimal
+**Visual Style Preferences**: Modern and minimal (this refers ONLY to visual aesthetics like color scheme, typography, spacing, and imagery. Do NOT interpret as a request to remove or reduce textual content or sections.)
 
 
 ### Website JSON Structure and Section Purposes
@@ -40,6 +40,28 @@ Each field in the JSON corresponds to a specific part of the website. Only updat
 - Always include filter buttons for project types in the projects section, even if there is only one type.
 
 
+### CRITICAL CONTENT PRESERVATION RULES
+**⚠️ CRITICAL: Do NOT change section titles or headings unless the client explicitly requests a different title in their requirements.**
+- The default section titles are carefully chosen and should be preserved
+- Examples: "Recent Client Work", "Our Services", "What Clients Say", "Our Process" - DO NOT CHANGE THESE
+
+**⚠️ CRITICAL: NEVER remove or reduce the number of default projects, testimonials, process steps, or sections unless explicitly instructed by the client. Assume all default content should be preserved exactly as provided.**
+- The default 6 projects showcase diverse client work across different industries and services
+- These projects demonstrate the business's versatility and experience
+- Only modify project content (titles, descriptions, categories) to better match the client's industry, but keep the same number and structure
+
+**⚠️ CRITICAL: Do NOT change filter categories in projectsContent unless the client explicitly requests different categories.**
+- The default filters support the diverse project types and should be preserved
+- Only modify if the client specifically mentions different service categories
+
+**⚠️ CRITICAL: Do NOT remove testimonials unless the client explicitly states they don't want testimonials.**
+- The default testimonials demonstrate social proof and should be preserved
+- Only modify testimonial content to better match the client's industry
+
+**⚠️ CRITICAL: Do NOT remove or significantly modify the process steps unless the client provides a specific alternative process.**
+- The default process demonstrates professionalism and should be preserved
+- Only modify step descriptions to better match the client's industry
+
 ### Business Template Specific Requirements
 - **Header Navigation**: Use "name" field (not "label") for navigation items
 - **About Section**: Include "highlights" array with business achievements and "companyInfo" array with company details
@@ -47,6 +69,8 @@ Each field in the JSON corresponds to a specific part of the website. Only updat
 - **Testimonials**: Include client testimonials with company names and roles
 - **Process**: Include business process/workflow steps
 - **Contact**: Business contact information with professional details
+
+⚠️ If the client information provided does NOT explicitly instruct to remove or modify sections (such as testimonialsContent, processContent, etc.), DO NOT alter, remove, or reduce the default content in any way.
 
 ## Required Output Format
 Return ONLY a valid JSON object with this exact structure for business template:

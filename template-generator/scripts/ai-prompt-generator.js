@@ -147,13 +147,37 @@ Please analyze the client information and provide the JSON configuration.`;
 
   getTemplateSpecificPrompt(templateType) {
     if (templateType === 'business') {
-      return `### Business Template Specific Requirements
+      return `### CRITICAL CONTENT PRESERVATION RULES
+**⚠️ CRITICAL: Do NOT change section titles or headings unless the client explicitly requests a different title in their requirements.**
+- The default section titles are carefully chosen and should be preserved
+- Examples: "Recent Client Work", "Our Services", "What Clients Say", "Our Process" - DO NOT CHANGE THESE
+
+**⚠️ CRITICAL: NEVER remove or reduce the number of default projects, testimonials, process steps, or sections unless explicitly instructed by the client. Assume all default content should be preserved exactly as provided.**
+- The default 6 projects showcase diverse client work across different industries and services
+- These projects demonstrate the business's versatility and experience
+- Only modify project content (titles, descriptions, categories) to better match the client's industry, but keep the same number and structure
+
+**⚠️ CRITICAL: Do NOT change filter categories in projectsContent unless the client explicitly requests different categories.**
+- The default filters support the diverse project types and should be preserved
+- Only modify if the client specifically mentions different service categories
+
+**⚠️ CRITICAL: Do NOT remove testimonials unless the client explicitly states they don't want testimonials.**
+- The default testimonials demonstrate social proof and should be preserved
+- Only modify testimonial content to better match the client's industry
+
+**⚠️ CRITICAL: Do NOT remove or significantly modify the process steps unless the client provides a specific alternative process.**
+- The default process demonstrates professionalism and should be preserved
+- Only modify step descriptions to better match the client's industry
+
+### Business Template Specific Requirements
 - **Header Navigation**: Use "name" field (not "label") for navigation items
 - **About Section**: Include "highlights" array with business achievements and "companyInfo" array with company details
 - **Services Focus**: Emphasize business services, team expertise, and client results
 - **Testimonials**: Include client testimonials with company names and roles
 - **Process**: Include business process/workflow steps
-- **Contact**: Business contact information with professional details`;
+- **Contact**: Business contact information with professional details
+
+⚠️ If the client information provided does NOT explicitly instruct to remove or modify sections (such as testimonialsContent, processContent, etc.), DO NOT alter, remove, or reduce the default content in any way.`;
     } else {
       return `### Portfolio Template Specific Requirements
 - **Header Navigation**: Use "name" field (not "label") for navigation items
@@ -802,7 +826,7 @@ Please analyze the client information and provide the JSON configuration.`;
     if (clientInfo.linkedinUrl) formatted += `**LinkedIn URL**: ${clientInfo.linkedinUrl}\n`;
     if (clientInfo.fiverrUrl) formatted += `**Fiverr URL**: ${clientInfo.fiverrUrl}\n`;
     if (clientInfo.colorPreferences) formatted += `**Color Preferences**: ${clientInfo.colorPreferences}\n`;
-    if (clientInfo.stylePreferences) formatted += `**Style Preferences**: ${clientInfo.stylePreferences}\n`;
+    if (clientInfo.stylePreferences) formatted += `**Visual Style Preferences**: ${clientInfo.stylePreferences} (this refers ONLY to visual aesthetics like color scheme, typography, spacing, and imagery. Do NOT interpret as a request to remove or reduce textual content or sections.)\n`;
     if (clientInfo.specialRequirements) formatted += `**Special Requirements**: ${clientInfo.specialRequirements}\n`;
     
     return formatted || 'No client information provided.';

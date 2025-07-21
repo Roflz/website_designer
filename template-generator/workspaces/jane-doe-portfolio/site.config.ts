@@ -35,19 +35,19 @@ export const headerSection = {
 export const footerSection = {
   brand: {
     name: "Jane Doe",
-    description: "Bold & Interactive UI/UX Design for Web & Mobile",
+    description: "Freelance UI/UX Designer for Web & Mobile Apps",
     socialLinks: [
       {
         name: "GitHub",
-        url: "https://github.com/yourusername"
+        url: "https://github.com/janedoe"
       },
       {
         name: "LinkedIn",
-        url: "https://www.linkedin.com/in/yourusername/"
+        url: "https://www.linkedin.com/in/janedoe/"
       },
       {
         name: "Website",
-        url: "https://yourwebsite.com"
+        url: "https://janedesign.com"
       }
     ]
   },
@@ -91,7 +91,7 @@ export const heroSection = {
   greeting: "Hello, I'm",
   name: "Jane Doe",
   title: "Freelance UI/UX Designer",
-  description: "I'm a freelance UI/UX designer based in San Francisco, specializing in modern, creative web and mobile app design.",
+  description: "I design intuitive web and mobile experiences that delight users and drive business results.",
   ctas: [
     {
       label: "View My Work",
@@ -110,15 +110,15 @@ export const heroSection = {
   ],
   stats: [
     {
-      value: "X+",
+      value: "5+",
       label: "Years Experience"
     },
     {
-      value: "X",
+      value: "20+",
       label: "Projects Completed"
     },
     {
-      value: "X",
+      value: "10+",
       label: "Happy Clients"
     },
     {
@@ -133,7 +133,7 @@ export const heroSection = {
 
 export const aboutSection = {
   heading: "About Me",
-  subheading: "Freelance UI/UX designer specializing in web and mobile app design",
+  subheading: "A short introduction about yourself and your journey",
   personalInfo: [
     {
       icon: "User",
@@ -157,48 +157,43 @@ export const aboutSection = {
       link: "mailto:jane@janedesign.com"
     },
     {
-      icon: "Github",
-      label: "GitHub",
-      link: "https://github.com/yourusername"
-    },
-    {
       icon: "Linkedin",
       label: "LinkedIn",
-      link: "https://www.linkedin.com/in/yourusername/"
+      link: "https://www.linkedin.com/in/janedoe/"
     },
     {
       icon: "Globe",
       label: "Website",
-      link: "https://yourwebsite.com"
+      link: "https://janedesign.com"
     }
   ],
   profileImage: {
     src: "",
     alt: "Profile Image"
   },
-  profileBadge: "X+",
+  profileBadge: "5+",
   whoIAm: {
     heading: "Who I Am",
-    paragraphs: [ "Write a few sentences about your background, what got you into your field, and what motivates you.", "Share your approach, your values, or what makes you unique as a professional.", "Let visitors know what you can help them with and why they should work with you." ]
+    paragraphs: [ "I’m a passionate UI/UX designer with a background in visual design and user research.", "I love solving complex problems by crafting clean, interactive interfaces.", "My goal is to help tech startups and agencies deliver delightful user experiences." ]
   },
   whatIDo: {
     heading: "What I Do",
     skills: [
       {
-        title: "UI Design",
-        description: "Figma, Sketch, Adobe XD, Wireframing, Visual Design"
-      },
-      {
-        title: "UX Research",
-        description: "User Interviews, Personas, User Flows, Usability Testing"
+        title: "UI/UX Design",
+        description: "Wireframing, prototyping, user research"
       },
       {
         title: "Interaction Design",
-        description: "Prototyping, Wireframing, Micro-interactions"
+        description: "User flows, usability testing"
       },
       {
-        title: "Mobile & Web Design",
-        description: "Responsive Design, Design Systems, Accessibility"
+        title: "Visual Design",
+        description: "Creative layouts, brand consistency"
+      },
+      {
+        title: "Tools & Frameworks",
+        description: "Figma, Sketch, Adobe XD, InVision"
       }
     ]
   },
@@ -211,36 +206,36 @@ export const aboutSection = {
 
 export const skillsSection = {
   heading: "My Skills",
-  subheading: "A summary of my design skills and expertise",
+  subheading: "A summary of my expertise and tools",
   skillCategories: [
     {
-      icon: "Edit",
-      title: "UI Design",
+      icon: "PenTool",
+      title: "Design Tools",
       skills: [
         {
           name: "Figma",
-          level: 90
+          level: 95
         },
         {
           name: "Sketch",
-          level: 80
+          level: 90
         },
         {
           name: "Adobe XD",
           level: 85
         },
         {
-          name: "Visual Design",
-          level: 90
+          name: "Illustrator",
+          level: 80
         },
         {
-          name: "Design Systems",
+          name: "Photoshop",
           level: 80
         }
       ]
     },
     {
-      icon: "Users",
+      icon: "Search",
       title: "UX Research",
       skills: [
         {
@@ -248,85 +243,85 @@ export const skillsSection = {
           level: 90
         },
         {
-          name: "Usability Testing",
-          level: 85
+          name: "Wireframing",
+          level: 95
         },
-        {
-          name: "Personas",
-          level: 80
-        },
-        {
-          name: "User Flows",
-          level: 85
-        }
-      ]
-    },
-    {
-      icon: "Smartphone",
-      title: "Interaction Design",
-      skills: [
         {
           name: "Prototyping",
           level: 90
         },
         {
-          name: "Wireframing",
+          name: "Usability Testing",
+          level: 85
+        }
+      ]
+    },
+    {
+      icon: "Layout",
+      title: "Interaction Design",
+      skills: [
+        {
+          name: "User Flows",
+          level: 90
+        },
+        {
+          name: "Information Architecture",
           level: 85
         },
         {
-          name: "Micro-interactions",
+          name: "Responsive Design",
+          level: 90
+        }
+      ]
+    },
+    {
+      icon: "ShieldCheck",
+      title: "Accessibility",
+      skills: [
+        {
+          name: "WCAG Guidelines",
           level: 80
         },
         {
-          name: "Responsive Design",
+          name: "Contrast & Typography",
           level: 85
         }
       ]
     }
   ],
-  additionalSkills: [ "Accessibility", "Typography", "User Research", "Design Systems", "Animation", "Illustration" ]
+  additionalSkills: [ "Design Systems", "Agile & Scrum", "Brand Strategy", "Accessibility Best Practices" ]
 };
 
 export const experienceSection = {
   heading: "Work Experience",
-  subheading: "Your professional journey and educational background",
+  subheading: "My professional journey",
   workExperience: [
     {
       id: 1,
-      title: "Job Title",
-      company: "Company Name",
-      location: "Location",
-      period: "Start – End",
-      description: "Describe your responsibilities, achievements, and tools used in this role.",
-      technologies: [ "Tool 1", "Tool 2", "Tool 3" ],
-      achievements: [ "Achievement or responsibility #1", "Achievement or responsibility #2", "Achievement or responsibility #3" ]
-    },
-    {
-      id: 2,
-      title: "Job Title",
-      company: "Company Name",
-      location: "Location",
-      period: "Start – End",
-      description: "Describe your responsibilities, achievements, and tools used in this role.",
-      technologies: [ "Tool 1", "Tool 2", "Tool 3" ],
-      achievements: [ "Achievement or responsibility #1", "Achievement or responsibility #2", "Achievement or responsibility #3" ]
+      title: "Freelance UI/UX Designer",
+      company: "Self-Employed",
+      location: "San Francisco, CA",
+      period: "2018 – Present",
+      description: "Designing web and mobile app interfaces, conducting user research, and delivering prototypes to startups and agencies.",
+      technologies: [ "Figma", "Sketch", "Adobe XD", "InVision" ],
+      achievements: [ "Delivered 20+ projects for tech startups", "Improved user satisfaction scores by up to 30%", "Established accessible design standards for multiple clients" ]
     }
   ],
   education: [
     {
       id: 1,
-      degree: "Degree",
-      school: "School Name",
-      location: "Location",
-      period: "Start – End",
-      description: "Describe your studies, focus areas, and any honors or awards."
+      degree: "B.A. Graphic Design",
+      school: "State University",
+      location: "City, State",
+      period: "2014 – 2018",
+      description: "Focused on visual communication, typography, and digital media design."
     }
   ]
 };
 
 export const projectsSection = {
   heading: "Featured Projects",
-  subheading: "Showcase your best work and what you can do",
+  subheading: "Showcase of my best work",
   filters: [
     {
       id: "all",
@@ -334,31 +329,27 @@ export const projectsSection = {
     },
     {
       id: "web",
-      label: "Web Design"
+      label: "Web Apps"
     },
     {
       id: "mobile",
-      label: "Mobile Design"
+      label: "Mobile Apps"
     },
     {
-      id: "uiux",
+      id: "ux",
       label: "UI/UX"
-    },
-    {
-      id: "case",
-      label: "Case Studies"
     }
   ],
   projects: [
     {
       id: 1,
-      title: "Mobile App Redesign",
-      description: "UI/UX redesign of a mobile productivity app, improving usability and visual appeal.",
-      image: "https://images.unsplash.com/photo-1564865875360-39fbc05a98a1?w=500&h=300&fit=crop",
-      liveUrl: "https://example.com/mobile-app-redesign",
+      title: "Fitness App Redesign",
+      description: "Redesigned the UI of a fitness tracking app to improve navigation and engagement.",
+      image: "https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=800&q=80",
+      liveUrl: "https://example-fitnessapp.com",
       githubUrl: "",
       fiverrUrl: "",
-      technologies: [ "Figma", "Sketch", "Adobe XD" ],
+      technologies: [ "Figma", "User Testing" ],
       category: "mobile",
       featured: true
     }
@@ -367,9 +358,9 @@ export const projectsSection = {
 
 export const contactSection = {
   heading: "Get in Touch",
-  subheading: "Ready to work together or have questions? Reach out!",
+  subheading: "Ready to discuss a project or just want to say hello?",
   connectHeading: "Let's Connect",
-  connectText: "I'm always open to discussing new design projects, collaborations, or just a chat about UI/UX.",
+  connectText: "I'm open to new opportunities and collaborations.",
   sendMessageHeading: "Send a Message",
   info: [
     {
@@ -377,12 +368,6 @@ export const contactSection = {
       title: "Email",
       value: "jane@janedesign.com",
       link: "mailto:jane@janedesign.com"
-    },
-    {
-      icon: "Phone",
-      title: "Phone",
-      value: "123-456-7890",
-      link: "tel:1234567890"
     },
     {
       icon: "Globe",
@@ -394,18 +379,13 @@ export const contactSection = {
   socialLinks: [
     {
       name: "GitHub",
-      url: "https://github.com/yourusername",
+      url: "https://github.com/janedoe",
       color: "hover:bg-gray-800"
     },
     {
       name: "LinkedIn",
-      url: "https://www.linkedin.com/in/yourusername/",
+      url: "https://www.linkedin.com/in/janedoe/",
       color: "hover:bg-blue-600"
-    },
-    {
-      name: "Website",
-      url: "https://yourwebsite.com",
-      color: "hover:bg-green-600"
     }
   ],
   formFields: [
@@ -444,20 +424,4 @@ export const contactSection = {
   }
 };
 
-export const socialLinks = [
-  {
-    icon: "Github",
-    label: "GitHub",
-    link: "https://github.com/yourusername"
-  },
-  {
-    icon: "Linkedin",
-    label: "LinkedIn",
-    link: "https://www.linkedin.com/in/yourusername/"
-  },
-  {
-    icon: "ExternalLink",
-    label: "Website",
-    link: "https://yourwebsite.com"
-  }
-];
+export const socialLinks = [];
